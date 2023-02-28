@@ -30,7 +30,6 @@ class HomePage extends StatelessWidget {
               'assets/images/get_start.png'
           ),
           SizedBox(
-            height: 70,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: const [
