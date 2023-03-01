@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'homepage.dart';
+import 'screens/homepage.dart';
+import 'package:first_task/utility/app_theme.dart';
 
 void main() {
   runApp(MyApp());
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'First Task',
-      theme: ThemeData(fontFamily: 'Almarai'),
-      home: HomePage());
+      theme: appTheme,
+      home: HomePage()
+    );
   }
 }
