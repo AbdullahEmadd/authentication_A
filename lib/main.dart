@@ -1,7 +1,7 @@
+import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'cubits/login/login_cubit.dart';
 import 'screens/homepage.dart';
-import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'First Task',
-      theme: ThemeData(fontFamily: 'Almarai'),
+      theme: appTheme,
       home: HomePage());
 
   }
