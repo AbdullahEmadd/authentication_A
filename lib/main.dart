@@ -13,8 +13,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'First Task',
-      theme: appTheme,
-      home: HomePage()
-    );
+      theme: ThemeData(fontFamily: 'Almarai'),
+      home: HomePage());
+
   }
 }
