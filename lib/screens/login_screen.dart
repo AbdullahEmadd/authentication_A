@@ -1,9 +1,16 @@
+import 'dart:developer';
+
+import 'package:first_task/screens/homepage.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import '../components/button.dart';
 import '../components/custom_text_field.dart';
 import '../cubits/login/login_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '';
+import 'package:first_task/helpers/cache_helper.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
@@ -20,17 +27,27 @@ class LoginScreen extends StatelessWidget {
             height: 80,
           ),
         ),
-        actions:[
+        actions: [
           IconButton(
-            onPressed: (){
+            onPressed: () {
               Navigator.pop(context);
             },
             icon: Icon(Icons.arrow_forward_ios_outlined,
-            color: Colors.black),
+                color: Colors.black),
           )
         ],
       ),
-      body: SingleChildScrollView(
+      body: BlocConsumer <LoginCubit, LoginState>(
+    listener: (context, state) async{
+      if(state is LoginDone){
+          Navigator.push(context,
+          MaterialPageRoute(builder: (context) => HomePage()),
+        );
+          CacheHelper.saveData(key: 'token', value: state.loginModel.data!.token!.accessToken!);
+      }
+    },
+    builder: (context, state) {
+    return SingleChildScrollView(
         child: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -42,10 +59,10 @@ class LoginScreen extends StatelessWidget {
                 Text(
                   AppNames.welcome,
                   style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Almarai',
-                    color: AppColors.mainColor,
-                    fontWeight: FontWeight.bold
+                      fontSize: 20,
+                      fontFamily: 'Almarai',
+                      color: AppColors.mainColor,
+                      fontWeight: FontWeight.bold
                   ),
                 ),
                 SizedBox(
@@ -68,9 +85,10 @@ class LoginScreen extends StatelessWidget {
                   height: 40,
                 ),
                 CustomTextField(
-                  controller: LoginCubit.
+                  controller: LoginCubit
+                      .
                   get(context)
-                  .userName,
+                      .userName,
                   hint: AppNames.email,
                 ),
 
@@ -84,23 +102,24 @@ class LoginScreen extends StatelessWidget {
                 SizedBox(
                   height: 40,
                 ),
-                Button(
-                    text: 'Login',
-                    function: (){
-                      LoginCubit.get(context).userLogin(userName: LoginCubit
-                          .get(context)
-                          .userName
-                          .text, password: LoginCubit
-                          .get(context)
-                          .password
-                          .text);
-                    },
-                ),
-              ],
+              state is! LoginLoading ? Button(
+                text: 'Login',
+                function: () {
+                  LoginCubit.get(context).userLogin(userName: LoginCubit
+                      .get(context)
+                      .userName
+                      .text, password: LoginCubit
+                      .get(context)
+                      .password
+                      .text);
+                },
+              ): CircularProgressIndicator()]
             ),
           ),
         ),
-      ),
+      );
+  },
+),
     );
   }
 }

@@ -24,7 +24,8 @@ class LoginCubit extends Cubit<LoginState> {
       password: password,
       onSuccess: (loginModel) {
         this.loginModel = loginModel;
-        emit(LoginDone());
+        emit(LoginDone(loginModel));
+        print(state);
       },
       onError: (error) {
         log("from the cubit :: : : ::  \n $error");
