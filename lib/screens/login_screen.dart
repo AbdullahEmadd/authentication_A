@@ -1,4 +1,5 @@
 import 'package:first_task/screens/homepage.dart';
+import 'package:first_task/screens/sign_up_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
@@ -112,7 +113,45 @@ class LoginScreen extends StatelessWidget {
                       .password
                       .text);
                 },
-              ): CircularProgressIndicator()]
+              ): CircularProgressIndicator(),
+              SizedBox(
+                height: 17,
+              ),
+              TextButton(
+                onPressed: () {},
+                child: const Text(AppNames.forgetPassword,
+                style: TextStyle(
+                  fontSize: 17
+                ),),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (builder) => SignUpScreen()));
+                      },
+                      child: Text(AppNames.registerAsAdmin,
+                          style: TextStyle(
+                            color: AppColors.mainColor,
+                            fontSize: 20,
+                          )),
+                    ),
+                    const Text(
+                      AppNames.haveCompany,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ],
+                ),
+              ]
             ),
           ),
         ),

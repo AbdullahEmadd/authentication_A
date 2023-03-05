@@ -22,7 +22,9 @@ Widget Button({
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 16
+            fontSize: 18,
+            color: Colors.white,
+            fontFamily: 'Almarai'
           ),
         ),
       ),

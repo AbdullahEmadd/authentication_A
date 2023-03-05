@@ -1,6 +1,7 @@
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'cubits/login/login_cubit.dart';
+import 'cubits/sign_up/sign_up_cubit.dart';
 import 'screens/homepage.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,9 +12,13 @@ void main() async{
   bool login = await checklogin();
   String? role;
   runApp(MultiBlocProvider(
-      providers: [BlocProvider<LoginCubit>(
-  create: (BuildContext context) => LoginCubit(),
-  )],
+      providers: [
+        BlocProvider<LoginCubit>(
+        create: (BuildContext context) => LoginCubit(),
+        ),
+        BlocProvider<SignUpCubit>(
+        create: (BuildContext context) => SignUpCubit(),
+        ),],
     child:  MyApp(firstLoad: firstLoad,
     role: role,)
   ));
