@@ -21,25 +21,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          elevation: 0,
-          //centerTitle: false,
-          leadingWidth: 0.0,
-          title: Transform.scale(
-            scaleX: -1,
-            child: Image(image: AssetImage('assets/images/logo.png'),
-              width: 80,
-              height: 80,
-            ),
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_forward_ios_outlined,
-                  color: Colors.black),
+            elevation: 0,
+            leadingWidth: 0.0,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(left: 15, top: 5),
+                child: Transform.scale(
+                  scaleX: -1,
+                  child: Image(image: AssetImage('assets/images/logo.png'),
+                    width: 80,
+                    height: 80,
+                  ),
+                ),
+              ),
+            ],
+            title: Padding(
+              padding: const EdgeInsets.only(left: 15, top: 15),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios,
+                    color: Colors.black),
+              ),
             )
-          ],
         ),
     body: BlocConsumer<SignUpCubit, SignUpState> (
       listener:(context, state) {},

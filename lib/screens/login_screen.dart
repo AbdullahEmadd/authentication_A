@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:first_task/screens/homepage.dart';
 import 'package:first_task/screens/sign_up_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
@@ -17,7 +19,6 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        elevation: 0,
         //centerTitle: false,
         leadingWidth: 0.0,
         title: Transform.scale(
