@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Image.asset(
                 'assets/images/splash.png',
