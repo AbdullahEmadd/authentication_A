@@ -49,6 +49,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   package_info_plus: ^1.4.3+1
+  bloc: ^8.1.0
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+  shared_preferences:
 
 
 # For information on the generic Dart part of this file, see the
