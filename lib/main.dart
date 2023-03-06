@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'cubits/forget_password/forget_password_cubit.dart';
 import 'cubits/login/login_cubit.dart';
 import 'cubits/sign_up/sign_up_cubit.dart';
+
+import 'screens/homepage.dart';
+import 'package:first_task/utility/app_theme.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
@@ -24,6 +28,8 @@ void main() async{
         BlocProvider<ForgetPasswordCubit>(
         create: (BuildContext context) => ForgetPasswordCubit(),)
       ],
+        ),],
+
     child:  MyApp(firstLoad: firstLoad,
     role: role,)
   ));
@@ -60,7 +66,9 @@ class MyApp extends StatelessWidget {
       locale: const Locale("ar"),
       debugShowCheckedModeBanner: false,
       title: 'First Task',
-      theme: appTheme,
+
+      theme: ThemeData(fontFamily: 'Almarai'),
       home: HomePage());
+
   }
 }

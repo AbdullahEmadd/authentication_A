@@ -124,9 +124,13 @@ class LoginScreen extends StatelessWidget {
                 height: 17,
               ),
               TextButton(
+
                 onPressed: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
                 },
+
+                onPressed: () {},
+
                 child: const Text(AppNames.forgetPassword,
                 style: TextStyle(
                   fontSize: 17
@@ -138,6 +142,7 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
                     const Text(
                       AppNames.haveCompany,
                       style: TextStyle(
@@ -148,6 +153,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(
                       width: 5,
                     ),
+
                     InkWell(
                       onTap: () {
                         Navigator.push(context,
@@ -160,6 +166,15 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 20,
                           )),
                     ),
+
+                    const Text(
+                      AppNames.haveCompany,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+
                   ],
                 ),
               ]
