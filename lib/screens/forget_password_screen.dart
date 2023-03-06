@@ -10,7 +10,7 @@ import '../components/button.dart';
 import '../cubits/forget_password/forget_password_cubit.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
-  const ForgetPasswordScreen({Key? key}) : super(key: key);
+
 
   @override
   State<ForgetPasswordScreen> createState() => _ForgetPasswordScreenState();
@@ -50,68 +50,70 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
         listener:(context, state) {
         },
         builder: (context, state) {
+          final ForgetKey = GlobalKey<FormState>();
           return SingleChildScrollView(
             child: Center(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 130,
-                    ),
-                    const Text(
-                      AppNames.forgetPassword,
-                      style: TextStyle(
-                          fontFamily: 'Almarai',
-                          color: AppColors.mainColor,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
+                child: Form(
+                  key: ForgetKey,
+                  child: Column(
+                    children: [
+                      SizedBox(
+                        height: 130,
                       ),
-                    ),
-                    SizedBox(height: 15,),
-                    const Text(
-                      AppNames.companyEmail,
-                      style: TextStyle(
-                          fontFamily: 'Almarai',
-                          color: Colors.black,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    CustomTextField(
-                      textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                      controller: ForgetPasswordCubit
-                          .get(context)
-                          .userNameController,
-                      hint: AppNames.userName,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                          child: Button(
-                            text: AppNames.next,
-                            function: (){
-                              if (ForgetPasswordCubit.get(context)
-                                  .userNameController
-                                  .text !=
-                                  '') {
-                                ForgetPasswordCubit.get(context).forgetPassword();
-                              }else{
-                                log('Please enter username');
-                              }
-
-                            }
-                          ),
+                      const Text(
+                        AppNames.forgetPassword,
+                        style: TextStyle(
+                            fontFamily: 'Almarai',
+                            color: AppColors.mainColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      SizedBox(height: 15,),
+                      const Text(
+                        AppNames.companyEmail,
+                        style: TextStyle(
+                            fontFamily: 'Almarai',
+                            color: Colors.black,
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold
+                        ),
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      CustomTextField(
+                        textFieldVaidType: TextFieldvalidatorType.RegisterText,
+                        controller: ForgetPasswordCubit
+                            .get(context)
+                            .userNameController,
+                        hint: AppNames.userName,
+                      ),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Button(
+                              text: AppNames.next,
+                              function: (){
+                                if(ForgetKey.currentState!.validate()){
+                                  ForgetPasswordCubit.get(context).forgetPassword();
+                                }
+                                else{
+                                  log('Please enter username');
+                                }
+
+                              }
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

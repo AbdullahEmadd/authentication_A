@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utility/app_colors.dart';
 import 'package:first_task/helpers/Validation.dart';
-class CustomTextField extends StatelessWidget {
+class CustomTextField extends StatefulWidget {
   TextFieldvalidatorType? textFieldVaidType;
   TextEditingController? controller;
   String? hint;
@@ -45,35 +45,40 @@ class CustomTextField extends StatelessWidget {
         this.onChange});
 
   @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: InkWell(
-        onTap: onPressed,
+        onTap: widget.onPressed,
         child:
         Container(
-          height: height ?? 48,
+          height: widget.height ?? 48,
           decoration: BoxDecoration(
             color: AppColors.gray,
             borderRadius: BorderRadius.circular(30),
           ),
           child: TextFormField(
             validator: (v) => Validation(
-                type: TextFieldvalidatorType.Email,
+                type: widget.textFieldVaidType!,
                 value: v!,),
-            onTap: onPressed,
-            minLines: minLines??1,
-            maxLines: maxLines??1,
-            enabled: enabled,
-            keyboardType: textType ?? TextInputType.text,
-            controller: controller,
-            focusNode: focusNode,
-            onChanged: onChange,
-            obscureText: obscure,
+            onTap: widget.onPressed,
+            minLines: widget.minLines??1,
+            maxLines: widget.maxLines??1,
+            enabled: widget.enabled,
+            keyboardType: widget.textType ?? TextInputType.text,
+            controller: widget.controller,
+            focusNode: widget.focusNode,
+            onChanged: widget.onChange,
+            obscureText: widget.obscure,
             decoration: InputDecoration(
-                labelText:hint??'' ,
-                hintText: hint ?? "",
-                hintStyle:hintStyle?? const TextStyle(fontSize: 12, color: Colors.grey,),
+                labelText:widget.hint??'' ,
+                hintText: widget.hint ?? "",
+                hintStyle:widget.hintStyle?? const TextStyle(fontSize: 12, color: Colors.grey,),
                 // labelText: label,
                 // labelStyle: const TextStyle(fontSize: 14, color: Colors.grey),
                 contentPadding: const EdgeInsets.only(top: 8,right: 8,left: 8),
@@ -93,14 +98,14 @@ class CustomTextField extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   borderSide:  BorderSide(color: AppColors.mainColor),
                 ),
-                prefixIcon: prefixIconWidget??null,
-                suffixIcon: iconWidget == null
-                    ? (icon == null
+                prefixIcon: widget.prefixIconWidget??null,
+                suffixIcon: widget.iconWidget == null
+                    ? (widget.icon == null
                     ? null
                     : InkWell(
-                    onTap: iconPressed ?? () {},
+                    onTap: widget.iconPressed ?? () {},
                     child: Icon(
-                      icon,
+                      widget.icon,
                       size: 18,
                       color: AppColors.mainColor,
                     )))
@@ -108,7 +113,7 @@ class CustomTextField extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    iconWidget!,
+                    widget.iconWidget!,
                   ],
                 )),
           ),

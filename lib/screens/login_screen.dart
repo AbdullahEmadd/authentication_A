@@ -9,17 +9,35 @@ import '../components/button.dart';
 import '../components/custom_text_field.dart';
 import '../cubits/login/login_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:first_task/models/authentication/login_model.dart';
 import 'package:first_task/helpers/cache_helper.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
+
+  getPref() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    bool? state = preferences.getBool("State");
+    if (state != null && state==true) {
+      print(state);
+      Navigator.push(context,
+        MaterialPageRoute(builder: (context) => HomePage()));
+      }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
           elevation: 0,
-          leadingWidth: 0.0,
+          leadingWidth: 0,
+          backgroundColor: Colors.white,
           actions: [
             Padding(
               padding: const EdgeInsets.only(left: 15, top: 5),
