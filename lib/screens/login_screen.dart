@@ -1,5 +1,4 @@
-import 'dart:developer';
-
+import 'package:first_task/screens/forget_password_screen.dart';
 import 'package:first_task/screens/homepage.dart';
 import 'package:first_task/screens/sign_up_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
@@ -19,24 +18,30 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //centerTitle: false,
-        leadingWidth: 0.0,
-        title: Transform.scale(
-          scaleX: -1,
-          child: Image(image: AssetImage('assets/images/logo.png'),
-            width: 80,
-            height: 80,
-          ),
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_forward_ios_outlined,
-                color: Colors.black),
+          elevation: 0,
+          leadingWidth: 0.0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15, top: 5),
+              child: Transform.scale(
+                scaleX: -1,
+                child: Image(image: AssetImage('assets/images/logo.png'),
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+            ),
+          ],
+          title: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 15),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios,
+                  color: Colors.black),
+            ),
           )
-        ],
       ),
       body: BlocConsumer <LoginCubit, LoginState>(
     listener: (context, state) async{
@@ -104,7 +109,7 @@ class LoginScreen extends StatelessWidget {
                   height: 40,
                 ),
               state is! LoginLoading ? Button(
-                text: 'Login',
+                text: 'تسجيل الدخول',
                 function: () {
                   LoginCubit.get(context).userLogin(userName: LoginCubit
                       .get(context)
@@ -119,7 +124,13 @@ class LoginScreen extends StatelessWidget {
                 height: 17,
               ),
               TextButton(
+
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
+                },
+
                 onPressed: () {},
+
                 child: const Text(AppNames.forgetPassword,
                 style: TextStyle(
                   fontSize: 17
@@ -131,6 +142,18 @@ class LoginScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+
+                    const Text(
+                      AppNames.haveCompany,
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    SizedBox(
+                      width: 5,
+                    ),
+
                     InkWell(
                       onTap: () {
                         Navigator.push(context,
@@ -143,6 +166,7 @@ class LoginScreen extends StatelessWidget {
                             fontSize: 20,
                           )),
                     ),
+
                     const Text(
                       AppNames.haveCompany,
                       style: TextStyle(
@@ -150,6 +174,7 @@ class LoginScreen extends StatelessWidget {
                         fontWeight: FontWeight.bold
                       ),
                     ),
+
                   ],
                 ),
               ]
