@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+
 class AppSetting {
   /// DEVELOPMENT
   //   static const String serviceURL = 'https://dev.excp.sa:8019/'; // Eltanmia
@@ -32,6 +34,20 @@ class AppSetting {
   static const String oneSignalKey = "91905493-ef34-45bd-a285-438ef50c5bf2"; // Family App Id
 
 }
+// PageController pageController = PageController(initialPage: Get.context.read<IndvGlobalCubit>().pageindex.value);
+RegExp PhoneregExp = new RegExp(
+  r'(009665|٠٠٩٦٦٥|9665|٩٦٦٥|\+9665|٩٦٦٥|05|٠٥|5|٥)(5|0|3|6|4|9|1|8|7|٠|٨|٧|١|٦|٩|٤|٣|٥)([0-9\u0660-\u0669]{7})+$',
+  caseSensitive: false,
+  multiLine: false,
+);
+RegExp emailregExp = RegExp(
+    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+RegExp passwordregExp = RegExp(
+    r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
+RegExp textnumberregExp = RegExp(r'^[0-9_\-=@,\.;]+$');
+// RegExp SpecialCharacters =  RegExp( r"^[a-zA-Z0-9.a-zA-Z0-9 ! # $%&* + -/=?^_`{|}~]+\.+");
+
+RegExp onlystringCharacters = RegExp(r"^[\p{L},.'-]*$", caseSensitive: false, unicode: true, dotAll: true);
 
 String globalLang = '';
 bool isArabic = true;

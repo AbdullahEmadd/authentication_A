@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../utility/app_colors.dart';
+import 'package:first_task/helpers/Validation.dart';
 class CustomTextField extends StatelessWidget {
+  TextFieldvalidatorType? textFieldVaidType;
   TextEditingController? controller;
   String? hint;
   double? width;
@@ -22,6 +24,7 @@ class CustomTextField extends StatelessWidget {
   int? minLines;
   CustomTextField(
       {this.controller,
+        required this.textFieldVaidType,
         this.hint = "",
         this.width,
         this.prefixIconWidget,
@@ -55,15 +58,9 @@ class CustomTextField extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
           ),
           child: TextFormField(
-
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return  "Please enter your password" ;
-              } else if (value.length < 6) {
-                return  'Password is less than 6 character';
-              }
-              return null;
-            },
+            validator: (v) => Validation(
+                type: TextFieldvalidatorType.Email,
+                value: v!,),
             onTap: onPressed,
             minLines: minLines??1,
             maxLines: maxLines??1,

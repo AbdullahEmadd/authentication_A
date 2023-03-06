@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:first_task/components/custom_text_field.dart';
+import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
@@ -81,6 +82,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       height: 50,
                     ),
                     CustomTextField(
+                      textFieldVaidType: TextFieldvalidatorType.RegisterText,
                       controller: ForgetPasswordCubit
                           .get(context)
                           .userNameController,

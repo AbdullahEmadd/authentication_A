@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 
+import 'package:first_task/helpers/Validation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../components/button.dart';
@@ -9,7 +10,6 @@ import '../utility/app_colors.dart';
 import '../utility/app_names.dart';
 
 class SignUpScreen extends StatefulWidget {
-  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -54,7 +54,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
-            key: key,
             children: [
               SizedBox(
                 height: 35,
@@ -86,27 +85,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: 20,
               ),
               CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.RegisterText,
                 controller: SignUpCubit.get(context).nameController,
                 hint: AppNames.name,
               ),
               CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.RegisterText,
                 controller: SignUpCubit.get(context).userNameController,
                 hint: AppNames.userName,
               ),
               CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.Email,
                 controller: SignUpCubit.get(context).emailController,
                 hint: AppNames.email,
               ),
               CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.PhoneNumber,
                 controller: SignUpCubit.get(context).phoneController,
                 hint: AppNames.phone,
               ),
               CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.Password,
                 controller: SignUpCubit.get(context).passwordController,
                 hint: AppNames.password,
                 obscure: true,
               ),
               CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
                 controller: SignUpCubit.get(context).passwordConfirmationController,
                 hint: AppNames.passwordConfim,
                 obscure: true,
@@ -117,8 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               state is! SignUpLoading? Button(
                 text: AppNames.registerAsAdmin,
                 function: () {
-                  SignUpCubit.get(context).adminSignUp();
-                },
+                    SignUpCubit.get(context).adminSignUp();},
               ): CircularProgressIndicator(),
             ],
           ),

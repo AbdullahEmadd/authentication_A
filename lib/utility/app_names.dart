@@ -13,4 +13,14 @@ class AppNames {
  static const registerUsing = 'تسجيل كادمن جديد بواسطة البريد الالكتروني و كلمة السر';
  static const companyEmail = 'من فضلك بريدك الالكتروني الخاص بلشركة';
  static const next = 'التالي';
+ static const required = 'Must not be empty';
+ static const digitNumber = 'Please enter 11-digit phone number';
+ static const invalidPhone = 'Please enter valid phone number';
+ static const invalidEmail = 'Please enter valid email address';
+ static const lessThan6 = 'Cannot be less than 6 characters';
+ static const moreThan30 = 'Cannot be more than 30 characters';
+ static const String PleaseenterCorrecttext = 'Must be characters only';
+ static const lessThan2 = 'Cannot be less than 2 character';
+ static const moreThan20 = 'Cannot be more than 20 characters';
+
 }
