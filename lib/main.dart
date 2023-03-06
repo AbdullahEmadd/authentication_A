@@ -8,6 +8,7 @@ import 'cubits/sign_up/sign_up_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   bool firstLoad = await checksplash();
@@ -56,12 +57,19 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key,this.firstLoad=false,this.role}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      locale: const Locale("ar"),
-      debugShowCheckedModeBanner: false,
-      title: 'First Task',
-      theme:appTheme,
-      home: HomePage());
+    return ScreenUtilInit(
+      designSize: const Size(360,690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (context, child) {
+        return GetMaterialApp(
+            locale: const Locale("ar"),
+            debugShowCheckedModeBanner: false,
+            title: 'First Task',
+            theme: appTheme,
+            home: HomePage()
+        );
+      });
 
   }
 }
