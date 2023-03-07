@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../components/button.dart';
@@ -7,9 +8,11 @@ import '../components/custom_text_field.dart';
 import '../cubits/sign_up/sign_up_cubit.dart';
 import '../utility/app_colors.dart';
 import '../utility/app_names.dart';
+import 'package:get/get.dart';
 
 class SignUpScreen extends StatefulWidget {
   final formKey = GlobalKey<FormState>();
+  SignUpCubit signUpCubit = SignUpCubit();
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -47,7 +50,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             )
         ),
     body: BlocConsumer<SignUpCubit, SignUpState> (
-      listener:(context, state) {},
+      listener:(context, state) {
+        if(state is SignUpDone){
+          if(state.signUpModel == true) {
+            Get.snackbar('تم', state.signUpModel.message![0].value.toString());
+            Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen()));
+          }
+        }
+      },
       builder: (context,state) {
       return SingleChildScrollView(
         child: Padding(

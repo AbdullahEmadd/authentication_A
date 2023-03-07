@@ -2,14 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../models/authentication/forget_password_return_model.dart';
 import '../../requests/forget_password_request/forget_password_request.dart';
-
 part 'forget_password_state.dart';
 
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit() : super(ForgetPasswordInitial());
+  final ForgetKey = GlobalKey<FormState>();
 
   static ForgetPasswordCubit get(context) => BlocProvider.of(context);
   TextEditingController userNameController = TextEditingController();
@@ -25,13 +24,12 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
         userName: userNameController.text,
         onSuccess: (forgetPasswordModel) {
           forgetPasswordReturnModel = forgetPasswordModel;
-          emit(ForgetPasswordDone());
+          emit(ForgetPasswordDone(forgetPasswordModel));
         },
         onError: (e) {
           emit(ForgetPasswordError());
         });
   }
-
   codeConfirmation() {
     emit(CodeConfirmationLoading());
     ForgetPasswordRequest.codeConfirmation(

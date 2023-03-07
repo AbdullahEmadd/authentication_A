@@ -1,0 +1,130 @@
+import 'package:first_task/components/custom_text_field.dart';
+import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/utility/app_colors.dart';
+import 'package:first_task/utility/app_names.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../components/button.dart';
+import '../cubits/forget_password/forget_password_cubit.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+
+class EnterNewPasswordScreen extends StatefulWidget {
+  const EnterNewPasswordScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EnterNewPasswordScreen> createState() => _EnterNewPasswordScreenState();
+}
+
+class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+          elevation: 0,
+          leadingWidth: 0.0,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15, top: 5),
+              child: Transform.scale(
+                scaleX: -1,
+                child: Image(image: AssetImage('assets/images/logo.png'),
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+            ),
+          ],
+          title: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 15),
+            child: IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.arrow_back_ios,
+                  color: Colors.black),
+            ),
+          )
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 150,
+              ),
+              const Text(
+                'New Password',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: "ALMARAI-BOLD",
+                    color: AppColors.mainColor),
+              ),
+              SizedBox(
+                height: 50,
+              ),
+              CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.Password,
+                controller: ForgetPasswordCubit
+                    .get(context)
+                    .passwordController,
+                hint: AppNames.newPassword,
+              ),
+              CustomTextField(
+                textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
+                controller: ForgetPasswordCubit
+                    .get(context)
+                    .passwordConfirmationController,
+                hint: AppNames.reEnterNewPassword,
+              ),
+              SizedBox(
+                  height: 20
+              ),
+              BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+                listener: (context, state) {
+                },
+                builder: (context, state) {
+                  return state is! CodeConfirmationLoading?Button(
+                    text: AppNames.save,
+                    function: () {
+                      if (ForgetPasswordCubit
+                          .get(context)
+                          .passwordController
+                          .text
+                          .length >= 8 && ForgetPasswordCubit
+                          .get(context)
+                          .passwordConfirmationController
+                          .text
+                          .length >= 8) {
+                        if (ForgetPasswordCubit
+                            .get(context)
+                            .passwordController
+                            .text !=
+                            ForgetPasswordCubit
+                                .get(context)
+                                .passwordConfirmationController
+                                .text) {
+                          Get.snackbar(
+                              'Message', 'يجب ان تكون كلمه السر متطابقه');
+                        }
+                        else {
+                          ForgetPasswordCubit.get(context).resetPassword();
+                        }
+                      } else {
+                        Get.snackbar('Message',
+                            'يجب ادخال كلمه سر مكونه من 8 احرف او ارقام');
+                      }
+                    },
+                  ): CircularProgressIndicator();
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}

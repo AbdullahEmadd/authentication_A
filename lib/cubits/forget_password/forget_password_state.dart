@@ -11,6 +11,9 @@ class ForgetPasswordInitial extends ForgetPasswordState {
   @override
   List<Object> get props => [];
 }class ForgetPasswordDone extends ForgetPasswordState {
+  final ForgetPasswordReturnModel forgetpasswordreturnmodel;
+  ForgetPasswordDone(this.forgetpasswordreturnmodel);
+
   @override
   List<Object> get props => [];
 }class ForgetPasswordError extends ForgetPasswordState {

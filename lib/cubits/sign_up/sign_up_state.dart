@@ -13,11 +13,12 @@ class SignUpLoading extends SignUpState {
   List<Object> get props => [];
 }
 class SignUpDone extends SignUpState {
+  final SignUpModel signUpModel;
+  SignUpDone(this.signUpModel);
   @override
   List<Object> get props => [];
 }
 class SignUpError extends SignUpState {
-
   @override
   List<Object> get props => [];
 }

@@ -31,7 +31,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       role: 'Admin',
       onSuccess: (signUpModel) {
         this.signUpModel  = signUpModel;
-        emit(SignUpDone());
+        emit(SignUpDone(signUpModel));
       },
       onError: (error) {
         log("from the cubit :: : : ::  \n $error");

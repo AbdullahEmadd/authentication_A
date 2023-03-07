@@ -1,3 +1,4 @@
+import 'package:first_task/screens/enter_code_screen.dart';
 import 'package:first_task/screens/forget_password_screen.dart';
 import 'package:first_task/screens/homepage.dart';
 import 'package:first_task/utility/app_theme.dart';
@@ -23,7 +24,8 @@ void main() async{
         create: (BuildContext context) => SignUpCubit(),
         ),
         BlocProvider<ForgetPasswordCubit>(
-        create: (BuildContext context) => ForgetPasswordCubit(),)
+          create: (BuildContext context) => ForgetPasswordCubit(),
+        ),
       ],
     child:  MyApp(firstLoad: firstLoad,
     role: role,)
@@ -70,6 +72,5 @@ class MyApp extends StatelessWidget {
             home: HomePage()
         );
       });
-
   }
 }

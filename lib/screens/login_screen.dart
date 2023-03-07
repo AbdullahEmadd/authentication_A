@@ -1,3 +1,5 @@
+import 'dart:developer';
+import 'package:get/get.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/screens/forget_password_screen.dart';
 import 'package:first_task/screens/homepage.dart';
@@ -23,63 +25,51 @@ class _LoginScreenState extends State<LoginScreen> {
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     bool? state = preferences.getBool("State");
-    if (state != null && state==true) {
+    if (state != null && state == true) {
       print(state);
-      Navigator.push(context,
-        MaterialPageRoute(builder: (context) => HomePage()));
-      }
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-          elevation: 0,
-          leadingWidth: 0,
-          backgroundColor: Colors.white,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15, top: 5),
-              child: Transform.scale(
-                scaleX: -1,
-                child: Image(image: AssetImage('assets/images/logo.png'),
-                  width: 80,
-                  height: 80,
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+            elevation: 0,
+            leadingWidth: 0,
+            backgroundColor: Colors.white,
+            actions: [
+              Padding(
+                padding: const EdgeInsets.only(left: 15, top: 5),
+                child: Transform.scale(
+                  scaleX: -1,
+                  child: Image(
+                    image: AssetImage('assets/images/logo.png'),
+                    width: 80,
+                    height: 80,
+                  ),
                 ),
               ),
-            ),
-          ],
-          title: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 15),
-            child: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(Icons.arrow_back_ios,
-                  color: Colors.black),
-            ),
-          )
-      ),
-      body: BlocConsumer <LoginCubit, LoginState>(
-    listener: (context, state) async{
-      if(state is LoginDone){
-          Navigator.push(context,
-          MaterialPageRoute(builder: (context) => HomePage()),
-        );
-          CacheHelper.saveData(key: 'token', value: state.loginModel.data!.token!.accessToken!);
-      }
-    },
-    builder: (context, state) {
-    return SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
-            child: Form(
-              autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: formkey,
-              child: Column(
-                children: [
+            ],
+            title: Padding(
+              padding: const EdgeInsets.only(left: 15, top: 15),
+              child: IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+              ),
+            )),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: Form(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                key: formkey,
+                child: Column(children: [
                   SizedBox(
                     height: 200,
                   ),
@@ -89,8 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontSize: 20,
                         fontFamily: 'Almarai',
                         color: AppColors.mainColor,
-                        fontWeight: FontWeight.bold
-                    ),
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     height: 25,
@@ -103,8 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontSize: 14,
                           fontFamily: 'Almarai',
                           color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),
+                          fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -113,70 +101,86 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                    controller: LoginCubit
-                        .
-                    get(context)
-                        .userName,
+                    controller: LoginCubit.get(context).userName,
                     hint: AppNames.email,
                   ),
-
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.Password,
                     obscure: true,
-                    controller: LoginCubit
-                        .get(context)
-                        .password,
+                    controller: LoginCubit.get(context).password,
                     hint: AppNames.password,
                   ),
                   SizedBox(
                     height: 40,
                   ),
-                state is! LoginLoading ? Button(
-                  text: 'تسجيل الدخول',
-                  function: () {
-                    if(formkey.currentState!.validate()){
-                      LoginCubit.get(context).userLogin(userName: LoginCubit
-                          .get(context)
-                          .userName
-                          .text, password: LoginCubit
-                          .get(context)
-                          .password
-                          .text);
+                  BlocConsumer<LoginCubit, LoginState>(
+                      listener: (context, state) async {
+                    if (state is LoginDone) {
+                      if(state.loginModel.state==true){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                      CacheHelper.saveData(
+                          key: 'token',
+                          value: state.loginModel.data!.token!.accessToken!);
+                      }
+                      else{
+                        Get.snackbar('خطأ', state.loginModel.message![0].value.toString());
+                        log('Error');
+                      }
                     }
-                  },
-                ): CircularProgressIndicator(),
-                SizedBox(
-                  height: 17,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => ForgetPasswordScreen()));
-                  },
-                  child: const Text(AppNames.forgetPassword,
-                  style: TextStyle(
-                    fontSize: 17
-                  ),),
-                ),
-                SizedBox(
-                  height: 5,
-                ),
+                  }, builder: (context, state) {
+                    return state is! LoginLoading
+                        ? Button(
+                            text: 'تسجيل الدخول',
+                            function: () {
+                              if (formkey.currentState!.validate()) {
+                                LoginCubit.get(context).userLogin(
+                                    userName:
+                                        LoginCubit.get(context).userName.text,
+                                    password:
+                                        LoginCubit.get(context).password.text);
+                              }
+                            },
+                          )
+                        : CircularProgressIndicator();
+                  }),
+                  SizedBox(
+                    height: 17,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ForgetPasswordScreen()));
+                    },
+                    child: const Text(
+                      AppNames.forgetPassword,
+                      style: TextStyle(fontSize: 17),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Text(
                         AppNames.haveCompany,
                         style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold
-                        ),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         width: 5,
                       ),
                       InkWell(
                         onTap: () {
-                            Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => SignUpScreen()));
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SignUpScreen()));
                         },
                         child: Text(AppNames.registerAsAdmin,
                             style: TextStyle(
@@ -186,14 +190,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                ]
+                ]),
               ),
             ),
           ),
-        ),
-      );
-  },
-),
-    );
+        ));
   }
 }

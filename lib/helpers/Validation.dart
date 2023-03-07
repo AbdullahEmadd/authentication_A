@@ -15,6 +15,7 @@ enum TextFieldvalidatorType{
   IdNumberSudia,
   IdNumberNotSudia,
   RegisterText,
+  EnterCode,
   None
 }
 Validation({required TextFieldvalidatorType type, required String value}){
@@ -120,10 +121,6 @@ Validation({required TextFieldvalidatorType type, required String value}){
     if(value.isEmpty){
       return 'Must not be empty';
     }
-    else  if (!onlystringCharacters.hasMatch(value)) {
-
-      return 'Must not be empty';
-    }
     else  if (value.length<2) {
       return AppNames.lessThan2;
     }
@@ -131,6 +128,17 @@ Validation({required TextFieldvalidatorType type, required String value}){
       return AppNames.moreThan20;
     }
 
+  }
+
+  else if(type==TextFieldvalidatorType.EnterCode) {
+    if(value.isEmpty){
+      return AppNames.required;
+    }
+    else if(
+    value.length<6
+    ){
+      return AppNames.lessThan6;
+    }
   }
 
   else if(type==TextFieldvalidatorType.OnceText||type==TextFieldvalidatorType.LoginPassword){
@@ -143,8 +151,6 @@ Validation({required TextFieldvalidatorType type, required String value}){
     return ;
 
   }
-
-
   else{
     if(value.isEmpty)
     {
@@ -158,5 +164,4 @@ Validation({required TextFieldvalidatorType type, required String value}){
     // }
     return null;
   }
-
 }
