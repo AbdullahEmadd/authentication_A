@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
 import 'package:get/get.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/screens/forget_password_screen.dart';
@@ -37,6 +38,18 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+            leading:
+            Padding(
+              padding: const EdgeInsets.only(left: 15, top: 5),
+              child: Transform.scale(
+                scaleX: -1,
+                child: Image(
+                  image: AssetImage('assets/images/logo.png'),
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+            ),
             elevation: 0,
             leadingWidth: 0,
             backgroundColor: Colors.white,
@@ -61,7 +74,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 icon: Icon(Icons.arrow_back_ios, color: Colors.black),
               ),
-            )),
+            ),
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -119,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       if(state.loginModel.state==true){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                        MaterialPageRoute(builder: (context) => ManagerHomeScreen()),
                       );
                       CacheHelper.saveData(
                           key: 'token',

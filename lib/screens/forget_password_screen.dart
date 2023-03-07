@@ -25,14 +25,28 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          leading:
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 5),
+            child: Transform.scale(
+              scaleX: -1,
+              child: Image(
+                image: AssetImage('assets/images/logo.png'),
+                width: 80,
+                height: 80,
+              ),
+            ),
+          ),
           elevation: 0,
-          leadingWidth: 0.0,
+          leadingWidth: 0,
+          backgroundColor: Colors.white,
           actions: [
             Padding(
               padding: const EdgeInsets.only(left: 15, top: 5),
               child: Transform.scale(
                 scaleX: -1,
-                child: Image(image: AssetImage('assets/images/logo.png'),
+                child: Image(
+                  image: AssetImage('assets/images/logo.png'),
                   width: 80,
                   height: 80,
                 ),
@@ -45,11 +59,10 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: Icon(Icons.arrow_back_ios,
-                  color: Colors.black),
+              icon: Icon(Icons.arrow_back_ios, color: Colors.black),
             ),
-          )
-      ),
+          ),
+        ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
