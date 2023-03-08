@@ -34,7 +34,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
               children: [
                 SizedBox(height: 20.h),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -65,13 +65,16 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 0.4,
-                  children: List.generate(4, (index) =>
-                      Image.asset('assets/images/food.png',
-                      ),
-                  ),
+                  children: [
+                    Image.asset('assets/images/mobile.png'),
+                    Image.asset('assets/images/design.png'),
+                    Image.asset('assets/images/backend.png'),
+                    Image.asset('assets/images/qc.png'),
+                  ],
                 ),
+                SizedBox(height: 25.h),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Row(
                     children: [
                       Text(
@@ -84,7 +87,21 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                         ),
                     ),
                     ]
+                  )),
+                  SizedBox(
+                    height: 12.h,
                   ),
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 5,
+                  mainAxisSpacing: 0.4,
+                  children: [
+                    Image.asset('assets/images/emp1.png'),
+                    Image.asset('assets/images/emp2.png'),
+                    Image.asset('assets/images/emp3.png'),
+                  ],
                 ),
               ],
             ),

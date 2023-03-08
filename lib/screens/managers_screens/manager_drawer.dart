@@ -23,43 +23,47 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                 DrawerHeader(
                   child: Column(
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                              child: CircleAvatar(
-                                  radius: (50),
-                                  backgroundColor: Colors.white,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.network(
-                                      "https://i.pinimg.com/originals/0e/b5/42/0eb54293405681ea75b278308bb8f916.png",
-                                      width: 90,
-                                      height: 90,
-                                      fit: BoxFit.contain,
-                                    ),
-                                  ))),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                'User Name',
-                                style: const TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: "ALMARAI-BOLD",
-                                    color: Colors.black),
-                              ),
-                              Text(
-                                'EXCP',
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    fontFamily: "ALMARAI",
-                                    color: AppColors.mainColor),
-                              ),
-                            ],
-                          )
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 15),
+                        child: Row(
+                          children: [
+                            Container(
+                                child: CircleAvatar(
+                                    radius: (45),
+                                    backgroundColor: Colors.white,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(50),
+                                      child:
+                                      Image.network(
+                                        "https://i.pinimg.com/originals/0e/b5/42/0eb54293405681ea75b278308bb8f916.png",
+                                        width: 90,
+                                        height: 90,
+                                        fit: BoxFit.contain,
+                                      ),
+                                    ))),
+                            SizedBox(
+                              width: 15,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  'User Name',
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontFamily: "ALMARAI-BOLD",
+                                      color: Colors.black),
+                                ),
+                                Text(
+                                  'EXCP',
+                                  style: const TextStyle(
+                                      fontSize: 16,
+                                      fontFamily: "ALMARAI",
+                                      color: AppColors.mainColor),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: 5.h,

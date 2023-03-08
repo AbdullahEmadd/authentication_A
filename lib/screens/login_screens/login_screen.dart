@@ -116,7 +116,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.RegisterText,
                     controller: LoginCubit.get(context).userName,
-                    hint: AppNames.email,
+                    hint: AppNames.userName,
                   ),
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.Password,
