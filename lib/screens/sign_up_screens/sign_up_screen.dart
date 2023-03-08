@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
+import 'dart:html';
+
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -123,7 +125,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textFieldVaidType: TextFieldvalidatorType.Password,
                   controller: SignUpCubit.get(context).passwordController,
                   hint: AppNames.password,
-                  obscure: true,
                 ),
                 CustomTextField(
                   firstPAsswordForConfirm: SignUpCubit.get(context).passwordController.text,
