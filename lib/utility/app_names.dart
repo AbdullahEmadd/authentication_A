@@ -28,6 +28,8 @@ class AppNames {
  static const newPassword = ' Enter New Password';
  static const reEnterNewPassword = 'New Password Confirmation';
  static const save = 'Save';
-
+ static const departments = 'الأقسام';
+ static const employees = 'الموظفين';
+ static const String dontMatch  = 'Your Passwords Dont Match';
 
 }

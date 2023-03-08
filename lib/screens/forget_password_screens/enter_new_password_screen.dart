@@ -4,8 +4,8 @@ import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../components/button.dart';
-import '../cubits/forget_password/forget_password_cubit.dart';
+import '../../components/button.dart';
+import '../../cubits/forget_password/forget_password_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 

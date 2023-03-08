@@ -18,7 +18,7 @@ enum TextFieldvalidatorType{
   EnterCode,
   None
 }
-Validation({required TextFieldvalidatorType type, required String value}){
+Validation({required TextFieldvalidatorType type, required String value,String? firstPAsswordForConfirm}){
   if(type==TextFieldvalidatorType.PhoneNumber){
     if(value.isEmpty)
     {
@@ -28,12 +28,7 @@ Validation({required TextFieldvalidatorType type, required String value}){
     {
       return  AppNames.digitNumber;
     }
-    else  if(value[0]!=0.toString()||value[1]!=5.toString())
-    {
-      return  AppNames.invalidPhone;
-    }
-    else if (!PhoneregExp.hasMatch(value)) {
-      // else if (double.parse(value)==null) {
+    else if (!PhoneregExp.hasMatch(value)){
       return AppNames.invalidPhone;
     }
   }
@@ -68,19 +63,19 @@ Validation({required TextFieldvalidatorType type, required String value}){
     }else return null;
   }
 
-  // else if(type==TextFieldvalidatorType.ConfirmPassword){
-  //   print(value);
-  //   print(firstPAsswordForConfirm);
-  //   if(value.isEmpty){
-  //     return AppNames.required;
-  //   }
-  //   else  if(value!=firstPAsswordForConfirm){
-  //     return AppNames.DontMatched;
-  //   }else{
-  //     return null;
-  //   }
-  //
-  // }
+  else if(type==TextFieldvalidatorType.ConfirmPassword){
+    print(value);
+    print(firstPAsswordForConfirm);
+    if(value.isEmpty){
+      return AppNames.required;
+    }
+    else  if(value!=firstPAsswordForConfirm){
+      return AppNames.dontMatch;
+    }else{
+      return null;
+    }
+
+  }
 
   // else if(type==TextFieldvalidatorType.IdNumberSudia){
   //   if(value.isEmpty){

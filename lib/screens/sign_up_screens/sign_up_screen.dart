@@ -1,23 +1,22 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'package:first_task/helpers/Validation.dart';
-import 'package:first_task/screens/login_screen.dart';
+import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../components/button.dart';
-import '../components/custom_text_field.dart';
-import '../cubits/sign_up/sign_up_cubit.dart';
-import '../utility/app_colors.dart';
-import '../utility/app_names.dart';
+import '../../components/button.dart';
+import '../../components/custom_text_field.dart';
+import '../../cubits/sign_up/sign_up_cubit.dart';
+import '../../utility/app_colors.dart';
+import '../../utility/app_names.dart';
 import 'package:get/get.dart';
 
+import '../verify_code_screens/verify_code_screen.dart';
 class SignUpScreen extends StatefulWidget {
   final formKey = GlobalKey<FormState>();
   SignUpCubit signUpCubit = SignUpCubit();
-
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
-
 class _SignUpScreenState extends State<SignUpScreen> {
   final formKey = GlobalKey<FormState>();
   @override
@@ -62,17 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ),
         ),
-    body: BlocConsumer<SignUpCubit, SignUpState> (
-      listener:(context, state) {
-        if(state is SignUpDone){
-          if(state.signUpModel == true) {
-            Get.snackbar('تم', state.signUpModel.message![0].value.toString());
-            Navigator.push(context, MaterialPageRoute(builder: (builder)=>LoginScreen()));
-          }
-        }
-      },
-      builder: (context,state) {
-      return SingleChildScrollView(
+    body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Form(
@@ -137,6 +126,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   obscure: true,
                 ),
                 CustomTextField(
+                  firstPAsswordForConfirm: SignUpCubit.get(context).passwordController.text,
                   textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
                   controller: SignUpCubit.get(context).passwordConfirmationController,
                   hint: AppNames.passwordConfim,
@@ -145,21 +135,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 SizedBox(
                   height: 20,
                 ),
-                state is! SignUpLoading? Button(
-                  text: AppNames.registerAsAdmin,
-                  function: () {
-                    if(formKey.currentState!.validate()){
-                      SignUpCubit.get(context).adminSignUp();
-                    }
-                     },
-                ): CircularProgressIndicator(),
+                BlocConsumer<SignUpCubit, SignUpState> (
+                listener:(context, state) {
+                if(state is SignUpDone){
+                if(state.signUpModel == true) {
+                Get.snackbar('تم', state.signUpModel.message![0].value.toString());
+                Navigator.push(context, MaterialPageRoute(builder: (builder)=>VerifyCodeScreen()));
+                }
+                }
+                else {
+                  Get.snackbar('Error', 'Registration Failed');
+                }
+                },
+                builder: (context,state) {
+                    return state is! SignUpLoading ? Button(
+                    text: AppNames.registerAsAdmin,
+                    function: () {
+                      if (formKey.currentState!.validate()) {
+                        SignUpCubit.get(context).adminSignUp();
+                      }
+                    },
+                  ) : CircularProgressIndicator();
+                }
+                )
               ],
             ),
           ),
         ),
-      );
-      }
-    )
+      )
     );
   }
 }

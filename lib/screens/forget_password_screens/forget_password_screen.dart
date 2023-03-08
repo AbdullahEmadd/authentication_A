@@ -1,5 +1,5 @@
 import 'dart:developer';
-import 'package:first_task/screens/enter_code_screen.dart';
+import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
 import 'package:get/get.dart';
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/helpers/Validation.dart';
@@ -7,10 +7,10 @@ import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../components/button.dart';
-import '../cubits/forget_password/forget_password_cubit.dart';
-import '../models/authentication/forget_password_return_model.dart';
-import 'homepage.dart';
+import '../../components/button.dart';
+import '../../cubits/forget_password/forget_password_cubit.dart';
+import '../../models/authentication/forget_password_return_model.dart';
+import '../home_screens/homepage.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
 

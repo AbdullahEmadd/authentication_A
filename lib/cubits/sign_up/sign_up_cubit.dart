@@ -26,7 +26,8 @@ class SignUpCubit extends Cubit<SignUpState> {
       userName: userNameController.text,
       password: passwordController.text,
       name: nameController.text,
-      email: emailController.text,passwordConfirmation: passwordConfirmationController.text,
+      email: emailController.text,
+      passwordConfirmation: passwordConfirmationController.text,
       phone: phoneController.text,
       role: 'Admin',
       onSuccess: (signUpModel) {

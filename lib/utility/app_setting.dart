@@ -36,7 +36,7 @@ class AppSetting {
 }
 // PageController pageController = PageController(initialPage: Get.context.read<IndvGlobalCubit>().pageindex.value);
 RegExp PhoneregExp = new RegExp(
-  r'(009665|٠٠٩٦٦٥|9665|٩٦٦٥|\+9665|٩٦٦٥|05|٠٥|5|٥)(5|0|3|6|4|9|1|8|7|٠|٨|٧|١|٦|٩|٤|٣|٥)([0-9\u0660-\u0669]{7})+$',
+  r'^(\+201|01|00201)[0-2,5]{1}[0-9]{8}',
   caseSensitive: false,
   multiLine: false,
 );

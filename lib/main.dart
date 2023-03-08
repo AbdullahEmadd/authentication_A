@@ -1,6 +1,6 @@
-import 'package:first_task/screens/enter_code_screen.dart';
-import 'package:first_task/screens/forget_password_screen.dart';
-import 'package:first_task/screens/homepage.dart';
+import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
+import 'package:first_task/screens/forget_password_screens/forget_password_screen.dart';
+import 'package:first_task/screens/home_screens/homepage.dart';
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'cubits/forget_password/forget_password_cubit.dart';

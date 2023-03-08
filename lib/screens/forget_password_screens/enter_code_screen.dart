@@ -3,8 +3,8 @@ import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/cubits/enter_code/enter_code_cubit.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:flutter/material.dart';
-import '../components/button.dart';
-import '../utility/app_names.dart';
+import '../../components/button.dart';
+import '../../utility/app_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'enter_new_password_screen.dart';
@@ -13,7 +13,6 @@ class EnterCodeScreen extends StatefulWidget {
   @override
   State<EnterCodeScreen> createState() => _EnterCodeScreenState();
 }
-
 class _EnterCodeScreenState extends State<EnterCodeScreen> {
   EnterCodeCubit entercodecubit = EnterCodeCubit();
   @override

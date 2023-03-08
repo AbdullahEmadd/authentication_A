@@ -1,5 +1,5 @@
 import 'package:first_task/components/button.dart';
-import 'package:first_task/screens/login_screen.dart';
+import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

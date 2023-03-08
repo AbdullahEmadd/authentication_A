@@ -4,6 +4,8 @@ import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../utility/app_colors.dart';
+
 class ManagerHomeScreen extends StatefulWidget {
   const ManagerHomeScreen({Key? key}) : super(key: key);
 
@@ -26,19 +28,66 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
       ),
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: 20.h),
-              GridView.count(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                children: List.generate(6, (index) =>
-                    Image.asset('assets/images/food.png')),
-              )
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                SizedBox(height: 20.h),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(AppNames.departments,
+                        style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Almarai',
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),),
+                      Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: AppColors.mainColor
+                        ),
+                        child: IconButton(onPressed: (){}, icon:
+                        Icon(Icons.add),
+                        color: Colors.white,
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20.h),
+                GridView.count(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 10,
+                  mainAxisSpacing: 0.4,
+                  children: List.generate(4, (index) =>
+                      Image.asset('assets/images/food.png',
+                      ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: Row(
+                    children: [
+                      Text(
+                      AppNames.employees,
+                      style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: 'Almarai',
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold
+                        ),
+                    ),
+                    ]
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
