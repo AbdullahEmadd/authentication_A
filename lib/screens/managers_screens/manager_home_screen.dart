@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../utility/app_colors.dart';
+import '../add_category_screen/add_category_screen.dart';
 
 class ManagerHomeScreen extends StatefulWidget {
   const ManagerHomeScreen({Key? key}) : super(key: key);
@@ -25,84 +26,90 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
           color: Colors.black,
           fontWeight: FontWeight.bold
         ),),
+        actions: [Padding(
+          padding: const EdgeInsets.only(left: 15),
+          child: IconButton(onPressed: (){},
+              icon: Icon(Icons.notifications_outlined),
+            iconSize: 35,
+          ),
+        ),],
       ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Column(
               children: [
                 SizedBox(height: 20.h),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(AppNames.departments,
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Almarai',
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),),
-                      Container(
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: AppColors.mainColor
-                        ),
-                        child: IconButton(onPressed: (){}, icon:
-                        Icon(Icons.add),
-                        color: Colors.white,
-                        ),
-                      )
-                    ],
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(AppNames.main,
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Almarai',
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                      ),),
+                    Container(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.mainColor
+                      ),
+                      child: IconButton(onPressed: (){
+                        Navigator.push(context,
+                            MaterialPageRoute (builder: (context) => AddCategoryScreen()),
+                        );
+                      }, icon:
+                      Icon(Icons.add),
+                      color: Colors.white,
+                      ),
+                    )
+                  ],
                 ),
-                SizedBox(height: 20.h),
                 GridView.count(
+                  childAspectRatio: 1.4,
                   shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
-                  mainAxisSpacing: 0.4,
                   children: [
-                    Image.asset('assets/images/mobile.png'),
-                    Image.asset('assets/images/design.png'),
-                    Image.asset('assets/images/backend.png'),
-                    Image.asset('assets/images/qc.png'),
+                    Image.asset('assets/images/foods.png'),
+                    Image.asset('assets/images/extras.png'),
                   ],
                 ),
-                SizedBox(height: 25.h),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Row(
-                    children: [
-                      Text(
-                      AppNames.employees,
-                      style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Almarai',
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold
-                        ),
-                    ),
-                    ]
-                  )),
-                  SizedBox(
-                    height: 12.h,
+                Transform.scale(
+                    scale: 0.6,
+                    child: Image.asset('assets/images/drinks.png')),
+                SizedBox(
+                  height: 15.h,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                    AppNames.mostOrdered,
+                    style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: 'Almarai',
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold
+                      ),
                   ),
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 5,
-                  mainAxisSpacing: 0.4,
-                  children: [
-                    Image.asset('assets/images/emp1.png'),
-                    Image.asset('assets/images/emp2.png'),
-                    Image.asset('assets/images/emp3.png'),
-                  ],
+                    TextButton(
+                        onPressed: (){},
+                        child: Text(
+                          'الكل',
+                          style: TextStyle(
+                            fontSize: 22
+                          ),
+                        ))
+                  ]
                 ),
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                Image.asset('assets/images/mostOrdered2.png')
               ],
             ),
           ),

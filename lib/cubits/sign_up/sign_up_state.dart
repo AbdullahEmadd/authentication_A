@@ -21,5 +21,18 @@ class SignUpDone extends SignUpState {
 class SignUpError extends SignUpState {
   @override
   List<Object> get props => [];
+}class VerifyCodeLoading extends SignUpState {
+  @override
+  List<Object> get props =>[];
+}class VerifyCodeDone extends SignUpState {
+  final VerifyCodeModel verifyCodeModel;
+  VerifyCodeDone(this.verifyCodeModel);
+  @override
+  List<Object> get props => [];
+}class VerifyCodeError extends SignUpState {
+  String? error;
+  VerifyCodeError(this.error);
+  @override
+  List<Object> get props => [];
 }
 

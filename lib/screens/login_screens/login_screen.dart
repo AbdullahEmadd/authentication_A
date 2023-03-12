@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/screens/forget_password_screens/forget_password_screen.dart';
@@ -22,6 +23,12 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
+  bool _obscure = true;
+  void _toggle () {
+    setState(() {
+      _obscure = !_obscure;
+    });
+  }
 
   getPref() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
@@ -32,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
           context, MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: formkey,
                 child: Column(children: [
                   SizedBox(
-                    height: 200,
+                    height: 150.h,
                   ),
                   Text(
                     AppNames.welcome,
@@ -96,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
-                    height: 25,
+                    height: 25.h,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 35),
@@ -120,12 +126,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.Password,
-                    obscure: true,
+                    obscure: _obscure,
+                    icon: _obscure? Icons.visibility_off :Icons.visibility,
+                    iconPressed: _toggle,
                     controller: LoginCubit.get(context).password,
                     hint: AppNames.password,
                   ),
                   SizedBox(
-                    height: 40,
+                    height: 40.h,
                   ),
                   BlocConsumer<LoginCubit, LoginState>(
                       listener: (context, state) async {
@@ -161,7 +169,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         : CircularProgressIndicator();
                   }),
                   SizedBox(
-                    height: 17,
+                    height: 17.h,
                   ),
                   TextButton(
                     onPressed: () {
@@ -176,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: 5.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -187,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
-                        width: 5,
+                        width: 5.w,
                       ),
                       InkWell(
                         onTap: () {

@@ -1,3 +1,4 @@
+import 'package:first_task/cubits/verify_code/verify_code_cubit.dart';
 import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
 import 'package:first_task/screens/forget_password_screens/forget_password_screen.dart';
 import 'package:first_task/screens/home_screens/homepage.dart';
@@ -22,6 +23,9 @@ void main() async{
         ),
         BlocProvider<SignUpCubit>(
         create: (BuildContext context) => SignUpCubit(),
+        ),
+        BlocProvider<VerifyCodeCubit>(
+        create: (BuildContext context) => VerifyCodeCubit(),
         ),
         BlocProvider<ForgetPasswordCubit>(
           create: (BuildContext context) => ForgetPasswordCubit(),

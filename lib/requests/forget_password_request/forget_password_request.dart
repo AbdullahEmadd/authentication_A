@@ -1,7 +1,10 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:first_task/models/authentication/enter_new_password_model.dart';
+import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:http/http.dart' as http;
 
+import '../../models/authentication/enter_code_model.dart';
 import '../../models/authentication/forget_password_return_model.dart';
 import '../../services/global_helper_method.dart';
 import '../../utility/app_consts.dart';
@@ -59,7 +62,7 @@ class ForgetPasswordRequest {
   static void codeConfirmation(
       {required String userName,
         required String code,
-        required Function() onSuccess,
+        required Function(EnterCodeModel enterCodeModel) onSuccess,
         required Function(String error) onError}) async {
     try {
       //API Calling
@@ -80,7 +83,8 @@ class ForgetPasswordRequest {
         log(response.body + "\n" + response.statusCode.toString());
         // modiling
         if (response.statusCode == 200) {
-          onSuccess();
+          EnterCodeModel enterCodeModel= EnterCodeModel.fromJson(json.decode(response.body));
+          onSuccess(enterCodeModel);
         } else {
           log(response.body);
         }
@@ -109,7 +113,7 @@ class ForgetPasswordRequest {
       {required String userName,
         required String password,
         required String passwordConfirmation,
-        required Function() onSuccess,
+        required Function(EnterNewPasswordModel enterNewPasswordModel) onSuccess,
         required Function(String error) onError}) async {
     try {
       //API Calling
@@ -131,7 +135,8 @@ class ForgetPasswordRequest {
         log(response.body + "\n" + response.statusCode.toString());
         // modiling
         if (response.statusCode == 200) {
-          onSuccess();
+          EnterNewPasswordModel enterNewPasswordModel= EnterNewPasswordModel.fromJson(json.decode(response.body));
+          onSuccess(enterNewPasswordModel);
         } else {
           log(response.body);
         }
@@ -156,4 +161,51 @@ class ForgetPasswordRequest {
       onError(e.toString());
     }
   }
+  static void regenerateCodeRequest({
+    required String userName,
+    required Function(RegenerateCodeModel regenerateCodeModel)
+    onSuccess,
+    required Function(String error) onError}) async{
+    try {
+      //API Calling
+      // String token = await getToken();
+      var headers = {...apiHeaders};
+      // "Authorization" : token,
+      await http
+          .post(
+          getUri(
+              '${AppConsts.baseUrl}Account/ReGenrateCode'),
+          headers: headers,
+          body: json.encode({
+            "Username": userName,
+          }))
+          .then((response) async {
+        log(response.body + "\n" + response.statusCode.toString());
+        // modiling
+        if (response.statusCode == 200) {
+          RegenerateCodeModel regenerateCodeModel =
+          RegenerateCodeModel.fromJson(json.decode(response.body));
+          onSuccess(regenerateCodeModel);
+        } else {
+          log(response.body);
+        }
+        // Debugging API response
+        debugApi(
+            methodName: "Forget Password",
+            statusCode: response.statusCode,
+            response: response.body,
+            data: {
+              "Username": userName,
+            },
+            endPoint: response.request!.url.toString(),
+            headers: headers);
+      }, onError: (error) {
+        log("error happened from reGenerateCode Request ${error.toString()}");
+        onError(error.toString());
+      });
+    } catch (e) {
+      log("error happened from reGenerateCode Request ${e.toString()}");
+      onError(e.toString());
+    }
+}
 }

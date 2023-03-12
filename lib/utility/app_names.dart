@@ -1,14 +1,16 @@
 class AppNames {
- static const String welcome = 'مرحبا بك';
- static const String login = 'سجل دخولك بواسطة اسم المستخدم وكلمة السر وتمتع معنا بتطبيق المطبخ';
- static const String home = 'الرئيسية';
+ static const welcome = 'مرحبا بك';
+ static const login = 'سجل دخولك بواسطة اسم المستخدم وكلمة السر وتمتع معنا بتطبيق المطبخ';
+ static const home = 'الرئيسية';
  static const name = 'الاسم';
  static const userName = 'اسم المستخدم';
  static const email = 'البريد الالكتروني';
  static const phone = 'الجوال';
  static const password = 'كلمة السر';
- static const passwordConfim = 'تأكيد كلمة السر';
+ static const newPassword = 'كلمة سر جديدة';
+ static const passwordConfirm = 'تأكيد كلمة السر';
  static const forgetPassword = 'نسيت كلمة المرور';
+ static const reGenerateCode = 'اعادة ارسال الكود';
  static const haveCompany = 'هل تمتلك شركة؟';
  static const enterCode = 'من فضلك ارسل الكود المرسل اليك';
  static const code = 'الكود';
@@ -22,14 +24,17 @@ class AppNames {
  static const invalidEmail = 'Please enter valid email address';
  static const lessThan6 = 'Cannot be less than 6 characters';
  static const moreThan30 = 'Cannot be more than 30 characters';
- static const String PleaseenterCorrecttext = 'Must be characters only';
+ static const pleaseEnterCorrectText = 'Must be characters only';
  static const lessThan2 = 'Cannot be less than 2 character';
  static const moreThan20 = 'Cannot be more than 20 characters';
- static const newPassword = ' Enter New Password';
- static const reEnterNewPassword = 'New Password Confirmation';
+ static const reEnterNewPassword = 'تاكيد كلمة السر الجديدة';
  static const save = 'Save';
  static const departments = 'الأقسام';
  static const employees = 'الموظفين';
- static const String dontMatch  = 'Your Passwords Dont Match';
+ static const dontMatch  = 'Your Passwords Dont Match';
+ static const mostOrdered = 'المنتجات الأكثر طلبا';
+ static const main = 'التصنيفات الرئيسية';
+ static const addCategory = 'إضافة تصنيف رئيسي';
+ static const categoryName = 'اسم التنصيف الرئيسي';
 
 }

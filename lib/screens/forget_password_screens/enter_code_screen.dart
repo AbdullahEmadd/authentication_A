@@ -3,7 +3,9 @@ import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/cubits/enter_code/enter_code_cubit.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/button.dart';
+import '../../cubits/forget_password/forget_password_cubit.dart';
 import '../../utility/app_names.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
@@ -14,7 +16,7 @@ class EnterCodeScreen extends StatefulWidget {
   State<EnterCodeScreen> createState() => _EnterCodeScreenState();
 }
 class _EnterCodeScreenState extends State<EnterCodeScreen> {
-  EnterCodeCubit entercodecubit = EnterCodeCubit();
+  ForgetPasswordCubit forgetPasswordCubit = ForgetPasswordCubit();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +66,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 200,
+                  height: 150.h,
                 ),
                 const Text(
                   AppNames.enterCode,
@@ -76,49 +78,86 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 60,
+                  height: 60.h,
                 ),
                 Form(
-                  key: entercodecubit.EnterCodeKey,
+                  key: forgetPasswordCubit.EnterCodeKey,
                   child: CustomTextField(
+                    controller: ForgetPasswordCubit
+                        .get(context)
+                        .codeController,
                     textFieldVaidType: TextFieldvalidatorType.EnterCode,
                     hint: AppNames.code,
                   ),
                 ),
                 SizedBox(
-                  height: 50,
+                  height: 5.h,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    BlocProvider(
-                      create: (context) => EnterCodeCubit(),
-                      child: BlocConsumer<EnterCodeCubit, EnterCodeState>(
-                      listener: (context, state) async{
-                        if(state is EnterCodeDone) {
-                          if (state.enterCodeModel.state == true) {
-                            Get.snackbar('تم', state.enterCodeModel.message![0].value.toString());
-                            Navigator.push(context, MaterialPageRoute(builder: (builder)=>EnterNewPasswordScreen()));
-                          }
-                          else {
-                            Get.snackbar('Message', state.enterCodeModel.message![0].value.toString());
-                          }
+                BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+                    listener: (context, state) async{
+                      if (state is RegenerateCodeDone) {
+                        if (state.regenerateCodeModel.state == true) {
+                          Get.snackbar('Success', state.regenerateCodeModel.message![0]
+                              .value.toString());
                         }
-                      },
+                        else {
+                          Get.snackbar('Error', state.regenerateCodeModel.message![0]
+                              .value.toString());
+                        }
+                      }
+                    },
                       builder: (context, state) {
-                        return state is! EnterCodeLoading? Button(
-                            text: AppNames.next,
-                            function: () {
-                              if (entercodecubit.EnterCodeKey.currentState?.validate() ==true) {
-                                EnterCodeCubit.get(context).enterCode(code:
-                                    EnterCodeCubit.get(context).code.text
-                                    , userName:
-                                EnterCodeCubit.get(context).userName.text);
-                              }
+                          return state is! RegenerateCodeLoading? TextButton(
+                          onPressed: (){
+                            ForgetPasswordCubit.get(context)
+                                  .regenerateCode();
+                          }, child:
+                          Text(AppNames.reGenerateCode,
+                          style: TextStyle(
+                          fontFamily: 'Almarai',
+                          color: Colors.blue,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold
+                          ),
+                          )): CircularProgressIndicator();
+                          },
+                        ),
+                        SizedBox(
+                        height: 15.h,
+                        ),
+                        Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                        BlocConsumer<ForgetPasswordCubit,ForgetPasswordState>(
+                          listener: (context, state) async{
+                            if (state is CodeConfirmationDone) {
+                              if (state.enterCodeModel.state == true) {
+                                Get.snackbar('Success', state.enterCodeModel.message![0]
+                              .value.toString());
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => EnterNewPasswordScreen()),
+                            );
+                          }
+                        else {
+                          Get.snackbar('خطأ', state.enterCodeModel.message![0]
+                              .value.toString());
+                        }
+                        }
+                        },
+                        builder: (context, state) {
+                          return state is! EnterCodeLoading? Button(
+                              text: AppNames.next,
+                              function: () {
+                            if (forgetPasswordCubit.EnterCodeKey.currentState?.validate()==true) {
+                              ForgetPasswordCubit.get(context).codeConfirmation();
+                            } else{
+                             Get.snackbar('Error', 'Please enter valid code');
                             }
-                        ): CircularProgressIndicator();
-                      },
-                    ),
+                          }
+                      ): CircularProgressIndicator();
+                    },
                     ),
                   ],
                 ),

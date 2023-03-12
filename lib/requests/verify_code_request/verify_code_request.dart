@@ -10,7 +10,8 @@ class VerifyCodeRequest{
   static verify({required String userName ,
     required String password ,
     required String code,
-    required Function(VerifyCodeModel verifyCodeModel) onSuccess,required Function(String error) onError})async{
+    required Function(VerifyCodeModel verifyCodeModel) onSuccess,
+    required Function(String error) onError})async{
     try {
       //API Calling
       // String token = await getToken();
@@ -36,7 +37,7 @@ class VerifyCodeRequest{
         }
         // Debugging API response
         debugApi(
-            methodName: "login",
+            methodName: "Verify Code",
             statusCode: response.statusCode,
             response: response.body,
             data: {
@@ -47,11 +48,11 @@ class VerifyCodeRequest{
             endPoint: response.request!.url.toString(),
             headers: headers);
       }, onError: (error) {
-        log("error happened from Login ${error.toString()}");
+        log("error happened from Verify Code ${error.toString()}");
         onError(error.toString());
       });
     }catch(e){
-      log("error happened from Login ${e.toString()}");
+      log("error happened from Verify Code ${e.toString()}");
       onError(e.toString());
     }
   }}

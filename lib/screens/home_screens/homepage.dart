@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
-            const SizedBox(
-              height: 90,
+             SizedBox(
+              height: 90.h,
             ),
             Transform.scale(
               scale: 0.5,
@@ -42,8 +42,8 @@ class _HomePageState extends State<HomePage> {
             Image.asset(
                 'assets/images/get_start.png'
             ),
-            const SizedBox(
-              height: 6,
+            SizedBox(
+              height: 6.h,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -64,8 +64,8 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            const SizedBox(
-              height: 15,
+            SizedBox(
+              height: 15.h,
             ),
             Button(
               text: 'Get Started Now',

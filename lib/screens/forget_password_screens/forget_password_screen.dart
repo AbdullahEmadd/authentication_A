@@ -1,5 +1,6 @@
 import 'dart:developer';
 import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/helpers/Validation.dart';
@@ -72,7 +73,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
               child: Column(
                 children: [
                   SizedBox(
-                    height: 130,
+                    height: 150.h,
                   ),
                   const Text(
                     AppNames.forgetPassword,
@@ -83,7 +84,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                         fontWeight: FontWeight.bold
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15.h),
                   const Text(
                     AppNames.companyEmail,
                     style: TextStyle(
@@ -94,7 +95,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 30.h,
                   ),
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType
@@ -105,7 +106,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                     hint: AppNames.userName,
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 30.h,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

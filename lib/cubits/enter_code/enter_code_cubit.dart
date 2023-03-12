@@ -12,13 +12,15 @@ class EnterCodeCubit extends Cubit<EnterCodeState> {
   EnterCodeModel enterCodeModel = EnterCodeModel();
   var code = TextEditingController();
   var userName = TextEditingController();
-  enterCode({required String code, required String userName}) {
+  enterCode() {
     emit(EnterCodeLoading());
-    EnterCodeRequest.enterCode(code: code, userName: userName, onSuccess:
+    EnterCodeRequest.enterCode(
+      code: code.text,
+      userName: userName.text,
+      onSuccess:
     (EnterCodeModel){
-      this.enterCodeModel = enterCodeModel;
+      enterCodeModel = enterCodeModel;
       emit(EnterCodeDone(enterCodeModel));
-      print(state);
     }
         , onError: (error){
           log("from the cubit :: : : ::  \n $error");

@@ -13,6 +13,8 @@ class VerifyCodeCubit extends Cubit<VerifyCodeState> {
   final VerifyCodeKey = GlobalKey<FormState>();
   static VerifyCodeCubit get(context) => BlocProvider.of(context);
   VerifyCodeModel verifyCodeModel = VerifyCodeModel();
+
+
   verifyCode({required String userName, required String password,
   required String code}) {
     emit(VerifyCodeLoading());

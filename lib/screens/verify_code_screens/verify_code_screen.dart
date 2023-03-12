@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-
 import '../../components/button.dart';
 import '../../components/custom_text_field.dart';
-import '../../cubits/verify_code/verify_code_cubit.dart';
-import '../../cubits/verify_code/verify_code_state.dart';
+import '../../cubits/sign_up/sign_up_cubit.dart';
 import '../../helpers/Validation.dart';
 import '../../utility/app_names.dart';
 
 class VerifyCodeScreen extends StatefulWidget {
-  const VerifyCodeScreen({Key? key}) : super(key: key);
+
 
   @override
   State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
 }
 
 class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
-  VerifyCodeCubit verifyCodeCubit = VerifyCodeCubit();
+  SignUpCubit signUpCubit = SignUpCubit();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,10 +80,11 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   height: 60,
                 ),
                 Form(
-                  key: verifyCodeCubit.VerifyCodeKey,
+                  key: signUpCubit.VerifyCodeKey,
                   child: CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.EnterCode,
                     hint: AppNames.code,
+                    controller: SignUpCubit.get(context).codeController,
                   ),
                 ),
                 SizedBox(
@@ -94,15 +93,15 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    BlocConsumer<VerifyCodeCubit, VerifyCodeState>(
+                    BlocConsumer<SignUpCubit, SignUpState>(
                       listener: (context, state) async{
                         if(state is VerifyCodeDone) {
                           if (state.verifyCodeModel.state == true) {
-                            Get.snackbar('تم', state.verifyCodeModel.message![0].value.toString());
+                            Get.snackbar('Success', state.verifyCodeModel.message![0].value.toString());
                             // Navigator.push(context, MaterialPageRoute(builder: (builder)=>EnterNewPasswordScreen()));
                           }
                           else {
-                            Get.snackbar('Message', state.verifyCodeModel.message![0].value.toString());
+                            Get.snackbar('Error', state.verifyCodeModel.message![0].value.toString());
                           }
                         }
                       },
@@ -110,12 +109,8 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         return state is! VerifyCodeLoading? Button(
                             text: AppNames.next,
                             function: () {
-                              if (verifyCodeCubit.VerifyCodeKey.currentState?.validate() ==true) {
-                                VerifyCodeCubit.get(context).verifyCode(code:
-                                VerifyCodeCubit.get(context).code.text
-                                    , userName:
-                                    VerifyCodeCubit.get(context).userName.text,
-                                password: VerifyCodeCubit.get(context).password.text);
+                              if (signUpCubit.VerifyCodeKey.currentState?.validate() ==true) {
+                                SignUpCubit.get(context).verifyCode();
                               }
                             }
                         ): CircularProgressIndicator();

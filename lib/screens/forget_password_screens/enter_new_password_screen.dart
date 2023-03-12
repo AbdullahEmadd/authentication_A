@@ -1,8 +1,10 @@
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../components/button.dart';
 import '../../cubits/forget_password/forget_password_cubit.dart';
@@ -14,9 +16,27 @@ class EnterNewPasswordScreen extends StatefulWidget {
 
   @override
   State<EnterNewPasswordScreen> createState() => _EnterNewPasswordScreenState();
-}
 
+
+}
 class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
+
+bool _obscure1 = true;
+bool _obscure2 =true;
+
+void _password() {
+  setState(() {
+  _obscure1 = !_obscure1;
+  });
+  }
+
+void _confirmPassword() {
+setState(() {
+_obscure2 = !_obscure2;
+  });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,18 +86,20 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               SizedBox(
-                height: 150,
+                height: 150.h,
               ),
               const Text(
-                'New Password',
+                AppNames.newPassword,
                 textAlign: TextAlign.center,
                 style: TextStyle(
+                    fontFamily: 'Almarai',
+                    color: Colors.black,
                     fontSize: 20,
-                    fontFamily: "ALMARAI-BOLD",
-                    color: AppColors.mainColor),
+                    fontWeight: FontWeight.bold
+                ),
               ),
               SizedBox(
-                height: 50,
+                height: 50.h,
               ),
               CustomTextField(
                 textFieldVaidType: TextFieldvalidatorType.Password,
@@ -85,6 +107,9 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
                     .get(context)
                     .passwordController,
                 hint: AppNames.newPassword,
+                obscure: _obscure1,
+                icon: _obscure1 ? Icons.visibility_off : Icons.visibility,
+                iconPressed: _password,
               ),
               CustomTextField(
                 textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
@@ -92,16 +117,34 @@ class _EnterNewPasswordScreenState extends State<EnterNewPasswordScreen> {
                     .get(context)
                     .passwordConfirmationController,
                 hint: AppNames.reEnterNewPassword,
+                obscure: _obscure2,
+                icon: _obscure2 ? Icons.visibility_off : Icons.visibility,
+                iconPressed: _confirmPassword,
               ),
               SizedBox(
-                  height: 20
+                  height: 20.h
               ),
               BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
                 listener: (context, state) {
+                  if(state is ResetPasswordDone){
+                    if(state.enterNewPasswordModel.state ==true) {
+                      Get.snackbar('Success',
+                          state.enterNewPasswordModel.message![0].value
+                              .toString());
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LoginScreen()),
+                      );
+                    }
+                    else {
+                      Get.snackbar('Error', state.enterNewPasswordModel.message![0].value.toString());
+                    }
+                  }
                 },
                 builder: (context, state) {
-                  return state is! CodeConfirmationLoading?Button(
-                    text: AppNames.save,
+                  return state is! ResetPasswordLoading? Button(
+                    text: AppNames.next,
                     function: () {
                       if (ForgetPasswordCubit
                           .get(context)

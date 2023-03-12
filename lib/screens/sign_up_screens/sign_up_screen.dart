@@ -1,17 +1,15 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
-import 'dart:html';
-
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/button.dart';
 import '../../components/custom_text_field.dart';
 import '../../cubits/sign_up/sign_up_cubit.dart';
 import '../../utility/app_colors.dart';
 import '../../utility/app_names.dart';
 import 'package:get/get.dart';
-
 import '../verify_code_screens/verify_code_screen.dart';
 class SignUpScreen extends StatefulWidget {
   final formKey = GlobalKey<FormState>();
@@ -21,6 +19,21 @@ class SignUpScreen extends StatefulWidget {
 }
 class _SignUpScreenState extends State<SignUpScreen> {
   final formKey = GlobalKey<FormState>();
+
+  bool _obscure1 = true;
+  bool _obscure2 =true;
+
+  void _password() {
+    setState(() {
+      _obscure1 = !_obscure1;
+    });
+  }
+
+  void _confirmPassword() {
+    setState(() {
+      _obscure2 = !_obscure2;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 35,
+                  height: 60.h,
                 ),
                 Text(
                   AppNames.welcome,
@@ -84,7 +97,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
+                  height: 10.h,
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20),
@@ -99,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 CustomTextField(
                   textFieldVaidType: TextFieldvalidatorType.RegisterText,
@@ -125,34 +138,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   textFieldVaidType: TextFieldvalidatorType.Password,
                   controller: SignUpCubit.get(context).passwordController,
                   hint: AppNames.password,
+                  obscure: _obscure1,
+                  icon: _obscure1 ? Icons.visibility_off : Icons.visibility,
+                  iconPressed: _password,
                 ),
                 CustomTextField(
                   firstPAsswordForConfirm: SignUpCubit.get(context).passwordController.text,
                   textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
                   controller: SignUpCubit.get(context).passwordConfirmationController,
-                  hint: AppNames.passwordConfim,
-                  obscure: true,
+                  hint: AppNames.passwordConfirm,
+                  obscure: _obscure2,
+                  icon: _obscure2 ? Icons.visibility_off : Icons.visibility,
+                  iconPressed: _confirmPassword,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: 20.h,
                 ),
                 BlocConsumer<SignUpCubit, SignUpState> (
                 listener:(context, state) {
                 if(state is SignUpDone){
-                if(state.signUpModel == true) {
+                if(state.signUpModel.state == true) {
                 Get.snackbar('تم', state.signUpModel.message![0].value.toString());
                 Navigator.push(context, MaterialPageRoute(builder: (builder)=>VerifyCodeScreen()));
                 }
-                }
                 else {
-                  Get.snackbar('Error', 'Registration Failed');
+                  Get.snackbar('Error', state.signUpModel.message![0].value.toString());
+                }
                 }
                 },
                 builder: (context,state) {
                     return state is! SignUpLoading ? Button(
                     text: AppNames.registerAsAdmin,
                     function: () {
-                      if (formKey.currentState!.validate()) {
+                      if (formKey.currentState?.validate() == true) {
                         SignUpCubit.get(context).adminSignUp();
                       }
                     },
