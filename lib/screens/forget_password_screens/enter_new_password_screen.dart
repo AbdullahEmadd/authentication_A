@@ -112,6 +112,7 @@ _obscure2 = !_obscure2;
                 iconPressed: _password,
               ),
               CustomTextField(
+                confirmPasswordController: ForgetPasswordCubit.get(context).passwordController,
                 textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
                 controller: ForgetPasswordCubit
                     .get(context)

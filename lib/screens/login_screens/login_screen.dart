@@ -16,6 +16,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../verify_code_screens/verify_code_screen.dart';
+
 class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -138,18 +140,29 @@ class _LoginScreenState extends State<LoginScreen> {
                   BlocConsumer<LoginCubit, LoginState>(
                       listener: (context, state) async {
                     if (state is LoginDone) {
-                      if(state.loginModel.state==true){
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => ManagerHomeScreen()),
-                      );
-                      CacheHelper.saveData(
-                          key: 'token',
-                          value: state.loginModel.data!.token!.accessToken!);
+                      if(state.loginModel.state==true ){
+                        if (state.loginModel.data!.user!.emailConfirmed == true) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ManagerHomeScreen()),
+                          );
+                          CacheHelper.saveData(
+                              key: 'token',
+                              value: state.loginModel.data!.token!
+                                  .accessToken!);
+                           }
+                        else{
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => VerifyCodeScreen()),
+                          );
+                          Get.snackbar('Error', 'Please verify your account');
+                        }
+
                       }
                       else{
                         Get.snackbar('خطأ', state.loginModel.message![0].value.toString());
-                        log('Error');
                       }
                     }
                   }, builder: (context, state) {

@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import '../utility/app_colors.dart';
 import 'package:first_task/helpers/Validation.dart';
 class CustomTextField extends StatefulWidget {
-  String? firstPAsswordForConfirm;
   TextFieldvalidatorType? textFieldVaidType;
   TextEditingController? controller;
+  TextEditingController? confirmPasswordController;
+  String? firstPasswordToConfirm;
   String? hint;
   double? width;
   double? height;
@@ -25,6 +26,7 @@ class CustomTextField extends StatefulWidget {
   int? minLines;
   CustomTextField(
       {this.controller,
+        this.confirmPasswordController,
         required this.textFieldVaidType,
         this.hint = "",
         this.width,
@@ -44,7 +46,7 @@ class CustomTextField extends StatefulWidget {
         this.minLines,
         this.iconPressed,
         this.onChange,
-        this.firstPAsswordForConfirm
+        this.firstPasswordToConfirm,
       });
 
   @override
@@ -66,9 +68,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
             borderRadius: BorderRadius.circular(30),
           ),
           child: TextFormField(
+            autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (v) => Validation(
                 type: widget.textFieldVaidType!,
-                firstPAsswordForConfirm: widget.firstPAsswordForConfirm,
+                firstPasswordForConfirm: widget.textFieldVaidType ==
+                    TextFieldvalidatorType.ConfirmPassword
+                    ? widget.confirmPasswordController!.value.text
+                    : "",
                 value: v!,),
             onTap: widget.onPressed,
             minLines: widget.minLines??1,

@@ -6,6 +6,7 @@ import '../../components/custom_text_field.dart';
 import '../../cubits/sign_up/sign_up_cubit.dart';
 import '../../helpers/Validation.dart';
 import '../../utility/app_names.dart';
+import '../managers_screens/manager_home_screen.dart';
 
 class VerifyCodeScreen extends StatefulWidget {
 
@@ -98,7 +99,10 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         if(state is VerifyCodeDone) {
                           if (state.verifyCodeModel.state == true) {
                             Get.snackbar('Success', state.verifyCodeModel.message![0].value.toString());
-                            // Navigator.push(context, MaterialPageRoute(builder: (builder)=>EnterNewPasswordScreen()));
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ManagerHomeScreen()),
+                            );
                           }
                           else {
                             Get.snackbar('Error', state.verifyCodeModel.message![0].value.toString());

@@ -32,7 +32,7 @@ class SignUpCubit extends Cubit<SignUpState> {
       email: emailController.text,
       passwordConfirmation: passwordConfirmationController.text,
       phone: phoneController.text,
-      role: 'Admin',
+      role: 'Manager',
       onSuccess: (signUpModel) {
         this.signUpModel  = signUpModel;
         emit(SignUpDone(signUpModel));

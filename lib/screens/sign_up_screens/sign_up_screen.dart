@@ -143,7 +143,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   iconPressed: _password,
                 ),
                 CustomTextField(
-                  firstPAsswordForConfirm: SignUpCubit.get(context).passwordController.text,
+                  confirmPasswordController: SignUpCubit.get(context).passwordController,
                   textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
                   controller: SignUpCubit.get(context).passwordConfirmationController,
                   hint: AppNames.passwordConfirm,

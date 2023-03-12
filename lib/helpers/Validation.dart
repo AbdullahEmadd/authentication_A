@@ -1,6 +1,5 @@
 import 'package:first_task/utility/app_names.dart';
 import 'package:first_task/utility/app_setting.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 enum TextFieldvalidatorType{
   Email,
@@ -18,7 +17,7 @@ enum TextFieldvalidatorType{
   EnterCode,
   None
 }
-Validation({required TextFieldvalidatorType type, required String value,String? firstPAsswordForConfirm}){
+Validation({required TextFieldvalidatorType type, required String value,required String firstPasswordForConfirm}){
   if(type==TextFieldvalidatorType.PhoneNumber){
     if(value.isEmpty)
     {
@@ -52,7 +51,6 @@ Validation({required TextFieldvalidatorType type, required String value,String? 
     }
   }
   else if(type==TextFieldvalidatorType.Password) {
-
     if(value.isEmpty) {
       return AppNames.required;
     } else  if (value.length<6) {
@@ -64,12 +62,12 @@ Validation({required TextFieldvalidatorType type, required String value,String? 
   }
 
   else if(type==TextFieldvalidatorType.ConfirmPassword){
+    print(firstPasswordForConfirm);
     print(value);
-    print(firstPAsswordForConfirm);
     if(value.isEmpty){
       return AppNames.required;
     }
-    else  if(value!=firstPAsswordForConfirm){
+    else  if(value!=firstPasswordForConfirm){
       return AppNames.dontMatch;
     }else{
       return null;
