@@ -147,10 +147,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             MaterialPageRoute(
                                 builder: (context) => ManagerHomeScreen()),
                           );
+                          Get.snackbar('Success', state.loginModel.message![0].value.toString());
                           CacheHelper.saveData(
                               key: 'token',
-                              value: state.loginModel.data!.token!
-                                  .accessToken!);
+                              value: state.loginModel.data!.token!.accessToken!);
                            }
                         else{
                           Navigator.push(

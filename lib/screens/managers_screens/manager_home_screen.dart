@@ -3,7 +3,6 @@ import 'package:first_task/utility/app_names.dart';
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../utility/app_colors.dart';
 import '../add_category_screen/add_category_screen.dart';
 
