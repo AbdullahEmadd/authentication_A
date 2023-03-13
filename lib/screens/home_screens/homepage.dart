@@ -3,7 +3,10 @@ import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../routes/routes.dart';
+
 class HomePage extends StatefulWidget {
+  static String routeName = '/HomePage';
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -70,10 +73,7 @@ class _HomePageState extends State<HomePage> {
             Button(
               text: 'Get Started Now',
               function: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
-                );
+                goToScreen(screenNames: LoginScreen.routeName);
               }
             ),
           ],

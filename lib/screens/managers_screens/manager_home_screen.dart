@@ -1,3 +1,4 @@
+import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/managers_screens/manager_drawer.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:first_task/utility/app_theme.dart';
@@ -7,6 +8,7 @@ import '../../utility/app_colors.dart';
 import '../add_category_screen/add_category_screen.dart';
 
 class ManagerHomeScreen extends StatefulWidget {
+  static String routeName = '/ManagerHomeScreen';
   const ManagerHomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -56,9 +58,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                         color: AppColors.mainColor
                       ),
                       child: IconButton(onPressed: (){
-                        Navigator.push(context,
-                            MaterialPageRoute (builder: (context) => AddCategoryScreen()),
-                        );
+                        goToScreen(screenNames: ScreenNames.addCategoryScreen);
                       }, icon:
                       Icon(Icons.add),
                       color: Colors.white,

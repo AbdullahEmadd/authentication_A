@@ -1,5 +1,6 @@
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
@@ -10,8 +11,8 @@ import '../../components/button.dart';
 import '../../cubits/forget_password/forget_password_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
 class EnterNewPasswordScreen extends StatefulWidget {
+  static String routeName = '/EnterNewPasswordScreen';
   const EnterNewPasswordScreen({Key? key}) : super(key: key);
 
   @override
@@ -73,8 +74,8 @@ _obscure2 = !_obscure2;
           padding: const EdgeInsets.only(left: 15, top: 15),
           child: IconButton(
             onPressed: () {
-              Navigator.pop(context);
-            },
+                goBack();            
+              },
             icon: Icon(Icons.arrow_back_ios, color: Colors.black),
           ),
         ),
@@ -132,11 +133,7 @@ _obscure2 = !_obscure2;
                       Get.snackbar('Success',
                           state.enterNewPasswordModel.message![0].value
                               .toString());
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginScreen()),
-                      );
+                      goToScreen(screenNames: ScreenNames.loginScreen);
                     }
                     else {
                       Get.snackbar('Error', state.enterNewPasswordModel.message![0].value.toString());

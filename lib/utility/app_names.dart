@@ -12,7 +12,7 @@ class AppNames {
  static const forgetPassword = 'نسيت كلمة المرور';
  static const reGenerateCode = 'اعادة ارسال الكود';
  static const haveCompany = 'هل تمتلك شركة؟';
- static const enterCode = 'من فضلك ارسل الكود المرسل اليك';
+ static const enterCode = 'من فضلك ادخل الكود المرسل اليك';
  static const code = 'الكود';
  static const registerAsAdmin = 'تسجيل كأدمن';
  static const registerUsing = 'تسجيل كادمن جديد بواسطة البريد الالكتروني و كلمة السر';

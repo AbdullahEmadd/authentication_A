@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -15,10 +16,10 @@ import '../../cubits/login/login_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../verify_code_screens/verify_code_screen.dart';
 
 class LoginScreen extends StatefulWidget {
+  static String routeName = '/Loginscreen';
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -37,8 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     bool? state = preferences.getBool("State");
     if (state != null && state == true) {
       print(state);
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => HomePage()));
+      goToScreen(screenNames: ScreenNames.homepage);
     }
   }
   @override
@@ -78,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
               padding: const EdgeInsets.only(left: 15, top: 15),
               child: IconButton(
                 onPressed: () {
-                  Navigator.pop(context);
+                  goBack();
                 },
                 icon: Icon(Icons.arrow_back_ios, color: Colors.black),
               ),
@@ -142,21 +142,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (state is LoginDone) {
                       if(state.loginModel.state==true ){
                         if (state.loginModel.data!.user!.emailConfirmed == true) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ManagerHomeScreen()),
-                          );
+                          goToScreen(screenNames: ScreenNames.managerHomeScreen);
                           Get.snackbar('Success', state.loginModel.message![0].value.toString());
                           CacheHelper.saveData(
                               key: 'token',
                               value: state.loginModel.data!.token!.accessToken!);
                            }
                         else{
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => VerifyCodeScreen()),
-                          );
+                          goToScreen(screenNames: ScreenNames.verifyCodeScreen);
                           Get.snackbar('Error', 'Please verify your account');
                         }
 
@@ -186,10 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ForgetPasswordScreen()));
+                      goToScreen(screenNames: ScreenNames.forgetPasswordScreen);
                     },
                     child: const Text(
                       AppNames.forgetPassword,
@@ -212,10 +202,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => SignUpScreen()));
+                          goToScreen(screenNames: ScreenNames.signUpScreen);
                         },
                         child: Text(AppNames.registerAsAdmin,
                             style: TextStyle(

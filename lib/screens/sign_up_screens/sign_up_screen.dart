@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import '../../utility/app_names.dart';
 import 'package:get/get.dart';
 import '../verify_code_screens/verify_code_screen.dart';
 class SignUpScreen extends StatefulWidget {
+  static String routeName = '/SignUpScreen';
   final formKey = GlobalKey<FormState>();
   SignUpCubit signUpCubit = SignUpCubit();
   @override
@@ -70,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.only(left: 15, top: 15),
             child: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                goBack();
               },
               icon: Icon(Icons.arrow_back_ios, color: Colors.black),
             ),
@@ -159,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 if(state is SignUpDone){
                 if(state.signUpModel.state == true) {
                 Get.snackbar('تم', state.signUpModel.message![0].value.toString());
-                Navigator.push(context, MaterialPageRoute(builder: (builder)=>VerifyCodeScreen()));
+                goToScreen(screenNames: ScreenNames.verifyCodeScreen);
                 }
                 else {
                   Get.snackbar('Error', state.signUpModel.message![0].value.toString());

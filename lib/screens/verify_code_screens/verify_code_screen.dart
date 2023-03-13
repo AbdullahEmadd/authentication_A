@@ -1,14 +1,18 @@
+import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../components/button.dart';
 import '../../components/custom_text_field.dart';
+import '../../cubits/forget_password/forget_password_cubit.dart';
 import '../../cubits/sign_up/sign_up_cubit.dart';
 import '../../helpers/Validation.dart';
 import '../../utility/app_names.dart';
 import '../managers_screens/manager_home_screen.dart';
 
 class VerifyCodeScreen extends StatefulWidget {
+  static String routeName = '/VerifyCodeScreen';
 
 
   @override
@@ -53,7 +57,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
           padding: const EdgeInsets.only(left: 15, top: 15),
           child: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              goBack();
             },
             icon: Icon(Icons.arrow_back_ios, color: Colors.black),
           ),
@@ -88,6 +92,42 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                     controller: SignUpCubit.get(context).codeController,
                   ),
                 ),
+                  SizedBox(
+                  height: 5.h,
+                ),
+
+                BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
+                    listener: (context, state) async{
+                      if (state is RegenerateCodeDone) {
+                        if (state.regenerateCodeModel.state == true) {
+                          Get.snackbar('Success', state.regenerateCodeModel.message![0]
+                              .value.toString());
+                        }
+                        else {
+                          Get.snackbar('Error', state.regenerateCodeModel.message![0]
+                              .value.toString());
+                        }
+                      }
+                    },
+                      builder: (context, state) {
+                          return state is! RegenerateCodeLoading? TextButton(
+                          onPressed: (){
+                            ForgetPasswordCubit.get(context)
+                                  .regenerateCode();
+                          }, child:
+                          Text(AppNames.reGenerateCode,
+                          style: TextStyle(
+                          fontFamily: 'Almarai',
+                          color: Colors.blue,
+                          fontSize: 13,
+                          fontWeight: FontWeight.bold
+                          ),
+                          )): CircularProgressIndicator();
+                          },
+                        ),
+                        SizedBox(
+                        height: 15.h,
+                        ),
                 SizedBox(
                   height: 50,
                 ),
@@ -99,10 +139,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         if(state is VerifyCodeDone) {
                           if (state.verifyCodeModel.state == true) {
                             Get.snackbar('Success', state.verifyCodeModel.message![0].value.toString());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ManagerHomeScreen()),
-                            );
+                            goToScreen(screenNames: ScreenNames.managerHomeScreen);
                           }
                           else {
                             Get.snackbar('Error', state.verifyCodeModel.message![0].value.toString());

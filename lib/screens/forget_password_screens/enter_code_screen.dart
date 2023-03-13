@@ -2,6 +2,7 @@ import 'dart:developer';
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/cubits/enter_code/enter_code_cubit.dart';
 import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/button.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'enter_new_password_screen.dart';
 class EnterCodeScreen extends StatefulWidget {
+  static String routeName = '/EnterCodeScreen';
   const EnterCodeScreen({Key? key}) : super(key: key);
   @override
   State<EnterCodeScreen> createState() => _EnterCodeScreenState();
@@ -53,7 +55,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
           padding: const EdgeInsets.only(left: 15, top: 15),
           child: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              goBack();
             },
             icon: Icon(Icons.arrow_back_ios, color: Colors.black),
           ),
@@ -134,11 +136,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                               if (state.enterCodeModel.state == true) {
                                 Get.snackbar('Success', state.enterCodeModel.message![0]
                               .value.toString());
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EnterNewPasswordScreen()),
-                            );
+                            goToScreen(screenNames: ScreenNames.enterNewPasswordScreen);
                           }
                         else {
                           Get.snackbar('خطأ', state.enterCodeModel.message![0]
@@ -147,7 +145,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                         }
                         },
                         builder: (context, state) {
-                          return state is! EnterCodeLoading? Button(
+                          return state is! CodeConfirmationLoading? Button(
                               text: AppNames.next,
                               function: () {
                             if (forgetPasswordCubit.EnterCodeKey.currentState?.validate()==true) {

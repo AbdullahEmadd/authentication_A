@@ -1,5 +1,6 @@
 import 'package:first_task/cubits/verify_code/verify_code_cubit.dart';
 import 'package:first_task/helpers/cache_helper.dart';
+import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
 import 'package:first_task/screens/forget_password_screens/forget_password_screen.dart';
 import 'package:first_task/screens/home_screens/homepage.dart';
@@ -55,10 +56,11 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return GetMaterialApp(
             locale: const Locale("ar"),
+            routes: appRoutes(context),
             debugShowCheckedModeBanner: false,
             title: 'First Task',
             theme: appTheme,
-            home: widget,
+            home: LoginScreen(),
         );
       });
   }

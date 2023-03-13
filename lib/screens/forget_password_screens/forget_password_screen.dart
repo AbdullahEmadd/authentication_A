@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -14,6 +15,7 @@ import '../../models/authentication/forget_password_return_model.dart';
 import '../home_screens/homepage.dart';
 
 class ForgetPasswordScreen extends StatefulWidget {
+  static String routeName = '/ForgetPasswordScreen';
 
 
   @override
@@ -58,7 +60,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
             padding: const EdgeInsets.only(left: 15, top: 15),
             child: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                goBack();
               },
               icon: Icon(Icons.arrow_back_ios, color: Colors.black),
             ),
@@ -115,11 +117,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       listener: (context, state) async{
                         if (state is ForgetPasswordDone) {
                           if (state.forgetpasswordreturnmodel.state == true) {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => EnterCodeScreen()),
-                            );
+                            goToScreen(screenNames: ScreenNames.enterCodeScreen);
                           }
                           else {
                             Get.snackbar('خطأ', state.forgetpasswordreturnmodel.message![0]

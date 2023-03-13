@@ -96,11 +96,11 @@ class EnterCodeRequest{
             endPoint: response.request!.url.toString(),
             headers: headers);
       }, onError: (error) {
-        log("error happened from reset password  ${error.toString()}");
+        log("error happened from Enter Code  ${error.toString()}");
         onError(error.toString());
       });
     } catch (e) {
-      log("error happened from reset password Request ${e.toString()}");
+      log("error happened from Enter Code Request ${e.toString()}");
       onError(e.toString());
     }
   }
