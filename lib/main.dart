@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'First Task',
             theme: appTheme,
-            home: LoginScreen(),
+            home: widget,
         );
       });
   }
