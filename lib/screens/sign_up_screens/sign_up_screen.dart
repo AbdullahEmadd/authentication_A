@@ -118,36 +118,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 CustomTextField(
                   textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                  controller: SignUpCubit.get(context).nameController,
+                  controller: BlocProvider.of<SignUpCubit>(context, listen: false).nameController,
                   hint: AppNames.name,
                 ),
                 CustomTextField(
                   textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                  controller: SignUpCubit.get(context).userNameController,
+                  controller: BlocProvider.of<SignUpCubit>(context, listen: false).userNameController,
                   hint: AppNames.userName,
                 ),
                 CustomTextField(
                   textFieldVaidType: TextFieldvalidatorType.Email,
-                  controller: SignUpCubit.get(context).emailController,
+                  controller: BlocProvider.of<SignUpCubit>(context, listen: false).emailController,
                   hint: AppNames.email,
                 ),
                 CustomTextField(
                   textFieldVaidType: TextFieldvalidatorType.PhoneNumber,
-                  controller: SignUpCubit.get(context).phoneController,
+                  controller: BlocProvider.of<SignUpCubit>(context, listen: false).phoneController,
                   hint: AppNames.phone,
                 ),
                 CustomTextField(
                   textFieldVaidType: TextFieldvalidatorType.Password,
-                  controller: SignUpCubit.get(context).passwordController,
+                  controller: BlocProvider.of<SignUpCubit>(context, listen: false).passwordController,
                   hint: AppNames.password,
                   obscure: _obscure1,
                   icon: _obscure1 ? Icons.visibility_off : Icons.visibility,
                   iconPressed: _password,
                 ),
                 CustomTextField(
-                  confirmPasswordController: SignUpCubit.get(context).passwordController,
+                  confirmPasswordController: BlocProvider.of<SignUpCubit>(context, listen: false).passwordController,
                   textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
-                  controller: SignUpCubit.get(context).passwordConfirmationController,
+                  controller: BlocProvider.of<SignUpCubit>(context, listen: false).passwordConfirmationController,
                   hint: AppNames.passwordConfirm,
                   obscure: _obscure2,
                   icon: _obscure2 ? Icons.visibility_off : Icons.visibility,
@@ -159,13 +159,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 BlocConsumer<SignUpCubit, SignUpState> (
                 listener:(context, state) {
                 if(state is SignUpDone){
-                if(state.signUpModel.state == true) {
                 Get.snackbar('تم', state.signUpModel.message![0].value.toString());
                 goToScreen(screenNames: ScreenNames.verifyCodeScreen);
-                }
-                else {
-                  Get.snackbar('Error', state.signUpModel.message![0].value.toString());
-                }
                 }
                 },
                 builder: (context,state) {
@@ -173,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     text: AppNames.registerAsAdmin,
                     function: () {
                       if (formKey.currentState?.validate() == true) {
-                        SignUpCubit.get(context).adminSignUp();
+                        BlocProvider.of<SignUpCubit>(context, listen: false).adminSignUp();
                       }
                     },
                   ) : CircularProgressIndicator();

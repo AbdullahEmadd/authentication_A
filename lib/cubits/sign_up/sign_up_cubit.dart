@@ -9,23 +9,21 @@ import '../../controller/verify_code_request/verify_code_request.dart';
 part 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
-  static SignUpCubit get(context) => BlocProvider.of(context);
-  List<String> roles = [];
   final VerifyCodeKey = GlobalKey<FormState>();
   SignUpModel signUpModel=SignUpModel();
   VerifyCodeModel verifyCodeModel = VerifyCodeModel();
-  var userNameController = TextEditingController();
-  var passwordController = TextEditingController();
-  var codeController = TextEditingController();
-  var nameController = TextEditingController();
-  var passwordConfirmationController = TextEditingController();
-  var phoneController = TextEditingController();
-  var emailController = TextEditingController();
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController codeController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController passwordConfirmationController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
 
   adminSignUp(
-      ) {
+      ) async{
     emit(SignUpLoading());
-    SignUpRequest.signUp(
+      SignUpModel? signUpModel = await SignUpController.signUp(
       userName: userNameController.text,
       password: passwordController.text,
       name: nameController.text,
@@ -33,15 +31,13 @@ class SignUpCubit extends Cubit<SignUpState> {
       passwordConfirmation: passwordConfirmationController.text,
       phone: phoneController.text,
       role: 'Manager',
-      onSuccess: (signUpModel) {
-        this.signUpModel  = signUpModel;
-        emit(SignUpDone(signUpModel));
-      },
-      onError: (error) {
-        log("from the cubit :: : : ::  \n $error");
-        emit(SignUpError());
-      },
     );
+
+    if (signUpModel != null) {
+      emit(SignUpDone(signUpModel));
+    } else {
+      emit(SignUpError(""));
+    }
   }
 
   verifyCode() {
