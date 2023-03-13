@@ -188,6 +188,7 @@ class ForgetPasswordRequest {
           onSuccess(regenerateCodeModel);
         } else {
           log(response.body);
+
         }
         // Debugging API response
         debugApi(

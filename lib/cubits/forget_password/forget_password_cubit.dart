@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/authentication/enter_code_model.dart';
 import '../../models/authentication/forget_password_return_model.dart';
-import '../../requests/forget_password_request/forget_password_request.dart';
+import '../../controller/forget_password_request/forget_password_request.dart';
 part 'forget_password_state.dart';
 
 class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {

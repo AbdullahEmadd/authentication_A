@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
@@ -20,6 +21,7 @@ import '../verify_code_screens/verify_code_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = '/Loginscreen';
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -27,7 +29,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final formkey = GlobalKey<FormState>();
   bool _obscure = true;
-  void _toggle () {
+
+  void _toggle() {
     setState(() {
       _obscure = !_obscure;
     });
@@ -41,12 +44,27 @@ class _LoginScreenState extends State<LoginScreen> {
       goToScreen(screenNames: ScreenNames.homepage);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-            leading:
+          leading: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 5),
+            child: Transform.scale(
+              scaleX: -1,
+              child: Image(
+                image: AssetImage('assets/images/logo.png'),
+                width: 80,
+                height: 80,
+              ),
+            ),
+          ),
+          elevation: 0,
+          leadingWidth: 0,
+          backgroundColor: Colors.white,
+          actions: [
             Padding(
               padding: const EdgeInsets.only(left: 15, top: 5),
               child: Transform.scale(
@@ -58,31 +76,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            elevation: 0,
-            leadingWidth: 0,
-            backgroundColor: Colors.white,
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15, top: 5),
-                child: Transform.scale(
-                  scaleX: -1,
-                  child: Image(
-                    image: AssetImage('assets/images/logo.png'),
-                    width: 80,
-                    height: 80,
-                  ),
-                ),
-              ),
-            ],
-            title: Padding(
-              padding: const EdgeInsets.only(left: 15, top: 15),
-              child: IconButton(
-                onPressed: () {
-                  goBack();
-                },
-                icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-              ),
+          ],
+          title: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 15),
+            child: IconButton(
+              onPressed: () {
+                goBack();
+              },
+              icon: Icon(Icons.arrow_back_ios, color: Colors.black),
             ),
+          ),
         ),
         body: SingleChildScrollView(
           child: Center(
@@ -123,15 +126,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                    controller: LoginCubit.get(context).userName,
+                    controller:  BlocProvider.of<LoginCubit>(context, listen: false).userName,
                     hint: AppNames.userName,
                   ),
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.Password,
                     obscure: _obscure,
-                    icon: _obscure? Icons.visibility_off :Icons.visibility,
+                    icon: _obscure ? Icons.visibility_off : Icons.visibility,
                     iconPressed: _toggle,
-                    controller: LoginCubit.get(context).password,
+                    controller:  BlocProvider.of<LoginCubit>(context, listen: false).password,
                     hint: AppNames.password,
                   ),
                   SizedBox(
@@ -140,22 +143,15 @@ class _LoginScreenState extends State<LoginScreen> {
                   BlocConsumer<LoginCubit, LoginState>(
                       listener: (context, state) async {
                     if (state is LoginDone) {
-                      if(state.loginModel.state==true ){
-                        if (state.loginModel.data!.user!.emailConfirmed == true) {
-                          goToScreen(screenNames: ScreenNames.managerHomeScreen);
-                          Get.snackbar('Success', state.loginModel.message![0].value.toString());
-                          CacheHelper.saveData(
-                              key: 'token',
-                              value: state.loginModel.data!.token!.accessToken!);
-                           }
-                        else{
-                          goToScreen(screenNames: ScreenNames.verifyCodeScreen);
-                          Get.snackbar('Error', 'Please verify your account');
-                        }
-
-                      }
-                      else{
-                        Get.snackbar('خطأ', state.loginModel.message![0].value.toString());
+                      if (state.loginModel.data!.user!.emailConfirmed == true) {
+                        goToScreen(screenNames: ScreenNames.managerHomeScreen);
+                        Get.snackbar('Success',
+                            state.loginModel.message![0].value.toString());
+                        CacheHelper.saveData(
+                            key: 'UserData',
+                            value: jsonEncode((state.loginModel)));
+                      }else{
+                        goToScreen(screenNames: ScreenNames.verifyCodeScreen);
                       }
                     }
                   }, builder: (context, state) {
@@ -164,11 +160,11 @@ class _LoginScreenState extends State<LoginScreen> {
                             text: 'تسجيل الدخول',
                             function: () {
                               if (formkey.currentState!.validate()) {
-                                LoginCubit.get(context).userLogin(
+                               BlocProvider.of<LoginCubit>(context, listen: false).userLogin(
                                     userName:
-                                        LoginCubit.get(context).userName.text,
+                                    BlocProvider.of<LoginCubit>(context, listen: false).userName.text,
                                     password:
-                                        LoginCubit.get(context).password.text);
+                                    BlocProvider.of<LoginCubit>(context, listen: false).password.text);
                               }
                             },
                           )

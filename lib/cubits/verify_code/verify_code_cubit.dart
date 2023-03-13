@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'dart:developer';
 import 'package:first_task/models/authentication/verify_code_model.dart';
 import 'package:flutter/material.dart';
-import '../../requests/verify_code_request/verify_code_request.dart';
+import '../../controller/verify_code_request/verify_code_request.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:first_task/cubits/verify_code/verify_code_state.dart';
 class VerifyCodeCubit extends Cubit<VerifyCodeState> {

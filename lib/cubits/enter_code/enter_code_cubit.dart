@@ -1,6 +1,6 @@
 import 'dart:developer';
+import 'package:first_task/controller/enter_code_request/enter_code_request.dart';
 import 'package:first_task/models/authentication/enter_code_model.dart';
-import 'package:first_task/requests/enter_code_request/enter_code_request.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';

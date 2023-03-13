@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/authentication/sign_up_model.dart';
 import '../../models/authentication/verify_code_model.dart';
-import '../../requests/sign_up_request/sign_up_request.dart';
-import '../../requests/verify_code_request/verify_code_request.dart';
+import '../../controller/sign_up_request/sign_up_request.dart';
+import '../../controller/verify_code_request/verify_code_request.dart';
 part 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());

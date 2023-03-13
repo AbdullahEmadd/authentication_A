@@ -1,5 +1,6 @@
 import 'package:first_task/utility/app_names.dart';
 import 'package:first_task/utility/app_setting.dart';
+import 'package:first_task/utility/regx.dart';
 import 'package:get/get.dart';
 enum TextFieldvalidatorType{
   Email,
