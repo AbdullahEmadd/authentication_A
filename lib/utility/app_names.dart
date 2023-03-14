@@ -1,6 +1,13 @@
 class AppNames {
  static const welcome = 'مرحبا بك';
  static const login = 'سجل دخولك بواسطة اسم المستخدم وكلمة السر وتمتع معنا بتطبيق المطبخ';
+ static const logout = 'تسجيل الخروج';
+ static const profile = 'الصفحة الشخصية';
+ static const orders = 'طلبات اليوم';
+ static const menu = 'القائمة';
+ static const units = 'الوحدات';
+ static const companyStore = 'مخزن الشركة';
+ static const employeeStore = 'مخزن العامل';
  static const home = 'الرئيسية';
  static const name = 'الاسم';
  static const userName = 'اسم المستخدم';

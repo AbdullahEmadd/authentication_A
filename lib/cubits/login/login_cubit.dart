@@ -8,7 +8,7 @@ part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
   LoginCubit() : super(LoginInitial());
-
+  static LoginCubit get(context) => BlocProvider.of(context);
   TextEditingController userName = TextEditingController();
   TextEditingController password = TextEditingController();
 

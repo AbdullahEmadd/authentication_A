@@ -18,6 +18,7 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   TextEditingController codeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmationController = TextEditingController();
+
   forgetPassword() async{
     emit(ForgetPasswordLoading());
     ForgetPasswordReturnModel? forgetPasswordReturnModel = await ForgetPasswordController.forgetPassword(

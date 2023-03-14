@@ -31,7 +31,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
           padding: const EdgeInsets.only(left: 15),
           child: IconButton(onPressed: (){},
               icon: Icon(Icons.notifications_outlined),
-            iconSize: 35,
+             iconSize: 35,
           ),
         ),],
       ),
@@ -115,7 +115,6 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
         ),
       ),
       drawer: ManagerDrawerScreen(),
-
     );
   }
 }
