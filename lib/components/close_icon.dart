@@ -9,7 +9,7 @@ class CloseIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Transform.translate(
-      offset: Offset( -50,  -100),
+      offset: Offset(-(.7.sw), .19.sh),
       child: SizedBox(
         child: InkWell(
           onTap: () async {

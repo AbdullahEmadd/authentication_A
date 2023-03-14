@@ -218,10 +218,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                   ],
                 ),
               ),
-              Positioned(
-                  left: 20,
-                  top: 265,
-                  child: CloseIcon()),
+              CloseIcon(),
             ],
           ),
     );
