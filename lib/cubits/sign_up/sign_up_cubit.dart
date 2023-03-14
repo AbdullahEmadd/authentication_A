@@ -10,8 +10,6 @@ part 'sign_up_state.dart';
 class SignUpCubit extends Cubit<SignUpState> {
   SignUpCubit() : super(SignUpInitial());
   final VerifyCodeKey = GlobalKey<FormState>();
-  SignUpModel signUpModel=SignUpModel();
-  VerifyCodeModel verifyCodeModel = VerifyCodeModel();
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController codeController = TextEditingController();
@@ -40,21 +38,18 @@ class SignUpCubit extends Cubit<SignUpState> {
     }
   }
 
-  verifyCode() {
+  verifyCode() async{
     emit(VerifyCodeLoading());
-    VerifyCodeRequest.verify(
+    VerifyCodeModel? verifyCodeModel = await VerifyCodeController.verify(
       userName: userNameController.text,
       password: passwordController.text,
       code: codeController.text,
-      onSuccess: (verifyCodeModel){
-        this.verifyCodeModel = verifyCodeModel;
-        emit(VerifyCodeDone(verifyCodeModel));
-        print(state);
-      },
-      onError: (error) {
-        log("from the cubit :: : : :: \n $error");
-        emit(VerifyCodeError(error));
-      },
     );
+      if (verifyCodeModel != null) {
+        emit(VerifyCodeDone(verifyCodeModel));
+    }
+      else {
+        emit(VerifyCodeError(""));
+    }
   }
 }

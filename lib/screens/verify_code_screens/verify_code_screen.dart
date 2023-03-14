@@ -89,7 +89,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   child: CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType.EnterCode,
                     hint: AppNames.code,
-                    controller: SignUpCubit.get(context).codeController,
+                    controller: BlocProvider.of<SignUpCubit>(context, listen: false).codeController,
                   ),
                 ),
                   SizedBox(
@@ -112,8 +112,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       builder: (context, state) {
                           return state is! RegenerateCodeLoading? TextButton(
                           onPressed: (){
-                            ForgetPasswordCubit.get(context)
-                                  .regenerateCode();
+                            BlocProvider.of<ForgetPasswordCubit>(context, listen: false).regenerateCode();
                           }, child:
                           Text(AppNames.reGenerateCode,
                           style: TextStyle(
@@ -151,7 +150,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                             text: AppNames.next,
                             function: () {
                               if (signUpCubit.VerifyCodeKey.currentState?.validate() ==true) {
-                                SignUpCubit.get(context).verifyCode();
+                                BlocProvider.of<SignUpCubit>(context, listen: false).verifyCode();
                               }
                             }
                         ): CircularProgressIndicator();

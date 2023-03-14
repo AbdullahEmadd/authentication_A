@@ -33,9 +33,6 @@ void main() async{
         BlocProvider<SignUpCubit>(
         create: (BuildContext context) => SignUpCubit(),
         ),
-        BlocProvider<VerifyCodeCubit>(
-        create: (BuildContext context) => VerifyCodeCubit(),
-        ),
         BlocProvider<ForgetPasswordCubit>(
           create: (BuildContext context) => ForgetPasswordCubit(),
         ),

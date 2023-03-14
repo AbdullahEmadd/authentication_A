@@ -15,6 +15,8 @@ class ForgetPasswordInitial extends ForgetPasswordState {
   @override
   List<Object> get props => [];
 }class ForgetPasswordError extends ForgetPasswordState {
+  String? error;
+  ForgetPasswordError(this.error);
   @override
   List<Object> get props => [];
 }class CodeConfirmationLoading extends ForgetPasswordState {
@@ -26,6 +28,8 @@ class ForgetPasswordInitial extends ForgetPasswordState {
   @override
   List<Object> get props => [];
 }class CodeConfirmationError extends ForgetPasswordState {
+  String? error;
+  CodeConfirmationError(this.error);
   @override
   List<Object> get props => [];
 }class ResetPasswordLoading extends ForgetPasswordState {
@@ -37,6 +41,8 @@ class ForgetPasswordInitial extends ForgetPasswordState {
   @override
   List<Object> get props => [];
 }class ResetPasswordError extends ForgetPasswordState {
+  String? error;
+  ResetPasswordError(this.error);
   @override
   List<Object> get props => [];
 }class RegenerateCodeLoading extends ForgetPasswordState {
@@ -48,6 +54,8 @@ class ForgetPasswordInitial extends ForgetPasswordState {
   @override
   List<Object> get props => [];
 }class RegenerateCodeError extends ForgetPasswordState {
+  String? error;
+  RegenerateCodeError(this.error);
   @override
   List<Object> get props => [];
 }

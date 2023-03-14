@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:first_task/cubits/enter_code/enter_code_cubit.dart';
 import 'package:first_task/models/authentication/enter_new_password_model.dart';
 import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:flutter/material.dart';
@@ -13,61 +14,58 @@ class ForgetPasswordCubit extends Cubit<ForgetPasswordState> {
   ForgetPasswordCubit() : super(ForgetPasswordInitial());
   final ForgetKey = GlobalKey<FormState>();
   final EnterCodeKey = GlobalKey<FormState>();
-  static ForgetPasswordCubit get(context) => BlocProvider.of(context);
   TextEditingController userNameController = TextEditingController();
   TextEditingController codeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmationController = TextEditingController();
-  ForgetPasswordReturnModel forgetPasswordReturnModel =
-  ForgetPasswordReturnModel();
-  EnterCodeModel enterCodeModel = EnterCodeModel();
-  EnterNewPasswordModel enterNewPasswordModel = EnterNewPasswordModel();
-
-  forgetPassword() {
+  forgetPassword() async{
     emit(ForgetPasswordLoading());
-    ForgetPasswordRequest.forgetPassword(
+    ForgetPasswordReturnModel? forgetPasswordReturnModel = await ForgetPasswordController.forgetPassword(
         userName: userNameController.text,
-        onSuccess: (forgetPasswordModel) {
-          forgetPasswordReturnModel = forgetPasswordModel;
-          emit(ForgetPasswordDone(forgetPasswordModel));
-        },
-        onError: (e) {
-          emit(ForgetPasswordError());
-        });
+        );
+    if (forgetPasswordReturnModel != null) {
+      emit(ForgetPasswordDone(forgetPasswordReturnModel));
+    }
+    else {
+      emit(ForgetPasswordError(""));
+    }
   }
-  codeConfirmation() {
+  codeConfirmation() async{
     emit(CodeConfirmationLoading());
-    ForgetPasswordRequest.codeConfirmation(
+    EnterCodeModel? enterCodeModel = await ForgetPasswordController.codeConfirmation(
         code: codeController.text,
-        userName: userNameController.text,
-        onSuccess: (enterCodeModel) {
-          emit(CodeConfirmationDone(enterCodeModel));
-        },
-        onError: (e) {
-          emit(CodeConfirmationError());
-        });
+        userName: userNameController.text,);
+    if (enterCodeModel != null) {
+      emit(CodeConfirmationDone(enterCodeModel));
+    }
+    else {
+      emit(CodeConfirmationError(""));
+    }
   }
-  resetPassword() {
+  resetPassword() async{
     emit(ResetPasswordLoading());
-    ForgetPasswordRequest.resetPasswordRequest(
+    EnterNewPasswordModel? enterNewPasswordModel = await ForgetPasswordController.resetPasswordRequest(
         password: passwordController.text,
         passwordConfirmation:passwordConfirmationController.text ,
-        userName: userNameController.text,
-        onSuccess: (enterNewPasswordModel) {
-          emit(ResetPasswordDone(enterNewPasswordModel));
-        },
-        onError: (e) {
-          emit(ResetPasswordError());
-        });
+        userName: userNameController.text,);
+    if (enterNewPasswordModel != null) {
+      emit(ResetPasswordDone(enterNewPasswordModel));
+    }
+    else {
+      emit(ResetPasswordError(""));
+    }
   }
 
-  regenerateCode(){
+  regenerateCode() async{
     emit(RegenerateCodeLoading());
-    ForgetPasswordRequest.regenerateCodeRequest(userName: userNameController.text,
-        onSuccess: (regenerateCodeModel){
+    RegenerateCodeModel? regenerateCodeModel = await ForgetPasswordController.regenerateCodeRequest(
+        userName: userNameController.text,
+    );
+    if (regenerateCodeModel !=null ) {
       emit(RegenerateCodeDone(regenerateCodeModel));
-        }, onError: (e) {
-          emit(ResetPasswordError());
-        } );
+    }
+    else {
+      emit(RegenerateCodeError(""));
+    }
   }
 }

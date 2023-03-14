@@ -85,9 +85,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                 Form(
                   key: forgetPasswordCubit.EnterCodeKey,
                   child: CustomTextField(
-                    controller: ForgetPasswordCubit
-                        .get(context)
-                        .codeController,
+                    controller: BlocProvider.of<ForgetPasswordCubit>(context, listen: false).codeController,
                     textFieldVaidType: TextFieldvalidatorType.EnterCode,
                     hint: AppNames.code,
                   ),
@@ -111,8 +109,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                       builder: (context, state) {
                           return state is! RegenerateCodeLoading? TextButton(
                           onPressed: (){
-                            ForgetPasswordCubit.get(context)
-                                  .regenerateCode();
+                            BlocProvider.of<ForgetPasswordCubit>(context, listen: false).regenerateCode();
                           }, child:
                           Text(AppNames.reGenerateCode,
                           style: TextStyle(
@@ -149,7 +146,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                               text: AppNames.next,
                               function: () {
                             if (forgetPasswordCubit.EnterCodeKey.currentState?.validate()==true) {
-                              ForgetPasswordCubit.get(context).codeConfirmation();
+                              BlocProvider.of<ForgetPasswordCubit>(context, listen: false).codeConfirmation();
                             } else{
                              Get.snackbar('Error', 'Please enter valid code');
                             }

@@ -102,9 +102,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                   CustomTextField(
                     textFieldVaidType: TextFieldvalidatorType
                         .RegisterText,
-                    controller: ForgetPasswordCubit
-                        .get(context)
-                        .userNameController,
+                    controller: BlocProvider.of<ForgetPasswordCubit>(context, listen: false).userNameController,
                     hint: AppNames.userName,
                   ),
                   SizedBox(
@@ -132,8 +130,7 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                       text: AppNames.next,
                       function: () {
                           if (forgetPasswordCubit.ForgetKey.currentState?.validate()==true) {
-                            ForgetPasswordCubit.get(context)
-                                .forgetPassword();
+                            BlocProvider.of<ForgetPasswordCubit>(context, listen: false).forgetPassword();
                           }
                           else {
                             log('Please enter username');

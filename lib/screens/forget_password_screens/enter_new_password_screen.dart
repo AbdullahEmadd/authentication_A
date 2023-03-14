@@ -104,20 +104,16 @@ _obscure2 = !_obscure2;
               ),
               CustomTextField(
                 textFieldVaidType: TextFieldvalidatorType.Password,
-                controller: ForgetPasswordCubit
-                    .get(context)
-                    .passwordController,
+                controller: BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordController,
                 hint: AppNames.newPassword,
                 obscure: _obscure1,
                 icon: _obscure1 ? Icons.visibility_off : Icons.visibility,
                 iconPressed: _password,
               ),
               CustomTextField(
-                confirmPasswordController: ForgetPasswordCubit.get(context).passwordController,
+                confirmPasswordController: BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordController,
                 textFieldVaidType: TextFieldvalidatorType.ConfirmPassword,
-                controller: ForgetPasswordCubit
-                    .get(context)
-                    .passwordConfirmationController,
+                controller: BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordConfirmationController,
                 hint: AppNames.reEnterNewPassword,
                 obscure: _obscure2,
                 icon: _obscure2 ? Icons.visibility_off : Icons.visibility,
@@ -144,28 +140,21 @@ _obscure2 = !_obscure2;
                   return state is! ResetPasswordLoading? Button(
                     text: AppNames.next,
                     function: () {
-                      if (ForgetPasswordCubit
-                          .get(context)
-                          .passwordController
+                      if (BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordController
                           .text
-                          .length >= 8 && ForgetPasswordCubit
-                          .get(context)
-                          .passwordConfirmationController
+                          .length >= 8 &&
+                          BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordConfirmationController
                           .text
                           .length >= 8) {
-                        if (ForgetPasswordCubit
-                            .get(context)
-                            .passwordController
+                        if (BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordController
                             .text !=
-                            ForgetPasswordCubit
-                                .get(context)
-                                .passwordConfirmationController
+                            BlocProvider.of<ForgetPasswordCubit>(context, listen: false).passwordConfirmationController
                                 .text) {
                           Get.snackbar(
                               'Message', 'يجب ان تكون كلمه السر متطابقه');
                         }
                         else {
-                          ForgetPasswordCubit.get(context).resetPassword();
+                          BlocProvider.of<ForgetPasswordCubit>(context, listen: false).resetPassword();
                         }
                       } else {
                         Get.snackbar('Message',
