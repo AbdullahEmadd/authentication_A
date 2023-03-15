@@ -1,3 +1,4 @@
+import 'package:first_task/screens/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
 import '../screens/add_category_screen/add_category_screen.dart';
 import '../screens/forget_password_screens/enter_code_screen.dart';
@@ -34,6 +35,7 @@ appRoutes(context) {
     ScreenNames.enterNewPasswordScreen: (context) => EnterNewPasswordScreen(),
     ScreenNames.forgetPasswordScreen: (context) => ForgetPasswordScreen(),
     ScreenNames.addCategoryScreen: (context) => AddCategoryScreen(),
+    ScreenNames.profileScreen: (context) => ProfileScreen(),
     };
     return routes;
 }
@@ -47,4 +49,5 @@ appRoutes(context) {
     static String enterNewPasswordScreen = EnterNewPasswordScreen.routeName;
     static String forgetPasswordScreen = ForgetPasswordScreen.routeName;
     static String addCategoryScreen = AddCategoryScreen.routeName;
+    static String profileScreen = ProfileScreen.routeName;
   }
