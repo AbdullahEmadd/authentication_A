@@ -197,7 +197,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                           GestureDetector(
                             onTap: (){
                               CacheHelper.removeData(key: 'UserData');
-                              goToScreenPushNamedAndpop(screenNames: ScreenNames.loginScreen);
+                              goToWithRemoveRoute(screenNames: ScreenNames.loginScreen);
                             },
                             child: Row(
                               children: [

@@ -18,13 +18,18 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   String? userData = CacheHelper.getData(key: 'UserData');
+  bool? splash = CacheHelper.getData(key: 'Splash');
   Widget widget;
-  if (userData != null){
-      widget=ManagerHomeScreen();
-        }
-      else {
-        widget=HomePage();
-      }
+  if (splash != null && splash) {
+    if (userData != null) {
+      widget = ManagerHomeScreen();
+    }
+    else {
+      widget = LoginScreen();
+    }
+  }else {
+    widget = HomePage();
+  }
   runApp(MultiBlocProvider(
       providers: [
         BlocProvider<SignUpCubit>(
