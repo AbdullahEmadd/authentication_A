@@ -1,33 +1,26 @@
-import 'dart:convert';
-import 'dart:developer';
-import 'package:first_task/routes/routes.dart';
-import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/helpers/Validation.dart';
-import 'package:first_task/screens/forget_password_screens/forget_password_screen.dart';
-import 'package:first_task/screens/home_screens/homepage.dart';
-import 'package:first_task/screens/sign_up_screens/sign_up_screen.dart';
+import 'package:first_task/routes/routes.dart';
+import 'package:first_task/screens/login_screens/login_view_model.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../components/button.dart';
 import '../../components/custom_text_field.dart';
-import '../../cubits/login/login_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:first_task/helpers/cache_helper.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../verify_code_screens/verify_code_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  static String routeName = '/Loginscreen';
+
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final formkey = GlobalKey<FormState>();
+  LoginViewModel loginViewModel = LoginViewModel();
+
   bool _obscure = true;
 
   void _toggle() {
@@ -36,80 +29,59 @@ class _LoginScreenState extends State<LoginScreen> {
     });
   }
 
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    bool? state = preferences.getBool("State");
-    if (state != null && state == true) {
-      print(state);
-      goToScreen(screenNames: ScreenNames.homepage);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 5),
-            child: Transform.scale(
-              scaleX: -1,
-              child: Image(
-                image: AssetImage('assets/images/logo.png'),
-                width: 80,
-                height: 80,
+    return Stack(
+      children: [
+        Scaffold(
+            backgroundColor: Colors.white,
+            appBar: AppBar(
+              leading: Padding(
+                padding: const EdgeInsets.only(left: 15, top: 5),
+                child: Transform.scale(
+                  scaleX: -1,
+                  child: Image(
+                    image: AssetImage('assets/images/logo.png'),
+                    width: 80,
+                    height: 80,
+                  ),
+                ),
               ),
-            ),
-          ),
-          elevation: 0,
-          leadingWidth: 0,
-          backgroundColor: Colors.white,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(left: 15, top: 5),
-              child: Transform.scale(
-                scaleX: -1,
-                child: Image(
-                  image: AssetImage('assets/images/logo.png'),
-                  width: 80,
-                  height: 80,
+              elevation: 0,
+              leadingWidth: 0,
+              backgroundColor: Colors.white,
+              actions: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 15, top: 5),
+                  child: Transform.scale(
+                    scaleX: -1,
+                    child: Image(
+                      image: AssetImage('assets/images/logo.png'),
+                      width: 80,
+                      height: 80,
+                    ),
+                  ),
+                ),
+              ],
+              title: Padding(
+                padding: const EdgeInsets.only(left: 15, top: 15),
+                child: IconButton(
+                  onPressed: () {
+                    if (Navigator.canPop(context)) {
+                      goBack();
+                    }
+                  },
+                  icon: Icon(Icons.arrow_back_ios, color: Colors.black),
                 ),
               ),
             ),
-          ],
-          title: Padding(
-            padding: const EdgeInsets.only(left: 15, top: 15),
-            child: IconButton(
-              onPressed: () {
-                if (Navigator.canPop(context)){goBack();}
-              },
-              icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-            ),
-          ),
-        ),
-        body: BlocProvider(
-          create: (BuildContext context) => LoginCubit(),
-          child: BlocConsumer<LoginCubit, LoginState>(
-              listener: (context, state) async {
-            if (state is LoginDone) {
-              if (state.loginModel.data!.user!.emailConfirmed == true) {
-                goToScreen(screenNames: ScreenNames.managerHomeScreen);
-                Get.snackbar(
-                    'Success', state.loginModel.message![0].value.toString());
-                CacheHelper.saveData(
-                    key: 'UserData', value: jsonEncode((state.loginModel)));
-              } else {
-                goToScreen(screenNames: ScreenNames.verifyCodeScreen);
-              }
-            }
-          }, builder: (context, state) {
-            return SingleChildScrollView(
+            body: SingleChildScrollView(
               child: Center(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Form(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    key: formkey,
+                    key: loginViewModel.formKey,
                     child: Column(children: [
                       SizedBox(
                         height: 150.h,
@@ -142,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       CustomTextField(
                         textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                        controller: LoginCubit.get(context).userName,
+                        controller: loginViewModel.userName,
                         hint: AppNames.userName,
                       ),
                       CustomTextField(
@@ -151,27 +123,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         icon:
                             _obscure ? Icons.visibility_off : Icons.visibility,
                         iconPressed: _toggle,
-                        controller: LoginCubit.get(context).password,
+                        controller: loginViewModel.password,
                         hint: AppNames.password,
                       ),
                       SizedBox(
                         height: 40.h,
                       ),
-                      state is! LoginLoading
-                          ? Button(
-                              text: 'تسجيل الدخول',
-                              function: () {
-                                if (formkey.currentState!.validate()) {
-                                  LoginCubit.get(context).userLogin(
-                                      userName:
-                                          LoginCubit.get(context).userName.text,
-                                      password: LoginCubit.get(context)
-                                          .password
-                                          .text);
-                                }
-                              },
-                            )
-                          : CircularProgressIndicator(),
+                      Button(
+                        text: 'تسجيل الدخول',
+                        function: () {
+                          if (loginViewModel.formKey.currentState!.validate()) {
+                            loginViewModel.userLogin(
+                                userName: loginViewModel.userName.text,
+                                password: loginViewModel.password.text);
+                          }
+                        },
+                      ),
                       SizedBox(
                         height: 17.h,
                       ),
@@ -215,8 +182,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-            );
-          }),
-        ));
+            )),
+        Loader(
+          loading: loginViewModel.loading,
+        )
+      ],
+    );
   }
 }

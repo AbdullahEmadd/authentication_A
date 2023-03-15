@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
             Button(
               text: 'Get Started Now',
               function: (){
-                goToScreen(screenNames: LoginScreen.routeName);
+                goToScreen(screenNames: ScreenNames.loginScreen);
                 CacheHelper.saveData(key: 'Splash', value: true);
               }
             ),
