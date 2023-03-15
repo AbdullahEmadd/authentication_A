@@ -31,9 +31,6 @@ void main() async{
   }
   runApp(MultiBlocProvider(
       providers: [
-        BlocProvider<SignUpCubit>(
-        create: (BuildContext context) => SignUpCubit(),
-        ),
         BlocProvider<ForgetPasswordCubit>(
           create: (BuildContext context) => ForgetPasswordCubit(),
         ),

@@ -1,4 +1,7 @@
+import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/routes/routes.dart';
+import 'package:first_task/screens/forget_password_screens/forget_password_view_model.dart';
+import 'package:first_task/screens/sign_up_screens/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -14,34 +17,20 @@ import '../managers_screens/manager_home_screen.dart';
 class VerifyCodeScreen extends StatefulWidget {
   static String routeName = '/VerifyCodeScreen';
 
-
   @override
   State<VerifyCodeScreen> createState() => _VerifyCodeScreenState();
 }
 
 class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
-  SignUpCubit signUpCubit = SignUpCubit();
+  SignUpViewModel signUpViewModel = SignUpViewModel();
+  ForgetPasswordViewModel forgetPasswordViewModel = ForgetPasswordViewModel();
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading:
-        Padding(
-          padding: const EdgeInsets.only(left: 15, top: 5),
-          child: Transform.scale(
-            scaleX: -1,
-            child: Image(
-              image: AssetImage('assets/images/logo.png'),
-              width: 80,
-              height: 80,
-            ),
-          ),
-        ),
-        elevation: 0,
-        leadingWidth: 0,
-        backgroundColor: Colors.white,
-        actions: [
-          Padding(
+    return Stack(children: [
+      Scaffold(
+        appBar: AppBar(
+          leading: Padding(
             padding: const EdgeInsets.only(left: 15, top: 5),
             child: Transform.scale(
               scaleX: -1,
@@ -52,117 +41,102 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
               ),
             ),
           ),
-        ],
-        title: Padding(
-          padding: const EdgeInsets.only(left: 15, top: 15),
-          child: IconButton(
-            onPressed: () {
-              goBack();
-            },
-            icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+          elevation: 0,
+          leadingWidth: 0,
+          backgroundColor: Colors.white,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.only(left: 15, top: 5),
+              child: Transform.scale(
+                scaleX: -1,
+                child: Image(
+                  image: AssetImage('assets/images/logo.png'),
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+            ),
+          ],
+          title: Padding(
+            padding: const EdgeInsets.only(left: 15, top: 15),
+            child: IconButton(
+              onPressed: () {
+                goBack();
+              },
+              icon: Icon(Icons.arrow_back_ios, color: Colors.black),
+            ),
           ),
         ),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 200,
-                ),
-                const Text(
-                  AppNames.enterCode,
-                  style: TextStyle(
-                      fontFamily: 'Almarai',
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                SizedBox(
-                  height: 60,
-                ),
-                Form(
-                  key: signUpCubit.VerifyCodeKey,
-                  child: CustomTextField(
-                    textFieldVaidType: TextFieldvalidatorType.EnterCode,
-                    hint: AppNames.code,
-                    controller: BlocProvider.of<SignUpCubit>(context, listen: false).codeController,
-                  ),
-                ),
+        body: SingleChildScrollView(
+          child: Center(
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              child: Column(
+                children: [
                   SizedBox(
-                  height: 5.h,
-                ),
-
-                BlocConsumer<ForgetPasswordCubit, ForgetPasswordState>(
-                    listener: (context, state) async{
-                      if (state is RegenerateCodeDone) {
-                        if (state.regenerateCodeModel.state == true) {
-                          Get.snackbar('Success', state.regenerateCodeModel.message![0]
-                              .value.toString());
-                        }
-                        else {
-                          Get.snackbar('Error', state.regenerateCodeModel.message![0]
-                              .value.toString());
-                        }
-                      }
-                    },
-                      builder: (context, state) {
-                          return state is! RegenerateCodeLoading? TextButton(
-                          onPressed: (){
-                            BlocProvider.of<ForgetPasswordCubit>(context, listen: false).regenerateCode();
-                          }, child:
-                          Text(AppNames.reGenerateCode,
-                          style: TextStyle(
-                          fontFamily: 'Almarai',
-                          color: Colors.blue,
-                          fontSize: 13,
-                          fontWeight: FontWeight.bold
-                          ),
-                          )): CircularProgressIndicator();
-                          },
-                        ),
-                        SizedBox(
-                        height: 15.h,
-                        ),
-                SizedBox(
-                  height: 50,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    BlocConsumer<SignUpCubit, SignUpState>(
-                      listener: (context, state) async{
-                        if(state is VerifyCodeDone) {
-                          if (state.verifyCodeModel.state == true) {
-                            Get.snackbar('Success', state.verifyCodeModel.message![0].value.toString());
-                            goToScreen(screenNames: ScreenNames.managerHomeScreen);
-                          }
-                          else {
-                            Get.snackbar('Error', state.verifyCodeModel.message![0].value.toString());
-                          }
-                        }
-                      },
-                      builder: (context, state) {
-                        return state is! VerifyCodeLoading? Button(
-                            text: AppNames.next,
-                            function: () {
-                              if (signUpCubit.VerifyCodeKey.currentState?.validate() ==true) {
-                                BlocProvider.of<SignUpCubit>(context, listen: false).verifyCode();
-                              }
-                            }
-                        ): CircularProgressIndicator();
-                      },
+                    height: 200,
+                  ),
+                  const Text(
+                    AppNames.enterCode,
+                    style: TextStyle(
+                        fontFamily: 'Almarai',
+                        color: Colors.black,
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(
+                    height: 60,
+                  ),
+                  Form(
+                    key: signUpViewModel.verifyCodeKey,
+                    child: CustomTextField(
+                      textFieldVaidType: TextFieldvalidatorType.EnterCode,
+                      hint: AppNames.code,
+                      controller: signUpViewModel.codeController,
                     ),
-                  ],
-                ),
-              ],
+                  ),
+                  SizedBox(
+                    height: 5.h,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        forgetPasswordViewModel.regenerateCode();
+                      },
+                      child: Text(
+                        AppNames.reGenerateCode,
+                        style: TextStyle(
+                            fontFamily: 'Almarai',
+                            color: Colors.blue,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold),
+                      )),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                          text: AppNames.next,
+                          function: () {
+                            if (signUpViewModel.verifyCodeKey.currentState
+                                    ?.validate() ==
+                                true) {
+                              signUpViewModel.verifyCode();
+                            }
+                          }),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ),
-    );
+      Loader(loading: signUpViewModel.loading),
+    ]);
   }
 }

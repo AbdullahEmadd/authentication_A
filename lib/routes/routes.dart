@@ -42,7 +42,7 @@ appRoutes(context) {
   class ScreenNames {
     static String homepage = HomePage.routeName;
     static String loginScreen = "loginScreen";
-    static String signUpScreen = SignUpScreen.routeName;
+    static String signUpScreen = "signUpScreen";
     static String verifyCodeScreen = VerifyCodeScreen.routeName;
     static String managerHomeScreen = ManagerHomeScreen.routeName;
     static String enterCodeScreen = EnterCodeScreen.routeName;
