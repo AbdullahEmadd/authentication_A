@@ -107,7 +107,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   borderRadius: BorderRadius.circular(10),
                   borderSide:  BorderSide(color: AppColors.mainColor),
                 ),
-                prefixIcon: widget.prefixIconWidget??null,
+                prefixIcon: widget.prefixIconWidget?? null,
                 suffixIcon: widget.iconWidget == null
                     ? (widget.icon == null
                     ? null

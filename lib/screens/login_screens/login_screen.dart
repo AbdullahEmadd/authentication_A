@@ -1,6 +1,7 @@
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/helpers/Validation.dart';
+import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/login_screens/login_view_model.dart';
 import 'package:first_task/utility/app_colors.dart';
@@ -124,6 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             loginViewModel.userLogin(
                                 userName: loginViewModel.userName.text,
                                 password: loginViewModel.password.text);
+                            CacheHelper.saveData(key: 'UserData', value: true);
                           }
                         },
                       ),

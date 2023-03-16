@@ -1,5 +1,3 @@
-import 'package:first_task/controller/forget_password_request/forget_password_request.dart';
-import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../../models/authentication/sign_up_model.dart';
@@ -56,24 +54,4 @@ class SignUpViewModel {
   //   }
   //   loading.hide;
   //   }
-
-  regenerateCode() async{
-    loading.show;
-    RegenerateCodeModel? regenerateCodeModel = await ForgetPasswordController.regenerateCodeRequest(
-      userName: userNameController.text,
-    );
-    if (regenerateCodeModel != null ) {
-      if (regenerateCodeModel.state == true) {
-        Get.snackbar(
-            'Success',
-            regenerateCodeModel.message![0].value
-                .toString());
-      } else {
-        Get.snackbar(
-            'Error',
-            regenerateCodeModel.message![0].value
-                .toString());
-      }
-    }
-  }
   }

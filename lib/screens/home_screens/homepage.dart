@@ -1,7 +1,6 @@
 import 'package:first_task/components/custom_button.dart';
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/helpers/cache_helper.dart';
-import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

@@ -1,14 +1,9 @@
 import 'dart:convert';
-import 'dart:developer';
 import 'package:first_task/models/authentication/enter_new_password_model.dart';
 import 'package:first_task/models/authentication/regenerate_code_model.dart';
-import 'package:first_task/models/authentication/verify_code_model.dart';
 import 'package:first_task/services/app_services.dart';
-import 'package:http/http.dart' as http;
 import '../../models/authentication/enter_code_model.dart';
 import '../../models/authentication/forget_password_return_model.dart';
-import '../../services/global_helper_method.dart';
-import '../../utility/app_consts.dart';
 
 class ForgetPasswordController {
   static Future<ForgetPasswordReturnModel?> forgetPassword(

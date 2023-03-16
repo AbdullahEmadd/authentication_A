@@ -1,5 +1,7 @@
+import 'package:first_task/controller/forget_password_request/forget_password_request.dart';
 import 'package:first_task/controller/sign_up_request/sign_up_request.dart';
 import 'package:first_task/cubits/loading_cubit/loading_cubit.dart';
+import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:first_task/models/authentication/verify_code_model.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
@@ -28,4 +30,25 @@ verifyCode({required String userName, required String password, required String 
     }
   }
   loading.hide;
-}}
+}
+regenerateCode({required String userName}) async{
+  loading.show;
+  RegenerateCodeModel? regenerateCodeModel = await ForgetPasswordController.regenerateCodeRequest(
+    userName: userName,
+  );
+  if (regenerateCodeModel != null ) {
+    if (regenerateCodeModel.state == true) {
+      Get.snackbar(
+          'Success',
+          regenerateCodeModel.message![0].value
+              .toString());
+    } else {
+      Get.snackbar(
+          'Error',
+          regenerateCodeModel.message![0].value
+              .toString());
+    }
+  }
+}
+
+}

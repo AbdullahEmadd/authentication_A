@@ -1,5 +1,4 @@
 import 'package:first_task/screens/profile_screen/profile_screen.dart';
-import 'package:first_task/screens/sign_up_screens/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import '../screens/add_category_screen/add_category_screen.dart';
 import '../screens/forget_password_screens/enter_code_screen.dart';

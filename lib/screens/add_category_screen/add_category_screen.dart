@@ -7,7 +7,6 @@ import '../../components/custom_button.dart';
 import '../../helpers/Validation.dart';
 import '../../utility/app_colors.dart';
 import '../../utility/app_names.dart';
-import 'package:image_picker/image_picker.dart';
 
 class AddCategoryScreen extends StatefulWidget {
   static String routeName = "AddCategoryScreen";

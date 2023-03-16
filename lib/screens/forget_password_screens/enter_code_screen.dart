@@ -8,9 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/custom_button.dart';
 import '../../utility/app_names.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
-import 'enter_new_password_screen.dart';
 
 class EnterCodeScreen extends StatefulWidget {
   static String routeName = '/EnterCodeScreen';

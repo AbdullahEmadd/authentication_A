@@ -3,14 +3,12 @@ import 'package:first_task/components/custom_text_field.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/forget_password_screens/forget_password_view_model.dart';
-import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import '../../components/custom_button.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EnterNewPasswordScreen extends StatefulWidget {
   static String routeName = '/EnterNewPasswordScreen';

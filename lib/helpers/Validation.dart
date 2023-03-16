@@ -1,7 +1,5 @@
 import 'package:first_task/utility/app_names.dart';
-import 'package:first_task/utility/app_setting.dart';
 import 'package:first_task/utility/regx.dart';
-import 'package:get/get.dart';
 enum TextFieldvalidatorType{
   Email,
   EmailNotRequire,
@@ -63,8 +61,6 @@ Validation({required TextFieldvalidatorType type, required String value,required
   }
 
   else if(type==TextFieldvalidatorType.ConfirmPassword){
-    print(firstPasswordForConfirm);
-    print(value);
     if(value.isEmpty){
       return AppNames.required;
     }

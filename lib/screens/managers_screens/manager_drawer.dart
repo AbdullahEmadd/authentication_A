@@ -1,11 +1,11 @@
 import 'package:first_task/components/close_icon.dart';
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../utility/app_colors.dart';
-import 'package:first_task/helpers/cache_helper.dart';
 
 class ManagerDrawerScreen extends StatefulWidget {
   const ManagerDrawerScreen({Key? key}) : super(key: key);
@@ -54,19 +54,16 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                                 ),
                                 Column(
                                   children: [
-                                    Text(
-                                      'Abdullah Emad',
-                                      style: const TextStyle(
-                                          fontSize: 18,
-                                          fontFamily: "ALMARAI-BOLD",
-                                          color: Colors.black),
+                                    CustomText(
+                                          text: 'Abdullah Emad',
+                                          fontSize: 18.sp,
+                                          color: AppColors.black,
+                                          fontWeight: FontWeight.bold,
                                     ),
-                                    Text(
-                                      'EXCP',
-                                      style: const TextStyle(
+                                    CustomText(
+                                          text: 'EXCP',
                                           fontSize: 16,
-                                          fontFamily: "ALMARAI",
-                                          color: AppColors.mainColor),
+                                          color: AppColors.mainColor
                                     ),
                                   ],
                                 )

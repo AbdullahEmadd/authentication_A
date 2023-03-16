@@ -19,11 +19,9 @@ class VerifyCodeScreen extends StatefulWidget {
 }
 
 class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
-  SignUpViewModel signUpViewModel = SignUpViewModel();
-  ForgetPasswordViewModel forgetPasswordViewModel = ForgetPasswordViewModel();
   VerifyCodeViewModel verifyCodeViewModel = VerifyCodeViewModel();
-  TextEditingController codeController = TextEditingController();
   List<String>? x;
+
   @override
   void initState() {
     x=Get.arguments;
@@ -81,7 +79,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 20.h,
+                        height: 130.h,
                       ),
                       CustomText(
                           text: AppNames.enterCode,
@@ -101,6 +99,9 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       ),
                       TextButton(
                         onPressed: () {
+                          verifyCodeViewModel.regenerateCode(
+                            userName: x![0]
+                          );
                         },
                         child: CustomText(
                             text: AppNames.reGenerateCode,
@@ -111,22 +112,17 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                       SizedBox(
                         height: 15.h,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          CustomButton(
-                              text: AppNames.next,
-                              function: () {
-                                if (verifyCodeViewModel.verifyKey.currentState!.validate() ==
-                                    true) {
-                                  verifyCodeViewModel.verifyCode(
-                                      userName: x![0],
-                                      password:x![1],
-                                      code: verifyCodeViewModel.codeController.text);
-                                }
-                              }),
-                        ],
-                      ),
+                      CustomButton(
+                          text: AppNames.next,
+                          function: () {
+                            if (verifyCodeViewModel.verifyKey.currentState!.validate() == true) {
+                              verifyCodeViewModel.verifyCode(
+                                  userName: x![0],
+                                  password:x![1],
+                                  code: verifyCodeViewModel.codeController.text);
+                            }
+                          }
+                          ),
                     ],
                   ),
                 ),

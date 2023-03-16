@@ -5,7 +5,6 @@ import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async{
