@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../components/button.dart';
+import '../../components/custom_button.dart';
 import '../../helpers/Validation.dart';
 import '../../utility/app_colors.dart';
 import '../../utility/app_names.dart';
@@ -72,7 +72,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
               SizedBox(
                 height: 30.h,
               ),
-              Button(
+              CustomButton(
                 text: AppNames.addCategory,
                 function: (){},
               ),

@@ -1,3 +1,4 @@
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/routes/routes.dart';
@@ -6,29 +7,21 @@ import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../components/button.dart';
+import '../../components/custom_button.dart';
 import '../../components/custom_text_field.dart';
-
 class LoginScreen extends StatefulWidget {
-
   const LoginScreen({super.key});
-
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
-
 class _LoginScreenState extends State<LoginScreen> {
   LoginViewModel loginViewModel = LoginViewModel();
-
   bool _obscure = true;
-
   void _toggle() {
     setState(() {
       _obscure = !_obscure;
     });
   }
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -78,35 +71,30 @@ class _LoginScreenState extends State<LoginScreen> {
             body: SingleChildScrollView(
               child: Center(
                 child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: EdgeInsets.symmetric(horizontal: 15.w),
                   child: Form(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     key: loginViewModel.formKey,
                     child: Column(children: [
                       SizedBox(
-                        height: 150.h,
+                        height: 130.h,
                       ),
-                      Text(
-                        AppNames.welcome,
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'Almarai',
-                            color: AppColors.mainColor,
-                            fontWeight: FontWeight.bold),
-                      ),
+                      CustomText(
+                          text: AppNames.welcome,
+                          fontSize: 20.sp,
+                          color: AppColors.mainColor,
+                          fontWeight: FontWeight.bold),
                       SizedBox(
                         height: 25.h,
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 35),
-                        child: Text(
-                          AppNames.login,
-                          style: TextStyle(
-                              fontSize: 14,
-                              fontFamily: 'Almarai',
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
+                        padding: EdgeInsets.symmetric(horizontal: 35.w),
+                        child: CustomText(
+                          text: AppNames.login,
+                              fontSize: 15,
+                              color: AppColors.black,
+                              fontWeight: FontWeight.bold,
+                              textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(
@@ -129,7 +117,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: 40.h,
                       ),
-                      Button(
+                      CustomButton(
                         text: 'تسجيل الدخول',
                         function: () {
                           if (loginViewModel.formKey.currentState!.validate()) {
@@ -147,9 +135,10 @@ class _LoginScreenState extends State<LoginScreen> {
                           goToScreen(
                               screenNames: ScreenNames.forgetPasswordScreen);
                         },
-                        child: const Text(
-                          AppNames.forgetPassword,
-                          style: TextStyle(fontSize: 17),
+                        child: CustomText(
+                          text: AppNames.forgetPassword,
+                          fontSize: 14.sp,
+                          color: AppColors.blue,
                         ),
                       ),
                       SizedBox(
@@ -158,10 +147,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text(
-                            AppNames.haveCompany,
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
+                           CustomText(
+                            text: AppNames.haveCompany,
+                            fontSize: 16.sp,
+                             color: AppColors.black,
                           ),
                           SizedBox(
                             width: 5.w,
@@ -170,11 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             onTap: () {
                               goToScreen(screenNames: ScreenNames.signUpScreen);
                             },
-                            child: Text(AppNames.registerAsAdmin,
-                                style: TextStyle(
+                            child: CustomText(
+                                text:AppNames.registerAsAdmin,
                                   color: AppColors.mainColor,
-                                  fontSize: 20,
-                                )),
+                                  fontSize: 16.sp,),
                           ),
                         ],
                       ),

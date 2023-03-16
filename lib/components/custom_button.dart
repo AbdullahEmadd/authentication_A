@@ -1,12 +1,12 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:first_task/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../screens/login_screens/login_screen.dart';
 
-Widget Button({
-  double height = 50,
-  double width = 250,
+Widget CustomButton({
+  double height= 45,
+  double width = double.infinity,
   required String text,
   required void Function()? function,
 }) =>
@@ -14,17 +14,18 @@ Widget Button({
       height: height,
       width: width,
       decoration: BoxDecoration(
-        color: Color(0xffFF7642),
-        borderRadius: BorderRadius.circular(200),
+        color: AppColors.mainColor,
+        borderRadius: BorderRadius.circular(15),
       ),
       child: MaterialButton(
         onPressed: function,
         child: Text(
           text,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 16,
             color: Colors.white,
-            fontFamily: 'Almarai'
+            fontFamily: 'Almarai',
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

@@ -1,5 +1,5 @@
-import 'package:first_task/controller/verify_code_request/verify_code_request.dart';
-import 'package:first_task/models/authentication/verify_code_model.dart';
+import 'package:first_task/controller/forget_password_request/forget_password_request.dart';
+import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../../models/authentication/sign_up_model.dart';
@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import 'package:first_task/cubits/loading_cubit/loading_cubit.dart';
 
 
-
 class SignUpViewModel {
-  GlobalKey<FormState> verifyCodeKey = GlobalKey<FormState>();
+  GlobalKey<FormState> signUpKey = GlobalKey<FormState>();
+  GlobalKey<FormState> verifyKey = GlobalKey<FormState>();
   TextEditingController userNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController codeController = TextEditingController();
@@ -31,7 +31,6 @@ class SignUpViewModel {
       phone: phoneController.text,
       role: 'Manager',
     );
-
     if (signUpModel != null) {
       Get.snackbar('Success', signUpModel.message![0].value.toString());
       goToScreen(screenNames: ScreenNames.verifyCodeScreen);
@@ -39,22 +38,42 @@ class SignUpViewModel {
     loading.hide;
   }
 
-  verifyCode() async{
-      loading.show;
-      VerifyCodeModel? verifyCodeModel = await VerifyCodeController.verify(
+  // verifyCode({required String userName, required String password, required String code }) async{
+  //     loading.show;
+  //     VerifyCodeModel? verifyCodeModel = await SignUpController.verify(
+  //     userName:  userName,
+  //     password: password,
+  //     code: code,
+  //   );
+  //   if (verifyCodeModel != null) {
+  //     if (verifyCodeModel.state == true) {
+  //       Get.snackbar('Success', verifyCodeModel.message![0].value.toString());
+  //       goToScreen(screenNames: ScreenNames.managerHomeScreen);
+  //     }
+  //     else {
+  //       Get.snackbar('Error', verifyCodeModel.message![0].value.toString());
+  //     }
+  //   }
+  //   loading.hide;
+  //   }
+
+  regenerateCode() async{
+    loading.show;
+    RegenerateCodeModel? regenerateCodeModel = await ForgetPasswordController.regenerateCodeRequest(
       userName: userNameController.text,
-      password: passwordController.text,
-      code: codeController.text,
     );
-    if (verifyCodeModel != null) {
-      if (verifyCodeModel.state == true) {
-        Get.snackbar('Success', verifyCodeModel.message![0].value.toString());
-        goToScreen(screenNames: ScreenNames.managerHomeScreen);
-      }
-      else {
-        Get.snackbar('Error', verifyCodeModel.message![0].value.toString());
+    if (regenerateCodeModel != null ) {
+      if (regenerateCodeModel.state == true) {
+        Get.snackbar(
+            'Success',
+            regenerateCodeModel.message![0].value
+                .toString());
+      } else {
+        Get.snackbar(
+            'Error',
+            regenerateCodeModel.message![0].value
+                .toString());
       }
     }
-    loading.hide;
-    }
+  }
   }

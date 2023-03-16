@@ -18,7 +18,7 @@ class CustomText extends StatelessWidget {
         this.bold = false,
         this.fontWeight = FontWeight.normal ,
         required this.fontSize,
-        required this.fontFamily ,
+        this.fontFamily = 'Almarai',
         this.textAlign ,
         this.height,
         this.maxLines = 99})
@@ -36,7 +36,6 @@ class CustomText extends StatelessWidget {
           fontFamily: fontFamily,
           color: color,
           fontWeight: bold ? FontWeight.bold : fontWeight
-
       ),
       maxLines: maxLines,
     );

@@ -1,15 +1,10 @@
-import 'package:first_task/cubits/verify_code/verify_code_cubit.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
-import 'package:first_task/screens/forget_password_screens/enter_code_screen.dart';
-import 'package:first_task/screens/forget_password_screens/forget_password_screen.dart';
 import 'package:first_task/screens/home_screens/homepage.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
-import 'cubits/forget_password/forget_password_cubit.dart';
-import 'cubits/sign_up/sign_up_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,16 +24,10 @@ void main() async{
   }else {
     widget = HomePage();
   }
-  runApp(MultiBlocProvider(
-      providers: [
-        BlocProvider<ForgetPasswordCubit>(
-          create: (BuildContext context) => ForgetPasswordCubit(),
-        ),
-      ],
-    child:  MyApp(widget: widget,)
-  ),
+  runApp(MyApp(widget: widget),
   );
 }
+
 class MyApp extends StatelessWidget {
   final Widget widget;
   MyApp({Key? key,required this.widget}) : super(key: key);

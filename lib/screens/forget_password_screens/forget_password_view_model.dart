@@ -1,6 +1,10 @@
 import 'package:first_task/controller/forget_password_request/forget_password_request.dart';
 import 'package:first_task/cubits/loading_cubit/loading_cubit.dart';
+import 'package:first_task/models/authentication/enter_code_model.dart';
+import 'package:first_task/models/authentication/enter_new_password_model.dart';
+import 'package:first_task/models/authentication/forget_password_return_model.dart';
 import 'package:first_task/models/authentication/regenerate_code_model.dart';
+import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +16,44 @@ class ForgetPasswordViewModel {
   TextEditingController codeController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController passwordConfirmationController = TextEditingController();
+
+
+
+  forgetPassword() async{
+    loading.show;
+    ForgetPasswordReturnModel? forgetPasswordReturnModel = await ForgetPasswordController.forgetPassword(
+      userName: userNameController.text,
+    );
+    if (forgetPasswordReturnModel != null) {
+      if (forgetPasswordReturnModel.state == true) {
+        goToScreen(screenNames: ScreenNames.enterCodeScreen);
+      }
+      else {
+        Get.snackbar('خطأ', forgetPasswordReturnModel.message![0]
+            .value.toString());
+      }
+    }
+    loading.hide;
+  }
+
+  codeConfirmation() async{
+    loading.show;
+    EnterCodeModel? enterCodeModel = await ForgetPasswordController.codeConfirmation(
+      code: codeController.text,
+      userName: userNameController.text,);
+    if (enterCodeModel != null) {
+      if (enterCodeModel.state == true) {
+        Get.snackbar('Success', enterCodeModel.message![0]
+            .value.toString());
+        goToScreen(screenNames: ScreenNames.enterNewPasswordScreen);
+      }
+      else {
+        Get.snackbar('Error', enterCodeModel.message![0]
+            .value.toString());
+      }
+    }
+    loading.hide;
+  }
 
   regenerateCode() async{
     loading.show;
@@ -31,5 +73,26 @@ class ForgetPasswordViewModel {
                 .toString());
       }
     }
+    loading.hide;
+  }
+
+  resetPassword() async{
+    loading.show;
+    EnterNewPasswordModel? enterNewPasswordModel = await ForgetPasswordController.resetPasswordRequest(
+      password: passwordController.text,
+      passwordConfirmation:passwordConfirmationController.text,
+      userName: userNameController.text,);
+    if (enterNewPasswordModel != null) {
+      if(enterNewPasswordModel.state ==true) {
+        Get.snackbar('Success',
+            enterNewPasswordModel.message![0].value
+                .toString());
+        goToScreen(screenNames: ScreenNames.loginScreen);
+      }
+      else {
+        Get.snackbar('Error', enterNewPasswordModel.message![0].value.toString());
+      }
+    }
+    loading.hide;
   }
 }

@@ -8,7 +8,6 @@ import '../../utility/app_colors.dart';
 import '../add_category_screen/add_category_screen.dart';
 
 class ManagerHomeScreen extends StatefulWidget {
-  static String routeName = '/ManagerHomeScreen';
   const ManagerHomeScreen({Key? key}) : super(key: key);
 
   @override

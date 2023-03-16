@@ -48,7 +48,6 @@ class CustomTextField extends StatefulWidget {
         this.onChange,
         this.firstPasswordToConfirm,
       });
-
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
@@ -65,7 +64,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           height: widget.height ?? 48,
           decoration: BoxDecoration(
             color: AppColors.gray,
-            borderRadius: BorderRadius.circular(30),
+            borderRadius: BorderRadius.circular(10),
           ),
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -75,7 +74,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                     TextFieldvalidatorType.ConfirmPassword
                     ? widget.confirmPasswordController!.value.text
                     : "",
-                value: v!,),
+                value: v!),
             onTap: widget.onPressed,
             minLines: widget.minLines??1,
             maxLines: widget.maxLines??1,
@@ -93,19 +92,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 // labelStyle: const TextStyle(fontSize: 14, color: Colors.grey),
                 contentPadding: const EdgeInsets.only(top: 8,right: 8,left: 8),
                 enabledBorder:  OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide: const BorderSide(color: Colors.transparent),
                 ),
                 focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide: BorderSide(color: AppColors.mainColor),
                 ),
                 disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide:  BorderSide(color: Colors.transparent),
                 ),
                 focusedBorder:  OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
+                  borderRadius: BorderRadius.circular(10),
                   borderSide:  BorderSide(color: AppColors.mainColor),
                 ),
                 prefixIcon: widget.prefixIconWidget??null,

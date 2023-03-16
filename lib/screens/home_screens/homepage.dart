@@ -1,6 +1,8 @@
-import 'package:first_task/components/button.dart';
+import 'package:first_task/components/custom_button.dart';
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
+import 'package:first_task/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -51,27 +53,27 @@ class _HomePageState extends State<HomePage> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                Text(
-                  'We show the easy way to shop just',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w500,
-                  ),
+              children: [
+                CustomText(
+                  text: 'We show the easy way to shop just',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: AppColors.black,
                 ),
               ],
             ),
-            const Text(
-              'stay where you are',
-              style: TextStyle(
+              CustomText(
+                text: 'stay where you are',
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
+                color: AppColors.black
               ),
-            ),
             SizedBox(
-              height: 15.h,
+              height: 25.h,
             ),
-            Button(
+            CustomButton(
+              width: 193.w,
+              height: 40.h,
               text: 'Get Started Now',
               function: (){
                 goToScreen(screenNames: ScreenNames.loginScreen);

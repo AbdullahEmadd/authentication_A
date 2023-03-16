@@ -1,19 +1,15 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/routes/routes.dart';
-import 'package:first_task/screens/login_screens/login_screen.dart';
 import 'package:first_task/screens/sign_up_screens/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../components/button.dart';
+import '../../components/custom_button.dart';
 import '../../components/custom_text_field.dart';
-import '../../cubits/sign_up/sign_up_cubit.dart';
 import '../../utility/app_colors.dart';
 import '../../utility/app_names.dart';
-import 'package:get/get.dart';
-import '../verify_code_screens/verify_code_screen.dart';
 class SignUpScreen extends StatefulWidget {
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -40,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
+      appBar: AppBar(
             leading:
             Padding(
               padding: const EdgeInsets.only(left: 15, top: 5),
@@ -81,37 +77,33 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
       body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15),
+            padding:  EdgeInsets.symmetric(horizontal: 15.w),
             child: Form(
               autovalidateMode: AutovalidateMode.onUserInteraction,
-              key: formKey,
+              key: signUpViewModel.signUpKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(
                     height: 60.h,
                   ),
-                  Text(
-                    AppNames.welcome,
-                    style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontSize: 25,
-                      fontFamily: 'Almarai'
-                    ),
+                  CustomText(
+                    text: AppNames.welcome,
+                    color: AppColors.mainColor,
+                    fontSize: 20.sp,
+                    fontWeight: FontWeight.bold,
                   ),
                   SizedBox(
                     height: 10.h,
                   ),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      AppNames.registerUsing,
+                    padding: EdgeInsets.symmetric(horizontal: 20.w),
+                    child: CustomText(
+                      color: AppColors.black,
+                      text: AppNames.registerUsing,
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontSize: 14,
-                          fontFamily: "ALMARAI",
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 0.8),
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
@@ -157,10 +149,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  Button(
+                  CustomButton(
                       text: AppNames.registerAsAdmin,
                       function: () {
-                        if (formKey.currentState?.validate() == true) {
+                        if (signUpViewModel.signUpKey.currentState?.validate() == true) {
                           signUpViewModel.adminSignUp();
                         }
                       },

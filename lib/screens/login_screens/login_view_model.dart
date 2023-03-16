@@ -13,8 +13,9 @@ class LoginViewModel{
   TextEditingController password = TextEditingController();
   Loading loading = Loading();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  userLogin({required String userName, required String password}) async {
 
+
+  userLogin({required String userName, required String password}) async {
     loading.show;
     LoginModel? loginModel = await LoginController.login(
       userName: userName,
@@ -27,7 +28,7 @@ class LoginViewModel{
         Get.snackbar('Success', loginModel.message![0].value.toString());
         CacheHelper.saveData(key: 'UserData', value: jsonEncode((loginModel)));
       } else {
-        goToScreen(screenNames: ScreenNames.verifyCodeScreen);
+        goToScreen(screenNames: ScreenNames.verifyCodeScreen,arguments: [userName,password]);
       }
     }
     loading.hide;

@@ -3,7 +3,7 @@ part of 'routes.dart';
 goToScreen({required String screenNames, Object? arguments }) {
 
   FocusScope.of(Get.context!).unfocus();
-  Navigator.pushNamed(Get.context!, screenNames, arguments: arguments  );
+  Navigator.pushNamed(Get.context!, screenNames, arguments: arguments );
 }
 
 goToScreenpopAndPushNamed({required String screenNames, Object? arguments}) {

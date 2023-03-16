@@ -1,4 +1,5 @@
 import 'package:first_task/screens/profile_screen/profile_screen.dart';
+import 'package:first_task/screens/sign_up_screens/sign_up_view_model.dart';
 import 'package:flutter/material.dart';
 import '../screens/add_category_screen/add_category_screen.dart';
 import '../screens/forget_password_screens/enter_code_screen.dart';
@@ -11,18 +12,6 @@ import 'package:first_task/screens/verify_code_screens/verify_code_screen.dart';
 import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
 import 'package:get/get.dart';
 part 'app_navigator.dart';
-
-// final Map<String, WidgetBuilder> routes = {
-//   HomePage.routeName: (context) => HomePage(),
-//   LoginScreen.routeName: (context) => LoginScreen(),
-//   SignUpScreen.routeName: (context) => SignUpScreen(),
-//   VerifyCodeScreen.routeName: (context) => VerifyCodeScreen(),
-//   ManagerHomeScreen.routeName: (context) => ManagerHomeScreen(),
-//   EnterCodeScreen.routeName: (context) => EnterCodeScreen(),
-//   EnterNewPasswordScreen.routeName: (context) => EnterNewPasswordScreen(),
-//   ForgetPasswordScreen.routeName: (context) => ForgetPasswordScreen(),
-//   AddCategoryScreen.routeName: (context) => AddCategoryScreen(),
-// };
 
 appRoutes(context) {
   var routes = {
@@ -43,8 +32,8 @@ appRoutes(context) {
     static String homepage = HomePage.routeName;
     static String loginScreen = "loginScreen";
     static String signUpScreen = "signUpScreen";
-    static String verifyCodeScreen = VerifyCodeScreen.routeName;
-    static String managerHomeScreen = ManagerHomeScreen.routeName;
+    static String verifyCodeScreen = "verifyScreen";
+    static String managerHomeScreen = "managerHomeScreen";
     static String enterCodeScreen = EnterCodeScreen.routeName;
     static String enterNewPasswordScreen = EnterNewPasswordScreen.routeName;
     static String forgetPasswordScreen = ForgetPasswordScreen.routeName;
