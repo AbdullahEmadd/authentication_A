@@ -1,5 +1,6 @@
-import 'dart:io';
+// ignore_for_file: use_key_in_widget_constructors
 
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,13 +12,11 @@ import '../../utility/app_names.dart';
 class AddCategoryScreen extends StatefulWidget {
   static String routeName = "AddCategoryScreen";
 
-
   @override
   State<AddCategoryScreen> createState() => _AddCategoryScreenState();
 }
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
-
   // File? _image;
   // ImagePicker imagePicker = ImagePicker();
   @override
@@ -25,19 +24,21 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(AppNames.addCategory,
-          style: TextStyle(
-              fontFamily: 'Almarai',
-              color: Colors.black,
-              fontWeight: FontWeight.bold
-          ),),
-        actions: [Padding(
-          padding: const EdgeInsets.only(left: 15),
-          child: IconButton(onPressed: (){},
-            icon: Icon(Icons.notifications_outlined),
-            iconSize: 35,
+        title: CustomText(
+            text: AppNames.addCategory,
+            fontSize: 16.sp,
+            color: AppColors.black,
+            fontWeight: FontWeight.bold),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.notifications_outlined),
+              iconSize: 35,
+            ),
           ),
-        ),],
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -50,15 +51,13 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
               Container(
                 height: 180,
                 width: double.infinity,
-                decoration: BoxDecoration(shape: BoxShape.rectangle,
-                borderRadius: BorderRadius.circular(15),
-                color: AppColors.gray2
-                ),
+                decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    borderRadius: BorderRadius.circular(15),
+                    color: AppColors.gray2),
                 child: IconButton(
-                  onPressed: (){},
-                  icon: Icon(
-                    Icons.add_a_photo
-                  ),
+                  onPressed: () {},
+                  icon: Icon(Icons.add_a_photo),
                 ),
               ),
               SizedBox(
@@ -66,14 +65,15 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
               ),
               CustomTextField(
                 hint: AppNames.categoryName,
-                textFieldVaidType:  TextFieldvalidatorType.RegisterText,
+                textFieldVaidType: TextFieldvalidatorType.RegisterText,
               ),
               SizedBox(
                 height: 30.h,
               ),
               CustomButton(
+                width: 216.w,
                 text: AppNames.addCategory,
-                function: (){},
+                function: () {},
               ),
             ],
           ),
@@ -82,10 +82,10 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     );
   }
 
-  // void pickImage() async{
-  //   var image = await imagePicker.pickImage(source: ImageSource.gallery);
-  //   setState(() {
-  //     _image = image as File?;
-  //   });
-  // }
+// void pickImage() async{
+//   var image = await imagePicker.pickImage(source: ImageSource.gallery);
+//   setState(() {
+//     _image = image as File?;
+//   });
+// }
 }

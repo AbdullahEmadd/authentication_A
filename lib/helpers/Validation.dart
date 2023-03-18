@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, constant_identifier_names, non_constant_identifier_names
+
 import 'package:first_task/utility/app_names.dart';
 import 'package:first_task/utility/regx.dart';
 enum TextFieldvalidatorType{
@@ -14,7 +16,7 @@ enum TextFieldvalidatorType{
   IdNumberNotSudia,
   RegisterText,
   EnterCode,
-  None
+  None,
 }
 Validation({required TextFieldvalidatorType type, required String value,required String firstPasswordForConfirm}){
   if(type==TextFieldvalidatorType.PhoneNumber){
@@ -57,7 +59,9 @@ Validation({required TextFieldvalidatorType type, required String value,required
     }
     else  if (value.length>30) {
       return AppNames.moreThan30;
-    }else return null;
+    }else {
+      return null;
+    }
   }
 
   else if(type==TextFieldvalidatorType.ConfirmPassword){

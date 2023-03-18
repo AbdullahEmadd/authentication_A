@@ -1,9 +1,10 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_literals_to_create_immutables, use_key_in_widget_constructors
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/sign_up_screens/sign_up_view_model.dart';
+import 'package:first_task/utility/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/custom_button.dart';
@@ -43,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               child: Transform.scale(
                 scaleX: -1,
                 child: Image(
-                  image: AssetImage('assets/images/logo.png'),
+                  image: AssetImage(AppImages.logo),
                   width: 80,
                   height: 80,
                 ),

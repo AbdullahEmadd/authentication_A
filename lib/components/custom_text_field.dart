@@ -1,31 +1,34 @@
+// ignore_for_file: use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 import '../utility/app_colors.dart';
 import 'package:first_task/helpers/Validation.dart';
-class CustomTextField extends StatefulWidget {
-  TextFieldvalidatorType? textFieldVaidType;
-  TextEditingController? controller;
-  TextEditingController? confirmPasswordController;
-  String? firstPasswordToConfirm;
-  String? hint;
-  double? width;
-  double? height;
-  late bool obscure;
-  String? label;
-  TextStyle? hintStyle;
-  IconData? icon;
-  Widget? iconWidget;
-  Widget? prefixIconWidget;
-  Color? labelColor;
-  TextInputType? textType;
-  Function(String val)? onChange;
-  Function()? iconPressed;
-  Function()? onPressed;
-  bool? enabled;
-  FocusNode? focusNode;
-  int? maxLines;
-  int? minLines;
-  CustomTextField(
-      {this.controller,
+class CustomTextField extends StatelessWidget {
+  final TextFieldvalidatorType? textFieldVaidType;
+  final TextEditingController? controller;
+  final TextEditingController? confirmPasswordController;
+  final String? firstPasswordToConfirm;
+  final String? hint;
+  final double? width;
+  final double? height;
+  final bool obscure;
+  final String? label;
+  final TextStyle? hintStyle;
+  final IconData? icon;
+  final Widget? iconWidget;
+  final Widget? prefixIconWidget;
+  final Color? labelColor;
+  final TextInputType? textType;
+  final Function(String val)? onChange;
+  final Function()? iconPressed;
+  final Function()? onPressed;
+  final bool? enabled;
+  final FocusNode? focusNode;
+  final int? maxLines;
+  final int? minLines;
+
+  const CustomTextField(
+        {Key? key,
+        this.controller,
         this.confirmPasswordController,
         required this.textFieldVaidType,
         this.hint = "",
@@ -49,19 +52,14 @@ class CustomTextField extends StatefulWidget {
         this.firstPasswordToConfirm,
       });
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: InkWell(
-        onTap: widget.onPressed,
+        onTap: onPressed,
         child:
         Container(
-          height: widget.height ?? 48,
+          height: height ?? 48,
           decoration: BoxDecoration(
             color: AppColors.gray,
             borderRadius: BorderRadius.circular(10),
@@ -69,25 +67,25 @@ class _CustomTextFieldState extends State<CustomTextField> {
           child: TextFormField(
             autovalidateMode: AutovalidateMode.onUserInteraction,
             validator: (v) => Validation(
-                type: widget.textFieldVaidType!,
-                firstPasswordForConfirm: widget.textFieldVaidType ==
+                type: textFieldVaidType!,
+                firstPasswordForConfirm: textFieldVaidType ==
                     TextFieldvalidatorType.ConfirmPassword
-                    ? widget.confirmPasswordController!.value.text
+                    ? confirmPasswordController!.value.text
                     : "",
                 value: v!),
-            onTap: widget.onPressed,
-            minLines: widget.minLines??1,
-            maxLines: widget.maxLines??1,
-            enabled: widget.enabled,
-            keyboardType: widget.textType ?? TextInputType.text,
-            controller: widget.controller,
-            focusNode: widget.focusNode,
-            onChanged: widget.onChange,
-            obscureText: widget.obscure,
+            onTap: onPressed,
+            minLines: minLines??1,
+            maxLines: maxLines??1,
+            enabled: enabled,
+            keyboardType: textType ?? TextInputType.text,
+            controller: controller,
+            focusNode: focusNode,
+            onChanged: onChange,
+            obscureText: obscure,
             decoration: InputDecoration(
-                labelText:widget.hint??'' ,
-                hintText: widget.hint ?? "",
-                hintStyle:widget.hintStyle?? const TextStyle(fontSize: 12, color: Colors.grey,),
+                labelText:hint??'' ,
+                hintText: hint ?? "",
+                hintStyle:hintStyle?? const TextStyle(fontSize: 12, color: Colors.grey,),
                 // labelText: label,
                 // labelStyle: const TextStyle(fontSize: 14, color: Colors.grey),
                 contentPadding: const EdgeInsets.only(top: 8,right: 8,left: 8),
@@ -107,14 +105,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   borderRadius: BorderRadius.circular(10),
                   borderSide:  BorderSide(color: AppColors.mainColor),
                 ),
-                prefixIcon: widget.prefixIconWidget?? null,
-                suffixIcon: widget.iconWidget == null
-                    ? (widget.icon == null
+                prefixIcon: prefixIconWidget,
+                suffixIcon: iconWidget == null
+                    ? (icon == null
                     ? null
                     : InkWell(
-                    onTap: widget.iconPressed ?? () {},
+                    onTap: iconPressed ?? () {},
                     child: Icon(
-                      widget.icon,
+                      icon,
                       size: 18,
                       color: AppColors.mainColor,
                     )))
@@ -122,7 +120,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    widget.iconWidget!,
+                    iconWidget!,
                   ],
                 )),
           ),

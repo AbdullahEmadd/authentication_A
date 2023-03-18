@@ -1,14 +1,15 @@
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
+import 'package:first_task/components/custom_button.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/login_screens/login_view_model.dart';
 import 'package:first_task/utility/app_colors.dart';
+import 'package:first_task/utility/app_images.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../components/custom_button.dart';
 import '../../components/custom_text_field.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -35,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Transform.scale(
                   scaleX: -1,
                   child: Image(
-                    image: AssetImage('assets/images/logo.png'),
+                    image: AssetImage(AppImages.logo),
                     width: 80,
                     height: 80,
                   ),
@@ -50,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Transform.scale(
                     scaleX: -1,
                     child: Image(
-                      image: AssetImage('assets/images/logo.png'),
+                      image: AssetImage(AppImages.logo),
                       width: 80,
                       height: 80,
                     ),

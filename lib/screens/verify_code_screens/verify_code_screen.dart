@@ -1,10 +1,11 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/routes/routes.dart';
-import 'package:first_task/screens/forget_password_screens/forget_password_view_model.dart';
-import 'package:first_task/screens/sign_up_screens/sign_up_view_model.dart';
 import 'package:first_task/screens/verify_code_screens/verify_code_view_model.dart';
 import 'package:first_task/utility/app_colors.dart';
+import 'package:first_task/utility/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -38,7 +39,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
               child: Transform.scale(
                 scaleX: -1,
                 child: Image(
-                  image: AssetImage('assets/images/logo.png'),
+                  image: AssetImage(AppImages.logo),
                   width: 80.w,
                   height: 80.h,
                 ),

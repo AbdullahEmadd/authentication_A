@@ -1,6 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
-RegExp PhoneregExp = new RegExp(
+RegExp PhoneregExp = RegExp(
   r'^(\+201|01|00201)[0-2,5]{1}[0-9]{8}',
   caseSensitive: false,
   multiLine: false,

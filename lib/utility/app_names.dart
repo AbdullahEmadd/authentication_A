@@ -1,4 +1,5 @@
 class AppNames {
+ static const getStarted = 'Get Started Now';
  static const welcome = 'مرحبا بك';
  static const login = 'سجل دخولك بواسطة اسم المستخدم وكلمة السر وتمتع معنا بتطبيق المطبخ';
  static const logout = 'تسجيل الخروج';

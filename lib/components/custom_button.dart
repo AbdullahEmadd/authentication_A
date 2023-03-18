@@ -1,33 +1,40 @@
-// ignore_for_file: non_constant_identifier_names
-
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/utility/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+class CustomButton extends StatelessWidget {
+  final String text;
+  final void Function()? function;
+  final double height;
+  final double width;
+
+  const CustomButton({super.key,
+    required this.text,
+    required this.function,
+    this.width = double.infinity,
+    this.height = 45,
+});
 
 
-Widget CustomButton({
-  double height= 45,
-  double width = double.infinity,
-  required String text,
-  required void Function()? function,
-}) =>
-    Container(
-      height: height,
+  @override
+  Widget build(BuildContext context) {
+    return Container(
       width: width,
+      height: height,
       decoration: BoxDecoration(
-        color: AppColors.mainColor,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15.0),
+        color: AppColors.mainColor
       ),
       child: MaterialButton(
         onPressed: function,
-        child: Text(
-          text,
-          style: TextStyle(
-            fontSize: 16,
+        child: CustomText(
+            text: text,
+            fontSize: 16.sp,
             color: Colors.white,
-            fontFamily: 'Almarai',
             fontWeight: FontWeight.bold,
-          ),
         ),
       ),
-
-    );
+      );
+  }
+}

@@ -2,9 +2,9 @@ import 'package:first_task/utility/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class ProfileDataPreviewItem extends StatelessWidget {
-  String ?title;
-  String ?value;
-  ProfileDataPreviewItem({Key? key,this.value,this.title}) : super(key: key);
+  final String ?title;
+  final String ?value;
+  const ProfileDataPreviewItem({Key? key,this.value,this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

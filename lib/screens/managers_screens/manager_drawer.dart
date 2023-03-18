@@ -2,6 +2,7 @@ import 'package:first_task/components/close_icon.dart';
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
+import 'package:first_task/utility/app_images.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -34,23 +35,12 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                             padding:  EdgeInsets.symmetric(horizontal: 8.w),
                             child: Row(
                               children: [
-                                Container(
-                                    child: CircleAvatar(
-                                        radius: (45),
-                                        backgroundColor: Colors.white,
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.circular(50),
-                                          child:
-                                            Image.asset('assets/images/Me.png',)
-                                          // Image.network(
-                                          //   "https://i.pinimg.com/originals/0e/b5/42/0eb54293405681ea75b278308bb8f916.png",
-                                          //   width: 90,
-                                          //   height: 90,
-                                          //   fit: BoxFit.fill,
-                                          // ),
-                                        ))),
+                                CircleAvatar(
+                                    radius: (45),
+                                    backgroundColor: Colors.white,
+                                    child: Image.asset(AppImages.me)),
                                 SizedBox(
-                                  width: 15,
+                                  width: 20.w,
                                 ),
                                 Column(
                                   children: [
@@ -59,6 +49,9 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                                           fontSize: 18.sp,
                                           color: AppColors.black,
                                           fontWeight: FontWeight.bold,
+                                    ),
+                                    SizedBox(
+                                      height: 5.h,
                                     ),
                                     CustomText(
                                           text: 'EXCP',

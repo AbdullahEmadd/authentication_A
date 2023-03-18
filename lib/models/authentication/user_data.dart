@@ -16,18 +16,14 @@ class UserData {
 
   String? get text => null;
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (User != null) {
-      data["user"] = user!.toJson();
-    }
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data["user"] = user!.toJson();
     data["token"] = token;
     data["twoFactorAuthEnabled"] = twoFactorAuthEnabled;
     return data;
   }
 }
 class User {
-
-
   String? userName;
   bool? phoneNumberConfirmed;
   int? accountType;
@@ -91,7 +87,7 @@ class User {
     owner = json["owner"]?.toString();
   }
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data["userName"] = userName;
     data["phoneNumberConfirmed"] = phoneNumberConfirmed;
     data["accountType"] = accountType;

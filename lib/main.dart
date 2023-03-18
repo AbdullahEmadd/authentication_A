@@ -10,7 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  String? userData = CacheHelper.getData(key: 'UserData');
+  var userData = CacheHelper.getData(key: 'UserData');
   bool? splash = CacheHelper.getData(key: 'Splash');
   Widget widget;
   if (splash != null && splash) {
@@ -29,7 +29,7 @@ void main() async{
 
 class MyApp extends StatelessWidget {
   final Widget widget;
-  MyApp({Key? key,required this.widget}) : super(key: key);
+  const MyApp({Key? key,required this.widget}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(

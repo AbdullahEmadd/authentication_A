@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/images/Me.png')),
+                        image: AssetImage('assets/images/me.png')),
                     borderRadius: BorderRadius.circular(100),
                 ),
               ),

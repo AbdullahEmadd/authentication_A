@@ -1,5 +1,7 @@
+import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/managers_screens/manager_drawer.dart';
+import 'package:first_task/utility/app_images.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -18,19 +20,21 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(AppNames.home,
-        style: TextStyle(
-          fontFamily: 'Almarai',
-          color: Colors.black,
-          fontWeight: FontWeight.bold
-        ),),
-        actions: [Padding(
-          padding: const EdgeInsets.only(left: 15),
-          child: IconButton(onPressed: (){},
+        title: CustomText(
+            text: AppNames.home,
+            color: AppColors.black,
+            fontWeight: FontWeight.bold,
+            fontSize: 16.sp),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(left: 15),
+            child: IconButton(
+              onPressed: () {},
               icon: Icon(Icons.notifications_outlined),
-             iconSize: 35,
+              iconSize: 35,
+            ),
           ),
-        ),],
+        ],
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -42,23 +46,21 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(AppNames.main,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Almarai',
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),),
+                    CustomText(
+                        text: AppNames.main,
+                        fontSize: 18.sp,
+                        color: AppColors.black,
+                        fontWeight: FontWeight.bold),
                     Container(
                       decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: AppColors.mainColor
-                      ),
-                      child: IconButton(onPressed: (){
-                        goToScreen(screenNames: ScreenNames.addCategoryScreen);
-                      }, icon:
-                      Icon(Icons.add),
-                      color: Colors.white,
+                          shape: BoxShape.circle, color: AppColors.mainColor),
+                      child: IconButton(
+                        onPressed: () {
+                          goToScreen(
+                              screenNames: ScreenNames.addCategoryScreen);
+                        },
+                        icon: Icon(Icons.add),
+                        color: Colors.white,
                       ),
                     )
                   ],
@@ -70,42 +72,35 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   children: [
-                    Image.asset('assets/images/foods.png'),
-                    Image.asset('assets/images/extras.png'),
+                    Image.asset(AppImages.foods),
+                    Image.asset(AppImages.extras),
                   ],
                 ),
                 Transform.scale(
-                    scale: 0.6,
-                    child: Image.asset('assets/images/drinks.png')),
+                    scale: 0.6, child: Image.asset(AppImages.drinks)),
                 SizedBox(
                   height: 15.h,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                    AppNames.mostOrdered,
-                    style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Almarai',
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold
-                      ),
-                  ),
-                    TextButton(
-                        onPressed: (){},
-                        child: Text(
-                          'الكل',
-                          style: TextStyle(
-                            fontSize: 22
-                          ),
-                        ))
-                  ]
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CustomText(
+                          text: AppNames.mostOrdered,
+                          fontSize: 18.sp,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.bold),
+                      TextButton(
+                          onPressed: () {},
+                          child: CustomText(
+                            text: 'الكل',
+                            fontSize: 18.sp,
+                            color: AppColors.blue,
+                          ))
+                    ]),
+                SizedBox(
+                  height: 20.h,
                 ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                Image.asset('assets/images/mostOrdered2.png')
+                Image.asset(AppImages.mostOrdered2),
               ],
             ),
           ),

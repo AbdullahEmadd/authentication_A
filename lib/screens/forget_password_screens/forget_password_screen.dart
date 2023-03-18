@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors
+
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/forget_password_screens/forget_password_view_model.dart';
