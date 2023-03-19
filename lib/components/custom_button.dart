@@ -7,12 +7,12 @@ class CustomButton extends StatelessWidget {
   final String text;
   final void Function()? function;
   final double height;
-  final double width;
+  final double? width;
 
   const CustomButton({super.key,
     required this.text,
     required this.function,
-    this.width = double.infinity,
+    this.width,
     this.height = 45,
 });
 
@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
+      width: width?? double.infinity,
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
