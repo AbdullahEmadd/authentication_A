@@ -28,14 +28,14 @@ appRoutes(context) {
     return routes;
 }
   class ScreenNames {
-    static String homepage = HomePage.routeName;
+    static String homepage = "homePage";
     static String loginScreen = "loginScreen";
     static String signUpScreen = "signUpScreen";
     static String verifyCodeScreen = "verifyScreen";
     static String managerHomeScreen = "managerHomeScreen";
-    static String enterCodeScreen = EnterCodeScreen.routeName;
-    static String enterNewPasswordScreen = EnterNewPasswordScreen.routeName;
-    static String forgetPasswordScreen = ForgetPasswordScreen.routeName;
-    static String addCategoryScreen = AddCategoryScreen.routeName;
-    static String profileScreen = ProfileScreen.routeName;
+    static String enterCodeScreen = "enterCodeScreen";
+    static String enterNewPasswordScreen = "enterNewPasswordScreen";
+    static String forgetPasswordScreen = "forgetPasswordScreen";
+    static String addCategoryScreen = "addCategoryScreen";
+    static String profileScreen = "profileScreen";
   }

@@ -154,7 +154,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       text: AppNames.registerAsAdmin,
                       function: () {
                         if (signUpViewModel.signUpKey.currentState?.validate() == true) {
-                          signUpViewModel.adminSignUp();
+                          signUpViewModel.managerSignUp();
                         }
                       },
                     )

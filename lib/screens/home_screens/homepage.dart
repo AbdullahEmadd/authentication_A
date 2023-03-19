@@ -10,7 +10,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../routes/routes.dart';
 
 class HomePage extends StatefulWidget {
-  static String routeName = '/HomePage';
 
   const HomePage({Key? key}) : super(key: key);
 

@@ -11,6 +11,7 @@ import 'package:get/get.dart';
 class ForgetPasswordViewModel {
   final forgetKey = GlobalKey<FormState>();
   final enterCodeKey = GlobalKey<FormState>();
+  final newPasswordKey = GlobalKey<FormState>();
   Loading loading = Loading();
   TextEditingController userNameController = TextEditingController();
   TextEditingController codeController = TextEditingController();
@@ -19,14 +20,14 @@ class ForgetPasswordViewModel {
 
 
 
-  forgetPassword() async{
+  forgetPassword({required String userName}) async{
     loading.show;
     ForgetPasswordReturnModel? forgetPasswordReturnModel = await ForgetPasswordController.forgetPassword(
-      userName: userNameController.text,
+      userName: userName,
     );
     if (forgetPasswordReturnModel != null) {
       if (forgetPasswordReturnModel.state == true) {
-        goToScreen(screenNames: ScreenNames.enterCodeScreen);
+        goToScreen(screenNames: ScreenNames.enterCodeScreen, arguments: userName);
       }
       else {
         Get.snackbar('خطأ', forgetPasswordReturnModel.message![0]
@@ -36,16 +37,15 @@ class ForgetPasswordViewModel {
     loading.hide;
   }
 
-  codeConfirmation() async{
+  codeConfirmation({required String userName, required String code}) async{
     loading.show;
     EnterCodeModel? enterCodeModel = await ForgetPasswordController.codeConfirmation(
-      code: codeController.text,
-      userName: userNameController.text,);
+      code: code,
+      userName: userName);
     if (enterCodeModel != null) {
       if (enterCodeModel.state == true) {
-        Get.snackbar('Success', enterCodeModel.message![0]
-            .value.toString());
-        goToScreen(screenNames: ScreenNames.enterNewPasswordScreen);
+        Get.snackbar('Success', enterCodeModel.message![0].value.toString());
+        goToScreen(screenNames: ScreenNames.enterNewPasswordScreen, arguments: userName);
       }
       else {
         Get.snackbar('Error', enterCodeModel.message![0]
@@ -76,12 +76,12 @@ class ForgetPasswordViewModel {
     loading.hide;
   }
 
-  resetPassword() async{
+  resetPassword({required String userName}) async{
     loading.show;
     EnterNewPasswordModel? enterNewPasswordModel = await ForgetPasswordController.resetPasswordRequest(
       password: passwordController.text,
-      passwordConfirmation:passwordConfirmationController.text,
-      userName: userNameController.text,);
+      passwordConfirmation: passwordConfirmationController.text,
+      userName: userName,);
     if (enterNewPasswordModel != null) {
       if(enterNewPasswordModel.state ==true) {
         Get.snackbar('Success',

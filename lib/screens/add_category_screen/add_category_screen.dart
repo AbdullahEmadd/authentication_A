@@ -10,7 +10,6 @@ import '../../utility/app_colors.dart';
 import '../../utility/app_names.dart';
 
 class AddCategoryScreen extends StatefulWidget {
-  static String routeName = "AddCategoryScreen";
 
   @override
   State<AddCategoryScreen> createState() => _AddCategoryScreenState();

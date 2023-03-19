@@ -18,7 +18,8 @@ class SignUpViewModel {
   TextEditingController emailController = TextEditingController();
   Loading loading = Loading();
 
-  adminSignUp() async {
+
+  managerSignUp() async {
     loading.show;
     SignUpModel? signUpModel = await SignUpController.signUp(
       userName: userNameController.text,
