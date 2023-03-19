@@ -1,6 +1,6 @@
 import 'package:first_task/screens/profile_screen/profile_screen.dart';
 import 'package:flutter/material.dart';
-import '../screens/add_category_screen/add_category_screen.dart';
+import '../screens/managers_screens/add_category_screen/add_category_screen.dart';
 import '../screens/forget_password_screens/enter_code_screen.dart';
 import '../screens/forget_password_screens/enter_new_password_screen.dart';
 import '../screens/forget_password_screens/forget_password_screen.dart';
@@ -8,7 +8,7 @@ import '../screens/home_screens/homepage.dart';
 import '../screens/login_screens/login_screen.dart';
 import '../screens/sign_up_screens/sign_up_screen.dart';
 import 'package:first_task/screens/verify_code_screens/verify_code_screen.dart';
-import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
+import 'package:first_task/screens/managers_screens/manager_home_screen/manager_home_screen.dart';
 import 'package:get/get.dart';
 part 'app_navigator.dart';
 

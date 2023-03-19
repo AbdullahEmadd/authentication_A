@@ -1,11 +1,13 @@
-import 'package:first_task/components/custom_text.dart';
-import 'package:first_task/routes/routes.dart';
-import 'package:first_task/screens/managers_screens/manager_drawer.dart';
-import 'package:first_task/utility/app_images.dart';
-import 'package:first_task/utility/app_names.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../utility/app_colors.dart';
+import 'package:manager/src/components/custom_text.dart';
+import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/manager_drawer/manager_drawer.dart';
+import 'package:manager/src/utility/app_images.dart';
+import 'package:manager/src/utility/app_names.dart';
+import '../../../utility/app_colors.dart';
 
 class ManagerHomeScreen extends StatefulWidget {
   const ManagerHomeScreen({Key? key}) : super(key: key);

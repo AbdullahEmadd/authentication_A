@@ -1,13 +1,14 @@
-// ignore_for_file: use_key_in_widget_constructors
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 
-import 'package:first_task/components/custom_text.dart';
-import 'package:first_task/components/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../components/custom_button.dart';
-import '../../helpers/Validation.dart';
-import '../../utility/app_colors.dart';
-import '../../utility/app_names.dart';
+import 'package:manager/src/components/custom_text.dart';
+import 'package:manager/src/components/custom_text_field.dart';
+
+import '../../../components/custom_button.dart';
+import '../../../helpers/Validation.dart';
+import '../../../utility/app_colors.dart';
+import '../../../utility/app_names.dart';
 
 class AddCategoryScreen extends StatefulWidget {
 

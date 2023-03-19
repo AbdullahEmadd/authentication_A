@@ -2,7 +2,7 @@ import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/home_screens/homepage.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
-import 'package:first_task/screens/managers_screens/manager_home_screen.dart';
+import 'package:first_task/screens/managers_screens/manager_home_screen/manager_home_screen.dart';
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
             locale: const Locale("ar"),
             routes: appRoutes(context),
             debugShowCheckedModeBanner: false,
-            title: 'First Task',
+            title: 'Kitchen app',
             theme: appTheme,
             home: widget,
         );

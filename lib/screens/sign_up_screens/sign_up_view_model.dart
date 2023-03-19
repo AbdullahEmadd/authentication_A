@@ -1,3 +1,4 @@
+import 'package:first_task/cubits/generic_cubit/generic_cubit.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../../models/authentication/sign_up_model.dart';
@@ -16,7 +17,13 @@ class SignUpViewModel {
   TextEditingController passwordConfirmationController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
+  GenericCubit<bool> obscure1 = GenericCubit(data: true);
   Loading loading = Loading();
+
+  void password (){
+    obscure1.update(data: !obscure1.state.data!);
+  }
+
 
 
   managerSignUp() async {

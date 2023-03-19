@@ -6,7 +6,7 @@ import 'package:first_task/utility/app_images.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../utility/app_colors.dart';
+import '../../../utility/app_colors.dart';
 
 class ManagerDrawerScreen extends StatefulWidget {
   const ManagerDrawerScreen({Key? key}) : super(key: key);

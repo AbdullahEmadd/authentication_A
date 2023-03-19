@@ -1,6 +1,7 @@
 import 'package:first_task/components/custom_text.dart';
 import 'package:first_task/components/loader_custom/loader_custom.dart';
 import 'package:first_task/components/custom_button.dart';
+import 'package:first_task/cubits/generic_cubit/generic_cubit.dart';
 import 'package:first_task/helpers/Validation.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
@@ -9,21 +10,21 @@ import 'package:first_task/utility/app_colors.dart';
 import 'package:first_task/utility/app_images.dart';
 import 'package:first_task/utility/app_names.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../components/custom_text_field.dart';
+
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
 class _LoginScreenState extends State<LoginScreen> {
   LoginViewModel loginViewModel = LoginViewModel();
-  bool _obscure = true;
-  void _toggle() {
-    setState(() {
-      _obscure = !_obscure;
-    });
-  }
+
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -93,10 +94,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 35.w),
                         child: CustomText(
                           text: AppNames.login,
-                              fontSize: 15,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                              textAlign: TextAlign.center,
+                          fontSize: 15,
+                          color: AppColors.black,
+                          fontWeight: FontWeight.bold,
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(
@@ -107,14 +108,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         controller: loginViewModel.userName,
                         hint: AppNames.userName,
                       ),
-                      CustomTextField(
-                        textFieldVaidType: TextFieldvalidatorType.Password,
-                        obscure: _obscure,
-                        icon:
-                            _obscure ? Icons.visibility_off : Icons.visibility,
-                        iconPressed: _toggle,
-                        controller: loginViewModel.password,
-                        hint: AppNames.password,
+                      BlocConsumer<GenericCubit<bool>, GenericState<bool>>(
+                        bloc: loginViewModel.obscure,
+                        listener: (context, state) {
+                        },
+                        builder: (context, state) {
+                          return CustomTextField(
+                            textFieldVaidType: TextFieldvalidatorType.Password,
+                            obscure: state.data!,
+                            icon: state.data! ? Icons.visibility_off : Icons.visibility,
+                            iconPressed: (){
+                              loginViewModel.toggle();
+                            },
+                            controller: loginViewModel.password,
+                            hint: AppNames.password,
+                          );
+                        },
                       ),
                       SizedBox(
                         height: 40.h,
@@ -150,10 +159,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                           CustomText(
+                          CustomText(
                             text: AppNames.haveCompany,
                             fontSize: 16.sp,
-                             color: AppColors.black,
+                            color: AppColors.black,
                           ),
                           SizedBox(
                             width: 5.w,
@@ -163,9 +172,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               goToScreen(screenNames: ScreenNames.signUpScreen);
                             },
                             child: CustomText(
-                                text:AppNames.registerAsAdmin,
-                                  color: AppColors.mainColor,
-                                  fontSize: 16.sp,),
+                              text: AppNames.registerAsAdmin,
+                              color: AppColors.mainColor,
+                              fontSize: 16.sp,),
                           ),
                         ],
                       ),
