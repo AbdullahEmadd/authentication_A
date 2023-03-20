@@ -18,7 +18,7 @@ appRoutes(context) {
     ScreenNames.loginScreen: (context) => LoginScreen(),
     ScreenNames.signUpScreen: (context) => SignUpScreen(),
     ScreenNames.verifyCodeScreen: (context) => VerifyCodeScreen(),
-    ScreenNames.managerHomeScreen: (context) => ManagerHomeScreen(),
+    // ScreenNames.managerHomeScreen: (context) => ManagerHomeScreen(),
     ScreenNames.enterCodeScreen: (context) => EnterCodeScreen(),
     ScreenNames.enterNewPasswordScreen: (context) => EnterNewPasswordScreen(),
     ScreenNames.forgetPasswordScreen: (context) => ForgetPasswordScreen(),

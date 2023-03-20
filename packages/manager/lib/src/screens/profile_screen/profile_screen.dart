@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 CircleAvatar(
                 radius: (45),
                 backgroundColor: Colors.white,
-                child: Image.asset(AppImages.me)),
+                child: Image.asset(AppImages.me, package: 'manager')),
                 SizedBox(
                   height: 45.h,
                 ),

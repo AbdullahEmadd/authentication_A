@@ -74,12 +74,12 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   children: [
-                    Image.asset(AppImages.foods),
-                    Image.asset(AppImages.extras),
+                    Image.asset(AppImages.foods , package: 'manager',),
+                    Image.asset(AppImages.extras, package: 'manager'),
                   ],
                 ),
                 Transform.scale(
-                    scale: 0.55, child: Image.asset(AppImages.drinks)),
+                    scale: 0.55, child: Image.asset(AppImages.drinks, package: 'manager')),
                 SizedBox(
                   height: 15.h,
                 ),
@@ -102,7 +102,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Image.asset(AppImages.mostOrdered2),
+                Image.asset(AppImages.mostOrdered2, package: 'manager'),
               ],
             ),
           ),

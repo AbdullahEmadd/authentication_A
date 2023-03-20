@@ -1,7 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_fonts.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
@@ -19,7 +18,7 @@ class CustomText extends StatelessWidget {
         this.color,
         this.fontWeight = FontWeight.normal ,
         required this.fontSize,
-        this.fontFamily = 'Almarai',
+        this.fontFamily = AppFonts.fontMedium,
         this.textAlign ,
         this.height,
         this.maxLines = 99});
@@ -31,6 +30,7 @@ class CustomText extends StatelessWidget {
       textAlign: textAlign,
       overflow: TextOverflow.ellipsis,
       style: TextStyle(
+          package: 'manager',
           height: height ,
           fontSize: fontSize,
           fontFamily: fontFamily,
@@ -39,7 +39,6 @@ class CustomText extends StatelessWidget {
       ),
       maxLines: maxLines,
     );
-
   }
 }
 

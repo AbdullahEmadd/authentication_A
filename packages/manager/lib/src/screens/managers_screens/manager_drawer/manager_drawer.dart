@@ -110,6 +110,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                       GestureDetector(
                         onTap: () {
                           goToScreen(screenNames: ScreenNames.profileScreen);
+                          print('Tapped');
                         },
                         child: Row(
                           children: [

@@ -12,6 +12,10 @@ dependencies:
     sdk: flutter
   flutter_screenutil: ^5.6.1
   get: ^4.6.5
+  http: ^0.13.5
+  flutter_bloc: ^8.1.1
+  equatable: ^2.0.5
+
 
 
 dev_dependencies:
@@ -26,6 +30,10 @@ dev_dependencies:
 flutter:
   assets:
     - assets/images/
+  fonts:
+      - family: Almarai
+        fonts:
+          - asset: assets/fonts/Almarai-Regular.ttf
 
   # To add assets to your package, add an assets section, like this:
   # assets:

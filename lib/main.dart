@@ -16,7 +16,8 @@ void main() async{
   Widget widget;
   if (splash != null && splash) {
     if (userData != null) {
-      widget = StartManagerCycle();
+      runApp(StartManagerCycle());
+      return;
     }
     else {
       widget = LoginScreen();

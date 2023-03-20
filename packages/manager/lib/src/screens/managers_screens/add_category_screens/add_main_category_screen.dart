@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/custom_text_field.dart';
 import 'package:manager/src/routes/routes.dart';
-
+import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
 import '../../../components/custom_button.dart';
 import '../../../helpers/Validation.dart';
 import '../../../utility/app_colors.dart';
@@ -20,6 +20,7 @@ class AddCategoryScreen extends StatefulWidget {
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   // File? _image;
   // ImagePicker imagePicker = ImagePicker();
+  AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +70,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
               CustomTextField(
                 hint: AppNames.categoryName,
                 textFieldVaidType: TextFieldvalidatorType.RegisterText,
+                controller: addCategoryViewModel.mainCategoryName,
               ),
               SizedBox(
                 height: 30.h,

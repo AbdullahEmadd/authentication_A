@@ -6,6 +6,7 @@ import 'package:first_task/models/authentication/verify_code_model.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:manager/manager.dart';
 
 class VerifyCodeViewModel{
 
@@ -23,7 +24,7 @@ verifyCode({required String userName, required String password, required String 
   if (verifyCodeModel != null) {
     if (verifyCodeModel.state == true) {
       Get.snackbar('Success', verifyCodeModel.message![0].value.toString());
-      goToScreen(screenNames: ScreenNames.managerHomeScreen);
+      runApp(StartManagerCycle());
     }
     else {
       Get.snackbar('Error', verifyCodeModel.message![0].value.toString());
@@ -49,6 +50,7 @@ regenerateCode({required String userName}) async{
               .toString());
     }
   }
+  loading.hide;
 }
 
 }

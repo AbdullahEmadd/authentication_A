@@ -31,7 +31,10 @@ class LoginViewModel{
     if (loginModel != null) {
       if (loginModel.data!.user!.emailConfirmed == true) {
         // goToScreen(screenNames: ScreenNames.managerHomeScreen);
-        runApp(StartManagerCycle());
+        runApp(StartManagerCycle(
+          companyId: loginModel.data!.user!.companyId,
+        ));
+        print('Company Id is: ${loginModel.data!.user!.companyId}');
         Get.snackbar('Success', loginModel.message![0].value.toString());
         CacheHelper.saveData(key: 'UserData', value: jsonEncode((loginModel)));
       } else {
