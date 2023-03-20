@@ -7,6 +7,7 @@ import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/manager.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
@@ -15,7 +16,7 @@ void main() async{
   Widget widget;
   if (splash != null && splash) {
     if (userData != null) {
-      widget = ManagerHomeScreen();
+      widget = StartManagerCycle();
     }
     else {
       widget = LoginScreen();

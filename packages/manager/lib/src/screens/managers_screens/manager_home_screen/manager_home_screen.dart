@@ -79,7 +79,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                   ],
                 ),
                 Transform.scale(
-                    scale: 0.6, child: Image.asset(AppImages.drinks)),
+                    scale: 0.55, child: Image.asset(AppImages.drinks)),
                 SizedBox(
                   height: 15.h,
                 ),

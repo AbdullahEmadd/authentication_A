@@ -1,11 +1,12 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:manager/src/utility/app_colors.dart';
 
 class CustomText extends StatelessWidget {
   final String text;
   final String fontFamily;
-  final Color color;
+  final Color? color;
   final double fontSize;
   final FontWeight? fontWeight ;
   final int? maxLines ;
@@ -15,7 +16,7 @@ class CustomText extends StatelessWidget {
   const CustomText(
       {super.key,
         required this.text,
-        required this.color,
+        this.color,
         this.fontWeight = FontWeight.normal ,
         required this.fontSize,
         this.fontFamily = 'Almarai',
@@ -33,7 +34,7 @@ class CustomText extends StatelessWidget {
           height: height ,
           fontSize: fontSize,
           fontFamily: fontFamily,
-          color: color,
+          color: color?? AppColors.black,
           fontWeight: fontWeight
       ),
       maxLines: maxLines,

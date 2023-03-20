@@ -23,7 +23,6 @@ appRoutes(context) {
     ScreenNames.enterNewPasswordScreen: (context) => EnterNewPasswordScreen(),
     ScreenNames.forgetPasswordScreen: (context) => ForgetPasswordScreen(),
     ScreenNames.addCategoryScreen: (context) => AddCategoryScreen(),
-    ScreenNames.profileScreen: (context) => ProfileScreen(),
     };
     return routes;
 }
@@ -37,5 +36,4 @@ appRoutes(context) {
     static String enterNewPasswordScreen = "enterNewPasswordScreen";
     static String forgetPasswordScreen = "forgetPasswordScreen";
     static String addCategoryScreen = "addCategoryScreen";
-    static String profileScreen = "profileScreen";
   }

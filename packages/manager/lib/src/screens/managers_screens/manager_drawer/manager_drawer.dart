@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:manager/src/components/close_icon.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/routes/routes.dart';
@@ -25,195 +26,234 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
           Container(
             color: Colors.grey[200],
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-              SizedBox(
-              height: 10,
-            ),
-            DrawerHeader(
-              child: Column(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w),
-                    child: Row(
-                      children: [
-                        CircleAvatar(
-                            radius: (45),
-                            backgroundColor: Colors.white,
-                            child: Image.asset(AppImages.me)),
-                        SizedBox(
-                          width: 20.w,
-                        ),
-                        Column(
+                SizedBox(
+                  height: 40.h,
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 23.w),
+                  child: Icon(Icons.menu, size: 30.sp),
+                ),
+                SizedBox(
+                  height: 10.h,
+                ),
+                Column(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: 23.w, vertical: 15.h),
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                              radius: (35.r),
+                              backgroundColor: Colors.white,
+                              child: Image.asset(
+                                AppImages.me,
+                                package: 'manager',
+                              )),
+                          // child: Image.asset(AppImages.me)),
+                          SizedBox(
+                            width: 15.w,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              CustomText(
+                                text: 'Abdullah Emad',
+                                fontSize: 18.sp,
+                                color: AppColors.black,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              CustomText(
+                                  text: 'EXCP',
+                                  fontSize: 16,
+                                  color: AppColors.mainColor),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                  ],
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.w),
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          goBack();
+                        },
+                        child: Row(
                           children: [
+                            Icon(
+                              Icons.home,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
                             CustomText(
-                              text: 'Abdullah Emad',
-                              fontSize: 18.sp,
+                              text: AppNames.home,
+                              fontSize: 20.sp,
                               color: AppColors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            CustomText(
-                                text: 'EXCP',
-                                fontSize: 16,
-                                color: AppColors.mainColor
                             ),
                           ],
-                        )
-                      ],
-                    ),
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {
+                          goToScreen(screenNames: ScreenNames.profileScreen);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.person,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.profile,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.file_copy,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.orders,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.menu_book,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.menu,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.scale,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.units,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.store,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.companyStore,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {},
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.store,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.employeeStore,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {
+                          // CacheHelper.removeData(key: 'UserData');
+                          // goToWithRemoveRoute(screenNames: ScreenNames.loginScreen);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.logout,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.logout,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25),
-              child: Column(
-                  children: [
-                  GestureDetector(
-                  onTap: (){goBack();},
-              child: Row(
-                children: [
-                  Icon(Icons.home, color: AppColors.mainColor, size: 30,),
-                  SizedBox(width: 10.w),
-                  CustomText(
-                    text: AppNames.home,
-                    fontSize: 20.sp,
-                    color: AppColors.black,
-                  ),
-
-                ],
-              ),
-            ),
-            SizedBox(height: 25.h),
-            GestureDetector(
-              onTap: () {},
-              child: Row(
-                children: [
-                Icon(Icons.person, color: AppColors.mainColor, size: 30,),
-              SizedBox(width: 10.w),
-              CustomText(
-                text: AppNames.orders,
-                fontSize: 20.sp,
-                color: AppColors.black,
-              ),
-
-              ],
-            ),
-          ),
-          SizedBox(height: 25.h),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Icon(Icons.file_copy, color: AppColors.mainColor, size: 30,),
-                SizedBox(width: 10.w),
-                CustomText(
-                  text: AppNames.orders,
-                  fontSize: 20.sp,
-                  color: AppColors.black,
-                ),
-
-              ],
-            ),
-          ),
-          SizedBox(height: 25.h),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Icon(Icons.menu_book, color: AppColors.mainColor, size: 30,),
-                SizedBox(width: 10.w),
-                CustomText(
-                  text: AppNames.menu,
-                  fontSize: 20.sp,
-                  color: AppColors.black,
-                ),
-
-              ],
-            ),
-          ),
-          SizedBox(height: 25.h),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Icon(Icons.scale, color: AppColors.mainColor, size: 30,),
-                SizedBox(width: 10.w),
-                CustomText(
-                  text: AppNames.units,
-                  fontSize: 20.sp,
-                  color: AppColors.black,
-                ),
-
-              ],
-            ),
-          ),
-          SizedBox(height: 25.h),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Icon(Icons.store, color: AppColors.mainColor, size: 30,),
-                SizedBox(width: 10.w),
-                CustomText(
-                  text: AppNames.companyStore,
-                  fontSize: 20.sp,
-                  color: AppColors.black,
                 ),
               ],
             ),
           ),
-          SizedBox(height: 25.h),
-          GestureDetector(
-            onTap: () {},
-            child: Row(
-              children: [
-                Icon(Icons.store, color: AppColors.mainColor, size: 30,),
-                SizedBox(width: 10.w),
-                CustomText(
-                  text: AppNames.employeeStore,
-                  fontSize: 20.sp,
-                  color: AppColors.black,
-                ),
-
-              ],
-            ),
-          ),
-          SizedBox(height: 25.h),
-          GestureDetector(
-            onTap: () {
-              // CacheHelper.removeData(key: 'UserData');
-              // goToWithRemoveRoute(screenNames: ScreenNames.loginScreen);
-            },
-            child: Row(
-              children: [
-                Icon(Icons.logout, color: AppColors.mainColor, size: 30,),
-                SizedBox(width: 10.w),
-                CustomText(
-                  text: AppNames.logout,
-                  fontSize: 20.sp,
-                  color: AppColors.black,
-                ),
-              ],
-            ),
-          ),
+          CloseIcon(),
         ],
       ),
-    ),
-
-    ],
-    ),
-    ),
-    CloseIcon(),
-    ]
-    ,
-    )
-    ,
     );
   }
 }

@@ -38,7 +38,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                                 CircleAvatar(
                                     radius: (45),
                                     backgroundColor: Colors.white,
-                                    child: Image.asset(AppImages.me)),
+                                    child: Image.asset('assets/images/me.png')),
                                 SizedBox(
                                   width: 20.w,
                                 ),
