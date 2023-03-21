@@ -95,8 +95,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                             text: AppNames.addCategory,
                             function: () {
                               addCategoryViewModel.addMainCategory(
-                                  logo: 'Image base64'
-                                //TODO insert imageBase64
                               );
                             },
                           ),

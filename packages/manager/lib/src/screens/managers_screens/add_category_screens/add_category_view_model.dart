@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -13,14 +16,15 @@ Loading loading = Loading();
 CategoriesModel categoriesModel = CategoriesModel();
 late final Image image;
 GenericCubit<String> selectedImagePath = GenericCubit(data: '');
+String base64 = '';
 
 
-addMainCategory({required String logo}) async{
+addMainCategory() async{
     loading.show;
     CategoriesModel? categoriesModel = await CategoriesController.addMainCategory(
         name: mainCategoryName.text,
         companyId: globalData.companyId?? '',
-        logo: logo);
+        logo: base64);
     if (categoriesModel != null) {
       if (categoriesModel.state == true) {
         Get.snackbar('Success', categoriesModel.message![0].value.toString());
@@ -32,10 +36,11 @@ addMainCategory({required String logo}) async{
   }
 
 selectImageFromGallery() async {
-  XFile? file = await ImagePicker()
+  XFile? xFile = await ImagePicker()
       .pickImage(source: ImageSource.gallery, imageQuality: 10);
-  if (file != null) {
-    selectedImagePath.update(data: file.path);
+  if (xFile != null) {
+    selectedImagePath.update(data: xFile.path);
+    base64 = base64Encode(File(xFile.path).readAsBytesSync());
   } else {
     return '';
   }
