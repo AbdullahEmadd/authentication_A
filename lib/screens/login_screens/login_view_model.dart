@@ -37,6 +37,7 @@ class LoginViewModel{
         print('Company Id is: ${loginModel.data!.user!.companyId}');
         Get.snackbar('Success', loginModel.message![0].value.toString());
         CacheHelper.saveData(key: 'UserData', value: jsonEncode((loginModel)));
+        CacheHelper.saveData(key: 'companyId', value: loginModel.data!.user!.companyId);
       } else {
         goToScreen(screenNames: ScreenNames.verifyCodeScreen,arguments: [userName,password]);
       }

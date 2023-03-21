@@ -1,6 +1,9 @@
+import 'dart:convert';
+
 import 'package:first_task/controller/forget_password_request/forget_password_request.dart';
 import 'package:first_task/controller/sign_up_request/sign_up_request.dart';
 import 'package:first_task/cubits/loading_cubit/loading_cubit.dart';
+import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:first_task/models/authentication/verify_code_model.dart';
 import 'package:first_task/routes/routes.dart';
@@ -25,6 +28,8 @@ verifyCode({required String userName, required String password, required String 
     if (verifyCodeModel.state == true) {
       Get.snackbar('Success', verifyCodeModel.message![0].value.toString());
       runApp(StartManagerCycle());
+      CacheHelper.saveData(key: 'UserData', value: jsonEncode((verifyCodeModel)));
+      CacheHelper.saveData(key: 'companyId', value: verifyCodeModel.data!.user!.companyId);
     }
     else {
       Get.snackbar('Error', verifyCodeModel.message![0].value.toString());

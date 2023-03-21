@@ -135,7 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             loginViewModel.userLogin(
                                 userName: loginViewModel.userName.text,
                                 password: loginViewModel.password.text);
-                            CacheHelper.saveData(key: 'UserData', value: true);
                           }
                         },
                       ),

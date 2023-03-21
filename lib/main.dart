@@ -11,7 +11,8 @@ import 'package:manager/manager.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
-  var userData = CacheHelper.getData(key: 'UserData');
+  String? userData = CacheHelper.getData(key: 'UserData');
+  String? companyId = CacheHelper.getData(key: 'companyId');
   bool? splash = CacheHelper.getData(key: 'Splash');
   Widget widget;
   if (splash != null && splash) {
