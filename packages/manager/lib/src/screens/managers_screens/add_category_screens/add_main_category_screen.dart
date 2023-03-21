@@ -3,11 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
+import 'package:manager/src/helpers/select_image_from_gallery.dart';
 import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
 import '../../../components/custom_button.dart';
 import '../../../helpers/Validation.dart';
@@ -21,6 +21,7 @@ class AddCategoryScreen extends StatefulWidget {
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
+  SelectImageFromGallery selectImageFromGallery = SelectImageFromGallery();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +61,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           state.data == ''
                               ? InkWell(
                                   onTap: () async {
-                                    addCategoryViewModel.selectImageFromGallery();
+                                    selectImageFromGallery.selectImageFromGallery();
                                     print('Image_Path:-');
                                     print(state.data);
                                   },
@@ -79,27 +80,53 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                                   height: 180.h,
                                   width: double.infinity,
                                 ),
-                          SizedBox(
-                            height: 30.h,
-                          ),
-                          CustomTextField(
-                            hint: AppNames.categoryName,
-                            textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                            controller: addCategoryViewModel.mainCategoryName,
-                          ),
-                          SizedBox(
-                            height: 30.h,
-                          ),
-                          CustomButton(
-                            width: 216.w,
-                            text: AppNames.addCategory,
-                            function: () {
-                              addCategoryViewModel.addMainCategory(
-                              );
-                            },
-                          ),
                         ]);
                       }),
+                  BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                    bloc: selectImageFromGallery.isImage,
+                    builder: (context, state) {
+                      return !state.data!
+                          ? Container()
+                          : Column(
+                              children: [
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                CustomText(
+                                    text: 'Please insert image',
+                                    fontSize: 16.sp),
+                              ],
+                            );
+                    },
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  Form(
+                    key: addCategoryViewModel.addMainCategoryKey,
+                    child: CustomTextField(
+                      hint: AppNames.categoryName,
+                      textFieldVaidType: TextFieldvalidatorType.RegisterText,
+                      controller: addCategoryViewModel.mainCategoryName,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
+                  CustomButton(
+                    width: 216.w,
+                    text: AppNames.addCategory,
+                    function: () {
+                      if (addCategoryViewModel.addMainCategoryKey.currentState!
+                                  .validate() ==
+                              true &&
+                          !selectImageFromGallery.isImage.state.data!) {
+                        addCategoryViewModel.addMainCategory();
+                      }else{
+                        selectImageFromGallery.isImage.update(data: true);
+                      }
+                    },
+                  ),
                 ],
               ),
             ),

@@ -17,7 +17,9 @@ void main() async{
   Widget widget;
   if (splash != null && splash) {
     if (userData != null) {
-      runApp(StartManagerCycle());
+      runApp(StartManagerCycle(
+        companyId: companyId,
+      ));
       return;
     }
     else {
