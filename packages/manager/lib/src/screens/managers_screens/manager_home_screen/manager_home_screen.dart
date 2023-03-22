@@ -3,7 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
 import 'package:manager/src/screens/managers_screens/manager_drawer/manager_drawer.dart';
 import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
@@ -17,6 +19,7 @@ class ManagerHomeScreen extends StatefulWidget {
 }
 
 class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
+  GetMainCategoriesViewModel getMainCategoriesViewModel =GetMainCategoriesViewModel();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,8 +61,7 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                           shape: BoxShape.circle, color: AppColors.mainColor),
                       child: IconButton(
                         onPressed: () {
-                          goToScreen(
-                              screenNames: ScreenNames.addCategoryScreen);
+                          goToScreen(screenNames: ScreenNames.getMainCategoriesScreen);
                         },
                         icon: Icon(Icons.add),
                         color: Colors.white,

@@ -9,10 +9,11 @@ import 'src/utility/app_theme.dart';
 
 class StartManagerCycle extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
-  GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
+  final GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
   final String? companyId;
 
   StartManagerCycle({
+    Key? key,
   this.companyId,
 });
 

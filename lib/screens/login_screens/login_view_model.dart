@@ -30,14 +30,13 @@ class LoginViewModel{
 
     if (loginModel != null) {
       if (loginModel.data!.user!.emailConfirmed == true) {
-        // goToScreen(screenNames: ScreenNames.managerHomeScreen);
+        // Get.snackbar('Success', loginModel.message![0].value.toString());
+        print('Company Id is: ${loginModel.data!.user!.companyId}');
+        CacheHelper.saveData(key: 'UserData', value: jsonEncode((loginModel)));
+        CacheHelper.saveData(key: 'companyId', value: loginModel.data!.user!.companyId);
         runApp(StartManagerCycle(
           companyId: loginModel.data!.user!.companyId,
         ));
-        print('Company Id is: ${loginModel.data!.user!.companyId}');
-        Get.snackbar('Success', loginModel.message![0].value.toString());
-        CacheHelper.saveData(key: 'UserData', value: jsonEncode((loginModel)));
-        CacheHelper.saveData(key: 'companyId', value: loginModel.data!.user!.companyId);
       } else {
         goToScreen(screenNames: ScreenNames.verifyCodeScreen,arguments: [userName,password]);
       }

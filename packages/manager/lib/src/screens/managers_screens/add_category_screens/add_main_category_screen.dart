@@ -7,22 +7,17 @@ import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
-import 'package:manager/src/helpers/select_image_from_gallery.dart';
 import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
 import '../../../components/custom_button.dart';
 import '../../../helpers/Validation.dart';
 import '../../../utility/app_colors.dart';
 import '../../../utility/app_names.dart';
-
 class AddCategoryScreen extends StatefulWidget {
   @override
   State<AddCategoryScreen> createState() => _AddCategoryScreenState();
 }
-
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
-  SelectImageFromGallery selectImageFromGallery = SelectImageFromGallery();
-
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,7 +26,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
           appBar: AppBar(
             centerTitle: true,
             title: CustomText(
-                text: AppNames.addCategory,
+                text: AppNames.addMainCategory,
                 fontSize: 16.sp,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold),
@@ -60,30 +55,31 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                         return Column(children: [
                           state.data == ''
                               ? InkWell(
-                                  onTap: () async {
-                                    selectImageFromGallery.selectImageFromGallery();
-                                    print('Image_Path:-');
-                                    print(state.data);
-                                  },
-                                  child: Container(
-                                    height: 180.h,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: AppColors.gray2),
-                                    child: Icon(Icons.add_a_photo),
-                                  ),
-                                )
+                            onTap: () async {
+                              addCategoryViewModel.selectImageFromGallery();
+                              print('Image_Path:-');
+                              print('Image_Path:-');
+                              print(state.data);
+                            },
+                            child: Container(
+                              height: 180.h,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: AppColors.gray2),
+                              child: Icon(Icons.add_a_photo),
+                            ),
+                          )
                               : Image.file(
-                                  File(state.data!),
-                                  height: 180.h,
-                                  width: double.infinity,
-                                ),
+                            File(state.data!),
+                            height: 180.h,
+                            width: double.infinity,
+                          ),
                         ]);
                       }),
                   BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-                    bloc: selectImageFromGallery.isImage,
+                    bloc: addCategoryViewModel.isImage,
                     builder: (context, state) {
                       return !state.data!
                           ? Container()
@@ -115,15 +111,12 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                   ),
                   CustomButton(
                     width: 216.w,
-                    text: AppNames.addCategory,
+                    text: AppNames.addMainCategory,
                     function: () {
                       if (addCategoryViewModel.addMainCategoryKey.currentState!
-                                  .validate() ==
-                              true &&
-                          !selectImageFromGallery.isImage.state.data!) {
+                          .validate() ==
+                          true) {
                         addCategoryViewModel.addMainCategory();
-                      }else{
-                        selectImageFromGallery.isImage.update(data: true);
                       }
                     },
                   ),
@@ -136,11 +129,4 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
       ],
     );
   }
-
-// void pickImage() async{
-//   var image = await imagePicker.pickImage(source: ImageSource.gallery);
-//   setState(() {
-//     _image = image as File?;
-//   });
-// }
 }

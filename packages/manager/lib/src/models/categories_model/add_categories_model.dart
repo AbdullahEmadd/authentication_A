@@ -1,10 +1,10 @@
-class CategoriesModel {
-  CategoriesModel({
+class AddCategoriesModel {
+  AddCategoriesModel({
       this.state, 
       this.data, 
       this.message,});
 
-  CategoriesModel.fromJson(dynamic json) {
+  AddCategoriesModel.fromJson(dynamic json) {
     state = json['State'];
     data = json['Data'];
     if (json['Message'] != null) {
@@ -17,10 +17,10 @@ class CategoriesModel {
   bool? state;
   dynamic data;
   List<Message>? message;
-CategoriesModel copyWith({  bool? state,
+AddCategoriesModel copyWith({  bool? state,
   dynamic data,
   List<Message>? message,
-}) => CategoriesModel(  state: state ?? this.state,
+}) => AddCategoriesModel(  state: state ?? this.state,
   data: data ?? this.data,
   message: message ?? this.message,
 );

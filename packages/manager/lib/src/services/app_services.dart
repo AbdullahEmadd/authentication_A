@@ -38,7 +38,10 @@ class AppService {
         } else {
           if (response.statusCode == 200 &&
               jsonDecode(response.body)["State"]) {
-            return response.body;
+            print(response.body);
+            print(jsonDecode(response.body)["Data"]);
+            print(jsonDecode(response.body)["Data"].runtimeType);
+            return  jsonDecode(response.body)["Data"];
           } else {
             Get.snackbar('عفوا', jsonDecode(response.body)["Message"][0]["Value"].toString());
             return null;

@@ -46,7 +46,8 @@ class AppNames {
  static const dontMatch  = 'Your Passwords Dont Match';
  static const mostOrdered = 'المنتجات الأكثر طلبا';
  static const main = 'التصنيفات الرئيسية';
- static const addCategory = 'إضافة تصنيف رئيسي';
+ static const addMainCategory = 'إضافة تصنيف رئيسي';
  static const categoryName = 'اسم التنصيف الرئيسي';
+ static const mainCategories = 'التصنيفات الرئيسية';
 
 }
