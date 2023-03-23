@@ -14,13 +14,13 @@ import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddSubCategoryScreen extends StatefulWidget {
-
   @override
   State<AddSubCategoryScreen> createState() => _AddSubCategoryScreenState();
 }
 
 class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -46,55 +46,61 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
                   SizedBox(
                     height: 30.h,
                   ),
-                  BlocBuilder<GenericCubit<String>, GenericState<String>>(
+                  BlocBuilder<GenericCubit<File?>, GenericState<File?>>(
                       bloc: addCategoryViewModel.selectedImagePath,
                       builder: (context, state) {
                         return Column(children: [
-                          state.data == ''
+                          state.data == null
                               ? InkWell(
-                            onTap: () async {
-                              addCategoryViewModel.selectImageFromGallery();
-                            },
-                            child: Container(
-                              height: 180.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: AppColors.gray2),
-                              child: const Icon(Icons.add_a_photo),
-                            ),
-                          )
-                              : Image.file(
-                            File(state.data!),
-                            height: 180.h,
-                            width: double.infinity,
-                          ),
+                                  onTap: () async {
+                                    addCategoryViewModel.selectImage();
+                                  },
+                                  child: Container(
+                                    height: 180.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: AppColors.gray2),
+                                    child: const Icon(Icons.add_a_photo),
+                                  ),
+                                )
+                              : InkWell(
+                                  onTap: () {
+                                    addCategoryViewModel.selectImage();
+                                  },
+                                  child: Image.file(
+                                    state.data!,
+                                    height: 180.h,
+                                    width: double.infinity,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                         ]);
                       }),
-                  // BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-                  //   bloc: addCategoryViewModel.isImage,
-                  //   builder: (context, state) {
-                  //     return !state.data!
-                  //         ? Container()
-                  //         : Column(
-                  //       children: [
-                  //         SizedBox(
-                  //           height: 15.h,
-                  //         ),
-                  //         CustomText(
-                  //             text: 'Please insert image',
-                  //             fontSize: 16.sp),
-                  //       ],
-                  //     );
-                  //   },
-                  // ),
+                  BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                    bloc: addCategoryViewModel.isImage,
+                    builder: (context, state) {
+                      return !state.data!
+                          ? Container()
+                          : Column(
+                              children: [
+                                SizedBox(
+                                  height: 15.h,
+                                ),
+                                CustomText(
+                                    text: 'Please insert image',
+                                    fontSize: 16.sp),
+                              ],
+                            );
+                    },
+                  ),
                   SizedBox(
                     height: 30.h,
                   ),
@@ -114,9 +120,12 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                     text: AppNames.addSubCategory,
                     function: () {
                       if (addCategoryViewModel.addSubCategoryKey.currentState!
-                          .validate() ==
-                          true) {
+                              .validate() && addCategoryViewModel.selectedImagePath.state.data != null){
                         addCategoryViewModel.addSubCategory();
+                      }else {
+                        if(addCategoryViewModel.selectedImagePath.state.data == null) {
+                          addCategoryViewModel.isImage.update(data: true);
+                        }
                       }
                     },
                   ),

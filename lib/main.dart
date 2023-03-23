@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:first_task/helpers/cache_helper.dart';
+import 'package:first_task/models/authentication/login_model.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/home_screens/homepage.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
@@ -11,13 +14,25 @@ void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   String? userData = CacheHelper.getData(key: 'UserData');
-  String? companyId = CacheHelper.getData(key: 'companyId');
+  // String? companyId = CacheHelper.getData(key: 'companyId');
   bool? splash = CacheHelper.getData(key: 'Splash');
   Widget widget;
   if (splash != null && splash) {
     if (userData != null) {
+      
+      print(userData.runtimeType);
+
+      print(jsonEncode(userData));
+
+
+      LoginModel x  = LoginModel.fromJson(jsonDecode(userData));
+
+      print(x.runtimeType);
+
+      
+      
       runApp(StartManagerCycle(
-        companyId: companyId,
+        companyId: x.data!.user!.companyId!,
       ));
       return;
     }
