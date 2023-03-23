@@ -38,7 +38,7 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                 padding: const EdgeInsets.only(left: 15),
                 child: IconButton(
                   onPressed: () {},
-                  icon: Icon(Icons.notifications_outlined),
+                  icon: const Icon(Icons.notifications_outlined),
                   iconSize: 35,
                 ),
               ),
