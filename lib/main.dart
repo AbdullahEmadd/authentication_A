@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(360,690),
-      minTextAdapt: true,
-      splitScreenMode: true,
+      minTextAdapt: false,
+      splitScreenMode: false,
       builder: (context, child) {
         return GetMaterialApp(
             locale: const Locale("ar"),
