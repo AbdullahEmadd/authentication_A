@@ -8,8 +8,9 @@ import 'package:manager/src/controller/categories_request/categories_request.dar
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
-import 'package:manager/src/helpers/select_image_from_gallery.dart';
+import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/models/categories_model/add_categories_model.dart';
+import 'package:manager/src/routes/routes.dart';
 
 class AddCategoryViewModel {
   GlobalKey<FormState> addMainCategoryKey = GlobalKey<FormState>();
@@ -18,23 +19,20 @@ class AddCategoryViewModel {
   TextEditingController subCategoryName = TextEditingController();
   Loading loading = Loading();
   AddCategoriesModel addCategoriesModel = AddCategoriesModel();
-  GenericCubit<String> selectedImagePath = GenericCubit(data: '');
+  GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
   String base64 ='';
 
   addMainCategory() async {
     loading.show;
-    AddCategoriesModel? addCategoriesModel =
+    bool? result =
         await CategoriesController.addMainCategory(
             name: mainCategoryName.text,
             companyId: globalData.companyId ?? '',
             logo: base64);
-    if (addCategoriesModel != null) {
-      if (addCategoriesModel.state == true) {
-        Get.snackbar('Success', addCategoriesModel.message![0].value.toString());
-      } else {
-        Get.snackbar('Error', addCategoriesModel.message![0].value.toString());
-      }
+    if (result) {
+        Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
+        goBack();
     }
     loading.hide;
   }
@@ -57,14 +55,15 @@ class AddCategoryViewModel {
     loading.hide;
   }
 
-  selectImageFromGallery() async {
-    XFile? xFile = await ImagePicker()
-        .pickImage(source: ImageSource.gallery, imageQuality: 10);
-    if (xFile != null) {
-      selectedImagePath.update(data: xFile.path);
-      base64 = base64Encode(File(xFile.path).readAsBytesSync());
+  selectImage() async {
+
+    File? file = await uploadImage();
+    if (file != null) {
+      isImage.update(data: false);
+      selectedImagePath.update(data: file);
+      base64 = base64Encode(file.readAsBytesSync());
     }else{
-      return 'Image not selected';
+      selectedImagePath.update(data: null);
     }
   }
 }

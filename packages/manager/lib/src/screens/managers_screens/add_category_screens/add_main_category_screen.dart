@@ -50,14 +50,14 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                   SizedBox(
                     height: 30.h,
                   ),
-                  BlocBuilder<GenericCubit<String>, GenericState<String>>(
+                  BlocBuilder<GenericCubit<File?>, GenericState<File?>>(
                       bloc: addCategoryViewModel.selectedImagePath,
                       builder: (context, state) {
                         return Column(children: [
-                          state.data == ''
+                          state.data == null
                               ? InkWell(
                             onTap: () async {
-                              addCategoryViewModel.selectImageFromGallery();
+                              addCategoryViewModel.selectImage();
                               print('Image_Path:-');
                               print('Image_Path:-');
                               print(state.data);
@@ -72,8 +72,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                               child: Icon(Icons.add_a_photo),
                             ),
                           )
-                              : Image.file(
-                            File(state.data!),
+                              : Image.file(state.data!,
                             height: 180.h,
                             width: double.infinity,
                           ),

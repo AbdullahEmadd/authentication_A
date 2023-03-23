@@ -4,7 +4,7 @@ import 'package:manager/src/models/categories_model/get_main_categories_model.da
 import 'package:manager/src/services/app_services.dart';
 
 class CategoriesController {
-  static Future<AddCategoriesModel?> addMainCategory({
+  static Future<bool> addMainCategory({
     required String name,
     required String companyId,
     required String logo,
@@ -18,7 +18,7 @@ class CategoriesController {
           "Logo": logo,
         }
     );
-    return result != null ? AddCategoriesModel.fromJson(json.decode(result)) : null;
+    return result != null ? true : false;
   }
 
   static Future<AddCategoriesModel?> addSubCategory({
