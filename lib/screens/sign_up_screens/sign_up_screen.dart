@@ -133,6 +133,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       textFieldVaidType: TextFieldvalidatorType.PhoneNumber,
                       controller: signUpViewModel.phoneController,
                       hint: AppNames.phone,
+                      textType: TextInputType.number,
                     ),
                     BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
                       bloc: signUpViewModel.obscure1,

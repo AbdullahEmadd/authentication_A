@@ -96,6 +96,7 @@ class _EnterCodeScreenState extends State<EnterCodeScreen> {
                         controller: forgetPasswordViewModel.codeController,
                         textFieldVaidType: TextFieldvalidatorType.EnterCode,
                         hint: AppNames.code,
+                        textType: TextInputType.number,
                       ),
                     ),
                     SizedBox(

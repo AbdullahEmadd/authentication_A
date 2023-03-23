@@ -94,6 +94,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
                         textFieldVaidType: TextFieldvalidatorType.EnterCode,
                         hint: AppNames.code,
                         controller: verifyCodeViewModel.codeController,
+                        textType: TextInputType.number,
                       ),
                       SizedBox(
                         height: 5.h,
