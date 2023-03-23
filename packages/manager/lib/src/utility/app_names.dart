@@ -47,7 +47,9 @@ class AppNames {
  static const mostOrdered = 'المنتجات الأكثر طلبا';
  static const main = 'التصنيفات الرئيسية';
  static const addMainCategory = 'إضافة تصنيف رئيسي';
- static const categoryName = 'اسم التنصيف الرئيسي';
+ static const addSubCategory = 'إضافة تصنيف فرعي';
+ static const mainCategoryName = 'اسم التنصيف الرئيسي';
+ static const subCategoryName = 'اسم التنصيف الفرعي';
  static const mainCategories = 'التصنيفات الرئيسية';
 
 }

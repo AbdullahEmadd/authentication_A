@@ -4,6 +4,7 @@ import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/utility/app_colors.dart';
 
 class CustomButton extends StatelessWidget {
+  final Color? color;
   final String text;
   final void Function()? function;
   final double height;
@@ -14,6 +15,7 @@ class CustomButton extends StatelessWidget {
     required this.function,
     this.width = double.infinity,
     this.height = 45,
+    this.color,
 });
 
 
@@ -24,7 +26,7 @@ class CustomButton extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
-        color: AppColors.mainColor
+        color: color ?? AppColors.mainColor
       ),
       child: MaterialButton(
         onPressed: function,

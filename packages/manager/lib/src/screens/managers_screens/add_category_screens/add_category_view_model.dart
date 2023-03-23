@@ -13,7 +13,9 @@ import 'package:manager/src/models/categories_model/add_categories_model.dart';
 
 class AddCategoryViewModel {
   GlobalKey<FormState> addMainCategoryKey = GlobalKey<FormState>();
+  GlobalKey<FormState> addSubCategoryKey = GlobalKey<FormState>();
   TextEditingController mainCategoryName = TextEditingController();
+  TextEditingController subCategoryName = TextEditingController();
   Loading loading = Loading();
   AddCategoriesModel addCategoriesModel = AddCategoriesModel();
   GenericCubit<String> selectedImagePath = GenericCubit(data: '');
@@ -27,6 +29,24 @@ class AddCategoryViewModel {
             name: mainCategoryName.text,
             companyId: globalData.companyId ?? '',
             logo: base64);
+    if (addCategoriesModel != null) {
+      if (addCategoriesModel.state == true) {
+        Get.snackbar('Success', addCategoriesModel.message![0].value.toString());
+      } else {
+        Get.snackbar('Error', addCategoriesModel.message![0].value.toString());
+      }
+    }
+    loading.hide;
+  }
+
+  addSubCategory() async {
+    loading.show;
+    AddCategoriesModel? addCategoriesModel =
+    await CategoriesController.addSubCategory(
+        name: subCategoryName.text,
+        companyId: globalData.companyId ?? '',
+        logo: base64,
+        parentCompanyId: '1905b126-224c-48f4-9e95-5712d2067cd1');
     if (addCategoriesModel != null) {
       if (addCategoriesModel.state == true) {
         Get.snackbar('Success', addCategoriesModel.message![0].value.toString());

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
+import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
@@ -54,11 +55,6 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
               GenericState<List<MainCategoriesModel>>>(
             bloc: getMainCategoriesViewModel.getMainCategoriesModel,
             builder: (context, state) {
-              if (getMainCategoriesViewModel
-                      .getMainCategoriesModel.state.data!.isEmpty &&
-                  getMainCategoriesViewModel.loading.state.loading == true) {
-                return SizedBox();
-              } else {
                 return ListView.builder(
                     itemCount: getMainCategoriesViewModel
                         .getMainCategoriesModel.state.data!.length,
@@ -66,41 +62,40 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                       return InkWell(
                         onTap: () {},
                         child: SizedBox(
-                          height: 82,
+                          height: 82.h,
                           child: Card(
                             child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                          child: IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.add,
-                                        ),
-                                      )),
-                                      Expanded(
-                                          child: IconButton(
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.delete,
-                                        ),
-                                      )),
-                                    ],
+                                  Container(
+                                  height: 82,
+                                  width:
+                                  MediaQuery.of(context).size.width / 3,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(
+                                            AppConsts.imageDomain +
+                                                getMainCategoriesViewModel
+                                                    .getMainCategoriesModel
+                                                    .state
+                                                    .data![index]
+                                                    .logo!)),
+                                    borderRadius: const BorderRadius.only(
+                                      bottomRight: Radius.circular(5),
+                                      topRight: Radius.circular(5),
+                                    ),
+                                    color: AppColors.gray,
                                   ),
-                                  SizedBox(
-                                    width: 20.w,
-                                  ),
+                                ),
                                   SizedBox(
                                     width:
                                         MediaQuery.of(context).size.width / 3 -
                                             20.w,
                                     child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [
@@ -128,35 +123,43 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                                       ],
                                     ),
                                   ),
-                                  Container(
-                                    height: 82,
-                                    width:
-                                        MediaQuery.of(context).size.width / 3,
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          fit: BoxFit.fill,
-                                          image: NetworkImage(
-                                              AppConsts.imageDomain +
-                                                  getMainCategoriesViewModel
-                                                      .getMainCategoriesModel
-                                                      .state
-                                                      .data![index]
-                                                      .logo!)),
-                                      borderRadius: const BorderRadius.only(
-                                        bottomRight: Radius.circular(5),
-                                        topRight: Radius.circular(5),
-                                      ),
-                                      color: AppColors.gray,
-                                    ),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                          child: IconButton(
+                                            onPressed: () {},
+                                            icon: const Icon(
+                                              Icons.edit,
+                                            ),
+                                          )),
+                                      Expanded(
+                                          child: IconButton(
+                                            onPressed: () {},
+                                            icon: const Icon(
+                                              Icons.delete,
+                                            ),
+                                          )),
+                                    ],
                                   ),
                                 ]),
                           ),
                         ),
                       );
                     });
-              }
             },
           ),
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: AppColors.mainColor,
+              child: const Center(
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                goToScreen(screenNames: ScreenNames.addCategoryScreen);
+              }),
         ),
         Loader(loading: getMainCategoriesViewModel.loading),
       ],

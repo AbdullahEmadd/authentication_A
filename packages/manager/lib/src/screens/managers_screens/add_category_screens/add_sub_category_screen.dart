@@ -1,23 +1,25 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_button.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
-import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/helpers/Validation.dart';
 import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
-import '../../../components/custom_button.dart';
-import '../../../helpers/Validation.dart';
-import '../../../utility/app_colors.dart';
-import '../../../utility/app_names.dart';
-class AddCategoryScreen extends StatefulWidget {
+import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_names.dart';
+
+class AddSubCategoryScreen extends StatefulWidget {
+
   @override
-  State<AddCategoryScreen> createState() => _AddCategoryScreenState();
+  State<AddSubCategoryScreen> createState() => _AddSubCategoryScreenState();
 }
-class _AddCategoryScreenState extends State<AddCategoryScreen> {
+
+class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
           appBar: AppBar(
             centerTitle: true,
             title: CustomText(
-                text: AppNames.addMainCategory,
+                text: AppNames.addSubCategory,
                 fontSize: 16.sp,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold),
@@ -44,7 +46,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
           ),
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding:  EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
                   SizedBox(
@@ -58,9 +60,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                               ? InkWell(
                             onTap: () async {
                               addCategoryViewModel.selectImageFromGallery();
-                              print('Image_Path:-');
-                              print('Image_Path:-');
-                              print(state.data);
                             },
                             child: Container(
                               height: 180.h,
@@ -69,7 +68,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(15),
                                   color: AppColors.gray2),
-                              child: Icon(Icons.add_a_photo),
+                              child: const Icon(Icons.add_a_photo),
                             ),
                           )
                               : Image.file(
@@ -79,32 +78,32 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           ),
                         ]);
                       }),
-                  BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
-                    bloc: addCategoryViewModel.isImage,
-                    builder: (context, state) {
-                      return !state.data!
-                          ? Container()
-                          : Column(
-                              children: [
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                CustomText(
-                                    text: 'Please insert image',
-                                    fontSize: 16.sp),
-                              ],
-                            );
-                    },
-                  ),
+                  // BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                  //   bloc: addCategoryViewModel.isImage,
+                  //   builder: (context, state) {
+                  //     return !state.data!
+                  //         ? Container()
+                  //         : Column(
+                  //       children: [
+                  //         SizedBox(
+                  //           height: 15.h,
+                  //         ),
+                  //         CustomText(
+                  //             text: 'Please insert image',
+                  //             fontSize: 16.sp),
+                  //       ],
+                  //     );
+                  //   },
+                  // ),
                   SizedBox(
                     height: 30.h,
                   ),
                   Form(
-                    key: addCategoryViewModel.addMainCategoryKey,
+                    key: addCategoryViewModel.addSubCategoryKey,
                     child: CustomTextField(
-                      hint: AppNames.mainCategoryName,
+                      hint: AppNames.subCategoryName,
                       textFieldVaidType: TextFieldvalidatorType.RegisterText,
-                      controller: addCategoryViewModel.mainCategoryName,
+                      controller: addCategoryViewModel.subCategoryName,
                     ),
                   ),
                   SizedBox(
@@ -112,23 +111,13 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                   ),
                   CustomButton(
                     width: 216.w,
-                    text: AppNames.addMainCategory,
-                    function: () {
-                      if (addCategoryViewModel.addMainCategoryKey.currentState!
-                          .validate() ==
-                          true) {
-                        addCategoryViewModel.addMainCategory();
-                      }
-                    },
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  CustomButton(
-                    width: 216.w,
                     text: AppNames.addSubCategory,
                     function: () {
-                      goToScreen(screenNames: ScreenNames.addSubCategoryScreen);
+                      if (addCategoryViewModel.addSubCategoryKey.currentState!
+                          .validate() ==
+                          true) {
+                        addCategoryViewModel.addSubCategory();
+                      }
                     },
                   ),
                 ],

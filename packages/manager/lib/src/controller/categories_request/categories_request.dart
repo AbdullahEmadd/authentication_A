@@ -21,6 +21,25 @@ class CategoriesController {
     return result != null ? AddCategoriesModel.fromJson(json.decode(result)) : null;
   }
 
+  static Future<AddCategoriesModel?> addSubCategory({
+    required String name,
+    required String companyId,
+    required String logo,
+    required String parentCompanyId,
+  }) async {
+    var result = await AppService.callService(
+        actionType: ActionType.post,
+        apiName: "Catogery/AddCatogery",
+        body: {
+          "Name": name,
+          "CompanyId": companyId,
+          "Logo": logo,
+          "ParentCategoryId": parentCompanyId,
+        }
+    );
+    return result != null ? AddCategoriesModel.fromJson(json.decode(result)) : null;
+  }
+
   static Future<List<MainCategoriesModel>> getMainCategories(
       {required String companyId}
       ) async{
