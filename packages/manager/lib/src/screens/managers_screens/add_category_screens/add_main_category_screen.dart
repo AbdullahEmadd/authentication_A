@@ -58,9 +58,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                               ? InkWell(
                             onTap: () async {
                               addCategoryViewModel.selectImage();
-                              print('Image_Path:-');
-                              print('Image_Path:-');
-                              print(state.data);
                             },
                             child: Container(
                               height: 180.h,

@@ -41,8 +41,8 @@ class AppService {
             // print(response.body);
             // print(jsonDecode(response.body)["Data"]);
             // print(jsonDecode(response.body)["Data"].runtimeType);
-            // return  jsonDecode(response.body)["Data"];
-            return response.body;
+            return  jsonDecode(response.body)["Data"];
+            // return response.body;
           } else {
             Get.snackbar('عفوا', jsonDecode(response.body)["Message"][0]["Value"].toString());
             return null;

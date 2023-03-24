@@ -19,18 +19,7 @@ void main() async{
   Widget widget;
   if (splash != null && splash) {
     if (userData != null) {
-      
-      print(userData.runtimeType);
-
-      print(jsonEncode(userData));
-
-
       LoginModel x  = LoginModel.fromJson(jsonDecode(userData));
-
-      print(x.runtimeType);
-
-      
-      
       runApp(StartManagerCycle(
         companyId: x.data!.user!.companyId!,
       ));
