@@ -8,9 +8,8 @@ import 'package:manager/src/screens/managers_screens/get_categories_screens/get_
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
 import 'package:manager/src/utility/app_names.dart';
-
 import '../../../cubits/generic_cubit/generic_cubit.dart';
-import '../../../models/categories_model/get_main_categories_model.dart';
+import '../../../models/categories_model/main_categories_model.dart';
 
 class GetMainCategoriesScreen extends StatefulWidget {
   @override

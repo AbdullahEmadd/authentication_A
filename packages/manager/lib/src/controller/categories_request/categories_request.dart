@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:manager/src/models/categories_model/add_categories_model.dart';
-import 'package:manager/src/models/categories_model/get_main_categories_model.dart';
+import 'package:manager/src/models/categories_model/main_categories_model.dart';
+import 'package:manager/src/models/categories_model/sub_categories_model.dart';
 import 'package:manager/src/services/app_services.dart';
 
 class CategoriesController {
@@ -21,11 +22,11 @@ class CategoriesController {
     return result != null ? true : false;
   }
 
-  static Future<AddCategoriesModel?> addSubCategory({
+  static Future<bool> addSubCategory({
     required String name,
     required String companyId,
     required String logo,
-    required String parentCompanyId,
+    required String parentCategoryId,
   }) async {
     var result = await AppService.callService(
         actionType: ActionType.post,
@@ -34,10 +35,10 @@ class CategoriesController {
           "Name": name,
           "CompanyId": companyId,
           "Logo": logo,
-          "ParentCategoryId": parentCompanyId,
+          "ParentCategoryId": parentCategoryId,
         }
     );
-    return result != null ? AddCategoriesModel.fromJson(json.decode(result)) : null;
+    return result != null ? true : false;
   }
 
   static Future<List<MainCategoriesModel>> getMainCategories(
@@ -55,5 +56,22 @@ class CategoriesController {
     }
     return (List<MainCategoriesModel>.from(
         result.map((x) => MainCategoriesModel.fromJson(x))));
+  }
+
+  static Future<List<SubCategoriesModel>> getSubCategories(
+      {required String companyId}
+      ) async{
+    var result = await AppService.callService(
+        actionType: ActionType.get,
+        apiName: "Catogery/GetSubCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
+        body: {
+          "id": companyId
+        }
+    );
+    if(result==null) {
+      return [];
+    }
+    return (List<SubCategoriesModel>.from(
+        result.map((x) => SubCategoriesModel.fromJson(x))));
   }
 }

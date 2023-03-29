@@ -13,12 +13,15 @@ import '../../../components/custom_button.dart';
 import '../../../helpers/Validation.dart';
 import '../../../utility/app_colors.dart';
 import '../../../utility/app_names.dart';
+
 class AddCategoryScreen extends StatefulWidget {
   @override
   State<AddCategoryScreen> createState() => _AddCategoryScreenState();
 }
+
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -56,23 +59,30 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                         return Column(children: [
                           state.data == null
                               ? InkWell(
-                            onTap: () async {
-                              addCategoryViewModel.selectImage();
-                            },
-                            child: Container(
-                              height: 180.h,
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: AppColors.gray2),
-                              child: Icon(Icons.add_a_photo),
-                            ),
-                          )
-                              : Image.file(state.data!,
-                            height: 180.h,
-                            width: double.infinity,
-                          ),
+                                  onTap: () async {
+                                    addCategoryViewModel.selectImage();
+                                  },
+                                  child: Container(
+                                    height: 180.h,
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        shape: BoxShape.rectangle,
+                                        borderRadius: BorderRadius.circular(15),
+                                        color: AppColors.gray2),
+                                    child: Icon(Icons.add_a_photo),
+                                  ),
+                                )
+                              : InkWell(
+                                  onTap: () {
+                                    addCategoryViewModel.selectImage();
+                                  },
+                                  child: Image.file(
+                                    state.data!,
+                                    height: 180.h,
+                                    width: double.infinity,
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                         ]);
                       }),
                   BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
@@ -111,9 +121,15 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                     text: AppNames.addMainCategory,
                     function: () {
                       if (addCategoryViewModel.addMainCategoryKey.currentState!
-                          .validate() ==
-                          true) {
+                          .validate() &&
+                          addCategoryViewModel.selectedImagePath.state.data !=
+                              null) {
                         addCategoryViewModel.addMainCategory();
+                      } else {
+                        if (addCategoryViewModel.selectedImagePath.state.data ==
+                            null) {
+                          addCategoryViewModel.isImage.update(data: true);
+                        }
                       }
                     },
                   ),

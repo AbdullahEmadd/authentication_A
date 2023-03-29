@@ -1,5 +1,6 @@
 // ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/helpers/Validation.dart';
 import '../utility/app_colors.dart';
 class CustomTextField extends StatelessWidget {
@@ -59,7 +60,7 @@ class CustomTextField extends StatelessWidget {
         onTap: onPressed,
         child:
         Container(
-          height: height ?? 48,
+          height: height ?? 40.h,
           decoration: BoxDecoration(
             color: AppColors.gray,
             borderRadius: BorderRadius.circular(10),

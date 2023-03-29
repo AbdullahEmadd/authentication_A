@@ -11,6 +11,7 @@ import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/models/categories_model/add_categories_model.dart';
 import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
 
 class AddCategoryViewModel {
   GlobalKey<FormState> addMainCategoryKey = GlobalKey<FormState>();
@@ -22,6 +23,8 @@ class AddCategoryViewModel {
   GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
   String base64 ='';
+  GetMainCategoriesViewModel getMainCategoriesViewModel =
+  GetMainCategoriesViewModel();
 
   addMainCategory() async {
     loading.show;
@@ -32,31 +35,26 @@ class AddCategoryViewModel {
             logo: base64);
     if (result) {
         Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
-        goBack();
+        goToScreenPushNamedAndpop(screenNames: ScreenNames.getMainCategoriesScreen);
     }
     loading.hide;
   }
 
-  addSubCategory() async {
+  addSubCategory({required String parentCategoryId}) async {
     loading.show;
-    AddCategoriesModel? addCategoriesModel =
+    bool? result =
     await CategoriesController.addSubCategory(
         name: subCategoryName.text,
         companyId: globalData.companyId ?? '',
         logo: base64,
-        parentCompanyId: '1905b126-224c-48f4-9e95-5712d2067cd1');
-    if (addCategoriesModel != null) {
-      if (addCategoriesModel.state == true) {
-        Get.snackbar('Success', addCategoriesModel.message![0].value.toString());
-      } else {
-        Get.snackbar('Error', addCategoriesModel.message![0].value.toString());
-      }
+        parentCategoryId: parentCategoryId);
+    if (result) {
+      Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
     }
     loading.hide;
   }
 
   selectImage() async {
-
     File? file = await uploadImage();
     if (file != null) {
       isImage.update(data: false);

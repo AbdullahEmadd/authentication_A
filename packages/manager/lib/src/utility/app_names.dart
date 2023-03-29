@@ -51,5 +51,6 @@ class AppNames {
  static const mainCategoryName = 'اسم التنصيف الرئيسي';
  static const subCategoryName = 'اسم التنصيف الفرعي';
  static const mainCategories = 'التصنيفات الرئيسية';
+ static const subCategories = 'التصنيفات الفرعية';
 
 }
