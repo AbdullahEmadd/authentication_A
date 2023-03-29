@@ -22,8 +22,7 @@ class AddSubCategoryScreen extends StatefulWidget {
 
 class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
-  GetMainCategoriesViewModel getMainCategoriesViewModel =
-      GetMainCategoriesViewModel();
+  GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
   var value;
   @override
   void initState() {
@@ -177,10 +176,14 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                     width: 216.w,
                     text: AppNames.addSubCategory,
                     function: () {
-                      if (addCategoryViewModel.addSubCategoryKey.currentState!
-                              .validate() &&
+
+                      bool result=   getMainCategoriesViewModel.dropDownKey.currentState!.validate() ;
+                      var result2 = addCategoryViewModel.addSubCategoryKey.currentState!
+                          .validate() ;
+
+                      if (result && result2   &&
                           addCategoryViewModel.selectedImagePath.state.data !=
-                              null && getMainCategoriesViewModel.dropDownKey.currentState!.validate()) {
+                              null ) {
                         addCategoryViewModel.addSubCategory(
                           parentCategoryId: '1905b126-224c-48f4-9e95-5712d2067cd1'
                         );
