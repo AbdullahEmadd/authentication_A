@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:manager/src/models/categories_model/add_categories_model.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
 import 'package:manager/src/models/categories_model/sub_categories_model.dart';
+import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/services/app_services.dart';
 
 class CategoriesController {
@@ -17,8 +17,7 @@ class CategoriesController {
           "Name": name,
           "CompanyId": companyId,
           "Logo": logo,
-        }
-    );
+        });
     return result != null ? true : false;
   }
 
@@ -36,22 +35,18 @@ class CategoriesController {
           "CompanyId": companyId,
           "Logo": logo,
           "ParentCategoryId": parentCategoryId,
-        }
-    );
+        });
     return result != null ? true : false;
   }
 
   static Future<List<MainCategoriesModel>> getMainCategories(
-      {required String companyId}
-      ) async{
+      {required String companyId}) async {
     var result = await AppService.callService(
         actionType: ActionType.get,
-        apiName: "Catogery/GetMainCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
-        body: {
-          "id": companyId
-        }
-        );
-    if(result==null) {
+        apiName:
+            "Catogery/GetMainCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
+        body: {"id": companyId});
+    if (result == null) {
       return [];
     }
     return (List<MainCategoriesModel>.from(
@@ -59,16 +54,13 @@ class CategoriesController {
   }
 
   static Future<List<SubCategoriesModel>> getSubCategories(
-      {required String companyId}
-      ) async{
+      {required String companyId}) async {
     var result = await AppService.callService(
         actionType: ActionType.get,
-        apiName: "Catogery/GetSubCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
-        body: {
-          "id": companyId
-        }
-    );
-    if(result==null) {
+        apiName:
+            "Catogery/GetSubCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
+        body: {"id": companyId});
+    if (result == null) {
       return [];
     }
     return (List<SubCategoriesModel>.from(

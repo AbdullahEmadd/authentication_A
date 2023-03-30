@@ -94,7 +94,9 @@ class _ManagerHomeScreenState extends State<ManagerHomeScreen> {
                           color: AppColors.black,
                           fontWeight: FontWeight.bold),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            goToScreen(screenNames: ScreenNames.getMainUnitsScreen);
+                          },
                           child: CustomText(
                             text: 'الكل',
                             fontSize: 18.sp,

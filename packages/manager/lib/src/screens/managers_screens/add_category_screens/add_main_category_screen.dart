@@ -21,6 +21,11 @@ class AddCategoryScreen extends StatefulWidget {
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
+  @override
+  void initState() {
+    addCategoryViewModel.init();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

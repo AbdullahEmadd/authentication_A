@@ -1,15 +1,12 @@
 import 'dart:convert';
-import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:manager/src/controller/categories_request/categories_request.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
-import 'package:manager/src/models/categories_model/add_categories_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
 
@@ -19,12 +16,15 @@ class AddCategoryViewModel {
   TextEditingController mainCategoryName = TextEditingController();
   TextEditingController subCategoryName = TextEditingController();
   Loading loading = Loading();
-  AddCategoriesModel addCategoriesModel = AddCategoriesModel();
   GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
   String base64 ='';
   GetMainCategoriesViewModel getMainCategoriesViewModel =
   GetMainCategoriesViewModel();
+
+  void init(){
+    getMainCategoriesViewModel.getMainCategories();
+  }
 
   addMainCategory() async {
     loading.show;
@@ -35,7 +35,8 @@ class AddCategoryViewModel {
             logo: base64);
     if (result) {
         Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
-        goToScreenPushNamedAndpop(screenNames: ScreenNames.getMainCategoriesScreen);
+        init();
+        goBack();
     }
     loading.hide;
   }

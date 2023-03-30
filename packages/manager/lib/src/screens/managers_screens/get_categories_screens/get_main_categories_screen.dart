@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
@@ -20,10 +21,12 @@ class GetMainCategoriesScreen extends StatefulWidget {
 class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
   GetMainCategoriesViewModel getMainCategoriesViewModel =
       GetMainCategoriesViewModel();
+  AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
 
   @override
   void initState() {
     getMainCategoriesViewModel.getMainCategories();
+    addCategoryViewModel.init();
     super.initState();
   }
 
