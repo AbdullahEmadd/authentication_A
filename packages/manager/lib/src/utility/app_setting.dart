@@ -8,7 +8,7 @@ class AppSetting {
   // static const String serviceURL = 'http://kitchenapi.excprotection.com/';
 
   ///LIVE
-  static const String serviceURL = 'https://excp.sa:8005/';
+  static const String serviceURL = 'http://kitchenapi.excprotection.com/';
 
   static String globalLang = 'en';
   String? playerId;
