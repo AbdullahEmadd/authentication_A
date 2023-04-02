@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
 import 'package:manager/src/models/categories_model/sub_categories_model.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
@@ -43,7 +44,7 @@ class CategoriesController {
     var result = await AppService.callService(
         actionType: ActionType.get,
         apiName:
-            "Catogery/GetMainCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
+            "Catogery/GetMainCatogreyByCompanyId?id=${globalData.companyId}",
         body: null
     );
     if (result == null) {
@@ -58,7 +59,7 @@ class CategoriesController {
     var result = await AppService.callService(
         actionType: ActionType.get,
         apiName:
-            "Catogery/GetSubCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
+            "Catogery/GetSubCatogreyByCompanyId?id=${globalData.companyId}",
         body: null
     );
     if (result == null) {
