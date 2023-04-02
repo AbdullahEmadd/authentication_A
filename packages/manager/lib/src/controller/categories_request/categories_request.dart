@@ -39,13 +39,13 @@ class CategoriesController {
     return result != null ? true : false;
   }
 
-  static Future<List<MainCategoriesModel>> getMainCategories(
-      {required String companyId}) async {
+  static Future<List<MainCategoriesModel>> getMainCategories() async {
     var result = await AppService.callService(
         actionType: ActionType.get,
         apiName:
             "Catogery/GetMainCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
-        body: {"id": companyId});
+        body: null
+    );
     if (result == null) {
       return [];
     }
@@ -54,12 +54,13 @@ class CategoriesController {
   }
 
   static Future<List<SubCategoriesModel>> getSubCategories(
-      {required String companyId}) async {
+      ) async {
     var result = await AppService.callService(
         actionType: ActionType.get,
         apiName:
             "Catogery/GetSubCatogreyByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
-        body: {"id": companyId});
+        body: null
+    );
     if (result == null) {
       return [];
     }

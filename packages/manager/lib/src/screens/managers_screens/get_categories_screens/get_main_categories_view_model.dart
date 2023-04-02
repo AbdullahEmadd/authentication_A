@@ -18,8 +18,7 @@ class GetMainCategoriesViewModel {
   getMainCategories() async {
     loading.show;
     getMainCategoriesModel.update(
-        data: await CategoriesController.getMainCategories(
-            companyId: globalData.companyId!));
+        data: await CategoriesController.getMainCategories());
     mainCategoriesNames.update(
         data: getMainCategoriesModel.state.data!
             .map((e) => DropDownModel(name: e.name, id: e.id))

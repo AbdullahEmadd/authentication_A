@@ -11,8 +11,7 @@ class GetSubCategoriesViewModel {
 
   getSubCategories () async{
     loading.show;
-    getSubCategoriesModel.update(data: await CategoriesController.getSubCategories(
-        companyId: globalData.companyId!));
+    getSubCategoriesModel.update(data: await CategoriesController.getSubCategories());
     loading.hide;
   }
 }
