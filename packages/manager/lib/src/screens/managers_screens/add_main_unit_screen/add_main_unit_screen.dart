@@ -45,7 +45,7 @@ class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  SizedBox(height: 100.h),
+                  SizedBox(height: 130.h),
                   Form(
                     key: addMainUnitViewModel.addMainUnitKey,
                     child: CustomTextField(

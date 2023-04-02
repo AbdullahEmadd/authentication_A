@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/models/authentication/login_model.dart';
 import 'package:first_task/routes/routes.dart';
@@ -10,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/manager.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
