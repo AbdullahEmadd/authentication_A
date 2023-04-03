@@ -21,9 +21,9 @@ class AddCategoryScreen extends StatefulWidget {
 }
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
-  bool isOptional = false;
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
   GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
+
   @override
   void initState() {
     getMainCategoriesViewModel.getMainCategories();
@@ -67,30 +67,30 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                         return Column(children: [
                           state.data == null
                               ? InkWell(
-                                  onTap: () async {
-                                    addCategoryViewModel.selectImage();
-                                  },
-                                  child: Container(
-                                    height: 180.h,
-                                    width: double.infinity,
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.rectangle,
-                                        borderRadius: BorderRadius.circular(15),
-                                        color: AppColors.gray2),
-                                    child: Icon(Icons.add_a_photo),
-                                  ),
-                                )
+                            onTap: () async {
+                              addCategoryViewModel.selectImage();
+                            },
+                            child: Container(
+                              height: 180.h,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.rectangle,
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: AppColors.gray2),
+                              child: Icon(Icons.add_a_photo),
+                            ),
+                          )
                               : InkWell(
-                                  onTap: () {
-                                    addCategoryViewModel.selectImage();
-                                  },
-                                  child: Image.file(
-                                    state.data!,
-                                    height: 180.h,
-                                    width: double.infinity,
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
+                            onTap: () {
+                              addCategoryViewModel.selectImage();
+                            },
+                            child: Image.file(
+                              state.data!,
+                              height: 180.h,
+                              width: double.infinity,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
                         ]);
                       }),
                   BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
@@ -99,15 +99,15 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                       return !state.data!
                           ? Container()
                           : Column(
-                              children: [
-                                SizedBox(
-                                  height: 15.h,
-                                ),
-                                CustomText(
-                                    text: 'Please insert image',
-                                    fontSize: 16.sp),
-                              ],
-                            );
+                        children: [
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          CustomText(
+                              text: 'Please insert image',
+                              fontSize: 16.sp),
+                        ],
+                      );
                     },
                   ),
                   SizedBox(
@@ -121,22 +121,26 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                       controller: addCategoryViewModel.mainCategoryName,
                     ),
                   ),
-                  Row(
-                    children: [
-                      Checkbox(
-                        value: isOptional,
-                        onChanged: (val) {
-                          setState(() {
-                            isOptional = val!;
-                          });
-                        },
-                      ),
-                      CustomText(
-                        text: AppNames.isOptional,
-                        color: AppColors.mainColor,
-                        fontSize: 15.sp,
-                      ),
-                    ],
+                  BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                    bloc: addCategoryViewModel.isOptional,
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          Checkbox(
+                            value: state.data,
+                            onChanged: (val) {
+                              addCategoryViewModel.isOptional.update(
+                                  data: true);
+                            },
+                          ),
+                          CustomText(
+                            text: AppNames.isOptional,
+                            color: AppColors.mainColor,
+                            fontSize: 15.sp,
+                          ),
+                        ],
+                      );
+                    },
                   ),
                   SizedBox(
                     height: 30.h,
@@ -150,7 +154,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           addCategoryViewModel.selectedImagePath.state.data !=
                               null) {
                         addCategoryViewModel.addMainCategory(
-                          isOptional: isOptional
+                            isOptional: addCategoryViewModel.isOptional.state.data!
                         );
                       } else {
                         if (addCategoryViewModel.selectedImagePath.state.data ==

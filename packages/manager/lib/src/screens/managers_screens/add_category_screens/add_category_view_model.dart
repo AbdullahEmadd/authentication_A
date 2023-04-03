@@ -19,6 +19,7 @@ class AddCategoryViewModel {
   GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
   String base64 ='';
+  GenericCubit<bool> isOptional = GenericCubit(data: false);
 
 
 
