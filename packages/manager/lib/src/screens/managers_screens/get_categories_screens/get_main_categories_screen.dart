@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
+import 'package:manager/src/screens/managers_screens/get_categories_screens/get_sub_categories_for_main_category_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
 import 'package:manager/src/utility/app_names.dart';
@@ -19,14 +21,14 @@ class GetMainCategoriesScreen extends StatefulWidget {
 }
 
 class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
-  GetMainCategoriesViewModel getMainCategoriesViewModel =
-      GetMainCategoriesViewModel();
+  GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
+  GetSubCategoriesForMainCategoryViewModel getSubCategoriesForMainCategoryViewModel = GetSubCategoriesForMainCategoryViewModel();
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
 
   @override
   void initState() {
     getMainCategoriesViewModel.getMainCategories();
-    addCategoryViewModel.init();
+    globalData.getMainCategoriesViewModel = getMainCategoriesViewModel;
     super.initState();
   }
 
@@ -62,7 +64,11 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                         .getMainCategoriesModel.state.data!.length,
                     itemBuilder: (context, index) {
                       return InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          getSubCategoriesForMainCategoryViewModel.getSubCategoriesForMainCategory(
+                              parentCategoryId: getMainCategoriesViewModel
+                                  .getMainCategoriesModel.state.data![index].id!);
+                        },
                         child: SizedBox(
                           height: 82.h,
                           child: Card(

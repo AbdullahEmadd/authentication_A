@@ -19,12 +19,9 @@ class AddCategoryViewModel {
   GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
   String base64 ='';
-  GetMainCategoriesViewModel getMainCategoriesViewModel =
-  GetMainCategoriesViewModel();
 
-  void init(){
-    getMainCategoriesViewModel.getMainCategories();
-  }
+
+
 
   addMainCategory() async {
     loading.show;
@@ -35,7 +32,7 @@ class AddCategoryViewModel {
             logo: base64);
     if (result) {
         Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
-        init();
+        globalData.getMainCategoriesViewModel.getMainCategories();
         goBack();
     }
     loading.hide;

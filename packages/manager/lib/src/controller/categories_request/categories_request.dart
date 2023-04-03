@@ -1,8 +1,6 @@
-import 'dart:convert';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
 import 'package:manager/src/models/categories_model/sub_categories_model.dart';
-import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/services/app_services.dart';
 
 class CategoriesController {
@@ -67,5 +65,18 @@ class CategoriesController {
     }
     return (List<SubCategoriesModel>.from(
         result.map((x) => SubCategoriesModel.fromJson(x))));
+  }
+
+  static Future<List<SubCategoriesModel>> getSubCategoriesForMainCategory(
+    {required String parentCategoryId}
+      ) async {
+    var result = await AppService.callService(
+        actionType: ActionType.get,
+        apiName: "GetSubCatogreyForMAinCatogerId?id=$parentCategoryId",
+        body: null);
+    if (result == null) {
+      return [];
+    }
+    return (List<SubCategoriesModel>.from(result.map((x) => SubCategoriesModel.fromJson(x))));
   }
 }

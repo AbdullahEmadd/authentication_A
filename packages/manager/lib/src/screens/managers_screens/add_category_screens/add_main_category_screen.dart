@@ -26,7 +26,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
   @override
   void initState() {
     getMainCategoriesViewModel.getMainCategories();
-    addCategoryViewModel.init();
     super.initState();
   }
 
