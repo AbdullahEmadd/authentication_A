@@ -9,6 +9,7 @@ import 'package:manager/src/components/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/Validation.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/categories_model/drop_down_model.dart';
 import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
@@ -23,7 +24,8 @@ class AddSubCategoryScreen extends StatefulWidget {
 class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
   GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
-  var value;
+  Object? value;
+  var myValue;
   @override
   void initState() {
     getMainCategoriesViewModel.getMainCategories();
@@ -137,15 +139,18 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                                             Text(
                                               item.name!,
                                             ),
-                                            Text(item.id!,
-                                            style: TextStyle(
-                                              fontSize: 10.sp
-                                            ),)
+                                            // Text(item.id!,
+                                            // style: TextStyle(
+                                            //   fontSize: 10.sp
+                                            // ),)
                                           ],
                                         ),
                                       ))
                                   .toList(),
-                              onChanged: (value) => setState(() => this.value = (value as DropDownModel)),
+                              onChanged: (value){
+                                setState(() => this.value = (value as DropDownModel));
+                                myValue = (value as DropDownModel);
+                              },
                               value: value,
                               isExpanded: true,
                               hint: Padding(
@@ -176,7 +181,6 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                     width: 216.w,
                     text: AppNames.addSubCategory,
                     function: () {
-
                       bool result=   getMainCategoriesViewModel.dropDownKey.currentState!.validate() ;
                       var result2 = addCategoryViewModel.addSubCategoryKey.currentState!
                           .validate() ;
@@ -185,8 +189,9 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                           addCategoryViewModel.selectedImagePath.state.data !=
                               null ) {
                         addCategoryViewModel.addSubCategory(
-                          parentCategoryId: '1905b126-224c-48f4-9e95-5712d2067cd1'
+                          parentCategoryId: myValue.id
                         );
+                        print("id: $myValue.id");
                       } else {
                         if (addCategoryViewModel.selectedImagePath.state.data ==
                             null) {

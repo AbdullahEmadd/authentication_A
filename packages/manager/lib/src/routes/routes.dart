@@ -4,6 +4,7 @@ import 'package:manager/src/screens/managers_screens/add_category_screens/add_ma
 import 'package:manager/src/screens/managers_screens/add_category_screens/add_sub_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/add_main_unit_screen/add_main_unit_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_screen.dart';
+import 'package:manager/src/screens/managers_screens/get_categories_screens/get_sub_categories_for_main_category.dart';
 import 'package:manager/src/screens/managers_screens/get_categories_screens/get_sub_categories_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_screen.dart';
 import 'package:manager/src/screens/profile_screen/profile_screen.dart';
@@ -18,6 +19,7 @@ appRoutes(context) {
     ScreenNames.getSubCategoriesScreen: (context) => GetSubCategoriesScreen(),
     ScreenNames.getMainUnitsScreen: (context) => GetMainUnitsScreen(),
     ScreenNames.addMainUnitScreen: (context) => AddMainUnitScreen(),
+    ScreenNames.getSubCategoriesForMainCategoryScreen: (context) => GetSubCategoriesForMainCategoryScreen(),
     };
     return routes;
 }
@@ -29,4 +31,5 @@ appRoutes(context) {
     static String getSubCategoriesScreen = "getSubCategoriesScreen";
     static String getMainUnitsScreen = "getMainUnitsScreen";
     static String addMainUnitScreen = "addMainUnitScreen";
+    static String getSubCategoriesForMainCategoryScreen = "getSubCategoriesForMainCategoryScreen";
   }

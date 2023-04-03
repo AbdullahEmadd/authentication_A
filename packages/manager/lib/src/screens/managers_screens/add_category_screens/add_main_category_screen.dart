@@ -21,6 +21,7 @@ class AddCategoryScreen extends StatefulWidget {
 }
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
+  bool isOptional = false;
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
   GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
   @override
@@ -120,6 +121,23 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                       controller: addCategoryViewModel.mainCategoryName,
                     ),
                   ),
+                  Row(
+                    children: [
+                      Checkbox(
+                        value: isOptional,
+                        onChanged: (val) {
+                          setState(() {
+                            isOptional = val!;
+                          });
+                        },
+                      ),
+                      CustomText(
+                        text: AppNames.isOptional,
+                        color: AppColors.mainColor,
+                        fontSize: 15.sp,
+                      ),
+                    ],
+                  ),
                   SizedBox(
                     height: 30.h,
                   ),
@@ -131,7 +149,9 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           .validate() &&
                           addCategoryViewModel.selectedImagePath.state.data !=
                               null) {
-                        addCategoryViewModel.addMainCategory();
+                        addCategoryViewModel.addMainCategory(
+                          isOptional: isOptional
+                        );
                       } else {
                         if (addCategoryViewModel.selectedImagePath.state.data ==
                             null) {

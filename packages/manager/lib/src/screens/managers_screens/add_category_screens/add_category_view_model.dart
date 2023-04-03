@@ -23,13 +23,15 @@ class AddCategoryViewModel {
 
 
 
-  addMainCategory() async {
+  addMainCategory({required bool isOptional}) async {
     loading.show;
     bool? result =
         await CategoriesController.addMainCategory(
             name: mainCategoryName.text,
             companyId: globalData.companyId ?? '',
-            logo: base64);
+            logo: base64,
+            isOptional: isOptional
+        );
     if (result) {
         Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
         globalData.getMainCategoriesViewModel.getMainCategories();

@@ -54,5 +54,6 @@ class AppNames {
  static const mainCategories = 'التصنيفات الرئيسية';
  static const mainUnits = 'الوحدات الرئيسية';
  static const subCategories = 'التصنيفات الفرعية';
+ static const isOptional = 'هل التصنيف اضافات';
 
 }

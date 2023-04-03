@@ -65,9 +65,10 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                     itemBuilder: (context, index) {
                       return InkWell(
                         onTap: () {
-                          getSubCategoriesForMainCategoryViewModel.getSubCategoriesForMainCategory(
-                              parentCategoryId: getMainCategoriesViewModel
-                                  .getMainCategoriesModel.state.data![index].id!);
+                          String parentId = getMainCategoriesViewModel
+                              .getMainCategoriesModel.state.data![index].id!;
+                          goToScreen(screenNames: ScreenNames.getSubCategoriesForMainCategoryScreen,
+                          arguments: parentId);
                         },
                         child: SizedBox(
                           height: 82.h,
