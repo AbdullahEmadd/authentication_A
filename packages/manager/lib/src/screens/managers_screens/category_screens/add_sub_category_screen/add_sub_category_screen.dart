@@ -155,7 +155,7 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                               hint: Padding(
                                 padding: EdgeInsets.only(right: 10.w),
                                 child: CustomText(
-                                  text: AppNames.mainCategoryName,
+                                  text: AppNames.chooseCategoryName,
                                   fontSize: 12.sp,
                                 ),
                               ),

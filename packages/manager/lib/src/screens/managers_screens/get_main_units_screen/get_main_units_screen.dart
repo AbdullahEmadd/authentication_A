@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_view_model.dart';
@@ -21,6 +22,7 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
   @override
   void initState() {
     getMainUnitsViewModel.getMainUnits();
+    globalData.getMainUnitsViewModel = getMainUnitsViewModel;
     super.initState();
   }
   @override
@@ -133,7 +135,6 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                 ),
               ),
               onPressed: () {
-                // TODO
                 goToScreen(screenNames: ScreenNames.addMainUnitScreen);
               }),
         ),

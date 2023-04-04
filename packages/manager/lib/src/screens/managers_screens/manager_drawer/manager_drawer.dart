@@ -168,7 +168,9 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                       ),
                       SizedBox(height: 25.h),
                       GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          goToScreen(screenNames: ScreenNames.getMainUnitsScreen);
+                        },
                         child: Row(
                           children: [
                             Icon(

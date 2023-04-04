@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:manager/src/controller/units_request/units_request.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
+import 'package:manager/src/routes/routes.dart';
 
 class AddMainUnitViewModel{
   Loading loading = Loading();
@@ -16,6 +17,8 @@ class AddMainUnitViewModel{
         companyId: globalData.companyId!);
     if (result) {
       Get.snackbar('Success', "تم اضافه الوحدة بنجاح");
+      globalData.getMainUnitsViewModel.getMainUnits();
+      goBack();
     }
     loading.hide;
   }

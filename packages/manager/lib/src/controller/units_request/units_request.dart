@@ -1,3 +1,4 @@
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/services/app_services.dart';
 
@@ -7,8 +8,8 @@ class UnitsController {
     var result = await AppService.callService(
         actionType: ActionType.get,
         apiName:
-        "UnitGroup/GetUnitGroupByCompanyId?id=0e051194-fadf-452f-b878-e2dc8014d86c",
-        body: {"id": companyId});
+        "UnitGroup/GetUnitGroupByCompanyId?id=${globalData.companyId}",
+        body: null);
     if (result == null) {
       return [];
     }

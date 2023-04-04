@@ -1,4 +1,5 @@
 import 'package:manager/src/helpers/global_helper.dart';
+import 'package:manager/src/models/categories_model/get_sub_category_additions_by_company_id_model.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
 import 'package:manager/src/models/categories_model/sub_categories_model.dart';
 import 'package:manager/src/services/app_services.dart';
@@ -83,15 +84,16 @@ class CategoriesController {
     return (List<SubCategoriesModel>.from(result.map((x) => SubCategoriesModel.fromJson(x))));
   }
 
-//   static Future<List<GetSubCatogreyAdditionsByCompanyIdModel>> getSubCatogreyAdditionsByCompanyId (
-// ) async {
-//     var result = await AppService.callService(
-//         actionType: ActionType.get,
-//         apiName: "Catogery/GetSubCatogreyAdditionsByCompanyId?companyId=${globalData.companyId}",
-//         body: null);
-//     if (result == null) {
-//       return [];
-//     }
-//     return (List<GetSubCatogreyAdditionsByCompanyIdModel>.from(result.map((x) => GetSubCatogreyAdditionsByCompanyIdModel.fromJson(x))));
-//   }
+   static Future<List<GetSubCategoryAdditionsByCompanyIdModel>> getSubCategoryAdditionsByCompanyId (
+) async {
+    var result = await AppService.callService(
+        actionType: ActionType.get,
+        apiName: "Catogery/GetSubCatogreyAdditionsByCompanyId?companyId=${globalData.companyId}",
+        body: null);
+    if (result == null) {
+      return [];
+    }
+    return (List<GetSubCategoryAdditionsByCompanyIdModel>.from(result.map((x) =>
+        GetSubCategoryAdditionsByCompanyIdModel.fromJson(x))));
+  }
 }

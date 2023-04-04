@@ -50,10 +50,13 @@ class AppNames {
  static const addMainUnit = 'إضافة وحدة رئيسية';
  static const addSubCategory = 'إضافة تصنيف فرعي';
  static const mainCategoryName = 'اسم التنصيف الرئيسي';
+ static const chooseCategoryName = 'اختر التنصيف الرئيسي';
  static const subCategoryName = 'اسم التنصيف الفرعي';
  static const mainCategories = 'التصنيفات الرئيسية';
  static const mainUnits = 'الوحدات الرئيسية';
  static const subCategories = 'التصنيفات الفرعية';
  static const isOptional = 'هل التصنيف اضافات';
+ static const all = 'الكل';
+ static const products = 'المنتجات';
 
 }

@@ -130,22 +130,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           onChanged: (val) => addCategoryViewModel.isOptional.update(
                                       data: !state.data!),
                           text: AppNames.isOptional);
-                      //   Row(
-                      //   children: [
-                      //     Checkbox(
-                      //       value: state.data,
-                      //       onChanged: (val) {
-                      //         addCategoryViewModel.isOptional.update(
-                      //             data: !state.data!);
-                      //       },
-                      //     ),
-                      //     CustomText(
-                      //       text: AppNames.isOptional,
-                      //       color: AppColors.mainColor,
-                      //       fontSize: 15.sp,
-                      //     ),
-                      //   ],
-                      // );
                     },
                   ),
                   SizedBox(
