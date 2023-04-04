@@ -130,7 +130,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                             value: state.data,
                             onChanged: (val) {
                               addCategoryViewModel.isOptional.update(
-                                  data: true);
+                                  data: !state.data!);
                             },
                           ),
                           CustomText(
