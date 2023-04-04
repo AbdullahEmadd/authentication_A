@@ -1,8 +1,9 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/helpers/Validation.dart';
-import '../utility/app_colors.dart';
+import '../../utility/app_colors.dart';
 class CustomTextField extends StatelessWidget {
   final TextFieldvalidatorType? textFieldVaidType;
   final TextEditingController? controller;
@@ -28,7 +29,7 @@ class CustomTextField extends StatelessWidget {
   final int? minLines;
 
   const CustomTextField(
-        {Key? key,
+        {super.key,
         this.controller,
         this.confirmPasswordController,
         required this.textFieldVaidType,

@@ -1,9 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:manager/src/components/custom_button.dart';
-import 'package:manager/src/components/custom_text.dart';
-import 'package:manager/src/components/custom_text_field.dart';
+import 'package:manager/src/components/custom_button/custom_button.dart';
+import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';

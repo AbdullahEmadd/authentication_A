@@ -1,12 +1,10 @@
 import 'dart:convert';
-
 import 'package:first_task/controller/forget_password_request/forget_password_request.dart';
 import 'package:first_task/controller/sign_up_request/sign_up_request.dart';
 import 'package:first_task/cubits/loading_cubit/loading_cubit.dart';
 import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/models/authentication/regenerate_code_model.dart';
 import 'package:first_task/models/authentication/verify_code_model.dart';
-import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/manager.dart';

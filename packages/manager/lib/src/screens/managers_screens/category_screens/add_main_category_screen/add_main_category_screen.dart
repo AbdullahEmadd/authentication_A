@@ -3,17 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:manager/src/components/custom_text.dart';
-import 'package:manager/src/components/custom_text_field.dart';
+import 'package:manager/src/components/custom_button/custom_button.dart';
+import 'package:manager/src/components/custom_checkbox/custom_checkbox.dart';
+import 'package:manager/src/components/custom_text/custom_text.dart';
+import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
+import 'package:manager/src/helpers/Validation.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/add_category_screens/add_category_view_model.dart';
-import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
-import '../../../components/custom_button.dart';
-import '../../../helpers/Validation.dart';
-import '../../../utility/app_colors.dart';
-import '../../../utility/app_names.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_category_view_model.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_view_model.dart';
+import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_names.dart';
 
 class AddCategoryScreen extends StatefulWidget {
   @override
@@ -124,22 +125,27 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                   BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
                     bloc: addCategoryViewModel.isOptional,
                     builder: (context, state) {
-                      return Row(
-                        children: [
-                          Checkbox(
-                            value: state.data,
-                            onChanged: (val) {
-                              addCategoryViewModel.isOptional.update(
-                                  data: !state.data!);
-                            },
-                          ),
-                          CustomText(
-                            text: AppNames.isOptional,
-                            color: AppColors.mainColor,
-                            fontSize: 15.sp,
-                          ),
-                        ],
-                      );
+                      return CustomCheckbox(
+                          value: state.data,
+                          onChanged: (val) => addCategoryViewModel.isOptional.update(
+                                      data: !state.data!),
+                          text: AppNames.isOptional);
+                      //   Row(
+                      //   children: [
+                      //     Checkbox(
+                      //       value: state.data,
+                      //       onChanged: (val) {
+                      //         addCategoryViewModel.isOptional.update(
+                      //             data: !state.data!);
+                      //       },
+                      //     ),
+                      //     CustomText(
+                      //       text: AppNames.isOptional,
+                      //       color: AppColors.mainColor,
+                      //       fontSize: 15.sp,
+                      //     ),
+                      //   ],
+                      // );
                     },
                   ),
                   SizedBox(

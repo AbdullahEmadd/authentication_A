@@ -8,7 +8,6 @@ import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_view_model.dart';
 
 class AddCategoryViewModel {
   GlobalKey<FormState> addMainCategoryKey = GlobalKey<FormState>();

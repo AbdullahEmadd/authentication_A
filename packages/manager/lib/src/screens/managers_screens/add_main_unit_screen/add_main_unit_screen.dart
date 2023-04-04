@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:manager/src/components/custom_button.dart';
-import 'package:manager/src/components/custom_text.dart';
-import 'package:manager/src/components/custom_text_field.dart';
+import 'package:manager/src/components/custom_button/custom_button.dart';
+import 'package:manager/src/components/custom_text/custom_text.dart';
+import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/Validation.dart';
 import 'package:manager/src/screens/managers_screens/add_main_unit_screen/add_main_unit_view_model.dart';

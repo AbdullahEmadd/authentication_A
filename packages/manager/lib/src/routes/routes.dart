@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:manager/src/screens/managers_screens/add_category_screens/add_main_category_screen.dart';
-import 'package:manager/src/screens/managers_screens/add_category_screens/add_sub_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/add_main_unit_screen/add_main_unit_screen.dart';
-import 'package:manager/src/screens/managers_screens/get_categories_screens/get_main_categories_screen.dart';
-import 'package:manager/src/screens/managers_screens/get_categories_screens/get_sub_categories_for_main_category.dart';
-import 'package:manager/src/screens/managers_screens/get_categories_screens/get_sub_categories_screen.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_main_category_screen.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/add_sub_category_screen/add_sub_category_screen.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_screen.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_screen.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_screen.dart';
 import 'package:manager/src/screens/profile_screen/profile_screen.dart';
 part 'app_navigator.dart';

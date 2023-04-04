@@ -13,7 +13,7 @@ class StartManagerCycle extends StatelessWidget {
   final String? companyId;
 
   StartManagerCycle({
-    Key? key,
+   super.key,
   this.companyId,
 });
 
