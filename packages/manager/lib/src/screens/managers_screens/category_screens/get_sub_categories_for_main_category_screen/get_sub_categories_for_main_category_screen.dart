@@ -24,7 +24,7 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
   @override
   void initState() {
 
-    getSubCategoriesForMainCategoryViewModel.test();
+    getSubCategoriesForMainCategoryViewModel.initialize();
     getSubCategoriesForMainCategoryViewModel.initData();
     super.initState();
   }

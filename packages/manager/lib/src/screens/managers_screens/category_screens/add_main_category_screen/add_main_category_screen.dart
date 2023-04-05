@@ -133,7 +133,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                     },
                   ),
                   SizedBox(
-                    height: 30.h,
+                    height: 10.h,
                   ),
                   CustomButton(
                     width: 216.w,
@@ -152,16 +152,6 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                           addCategoryViewModel.isImage.update(data: true);
                         }
                       }
-                    },
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  CustomButton(
-                    width: 216.w,
-                    text: AppNames.addSubCategory,
-                    function: () {
-                      goToScreen(screenNames: ScreenNames.addSubCategoryScreen);
                     },
                   ),
                 ],
