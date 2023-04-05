@@ -57,11 +57,24 @@ class _HomeScreenState extends State<HomeScreen> {
                             onTap: (){
                               goToScreen(screenNames: ScreenNames.getMainCategoriesScreen , arguments: homeViewModel);
                             },
-                            child: CustomText(
-                                text: AppNames.all,
-                                color: AppColors.mainColor,
-                                fontSize: 16.sp,
-                                fontFamily: AppFonts.fontMedium),
+                            child: Row(
+                              children: [
+
+                                CustomText(
+                                    text:  AppNames.all,
+                                    color: AppColors.mainColor,
+                                    fontSize: 16.sp,
+                                    fontFamily: AppFonts.fontMedium),
+
+                                CustomText(
+                                    text: state.data!.length > 6
+                                        ? "(${state.data!.length.toString()})"
+                                        : "",
+                                    color: AppColors.mainColor,
+                                    fontSize: 12.sp,
+                                    fontFamily: AppFonts.fontMedium),
+                              ],
+                            ),
                           ),
                         ],
                       ),
