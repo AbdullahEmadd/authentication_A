@@ -14,7 +14,7 @@ part 'app_navigator.dart';
 appRoutes(context) {
   var routes = {
     ScreenNames.addCategoryScreen: (context) => AddCategoryScreen(),
-    ScreenNames.addSubCategoryScreen: (context) => AddSubCategoryScreen(),
+    ScreenNames.addSubCategoryScreen: (context) =>  const AddSubCategoryScreen(),
     ScreenNames.profileScreen: (context) => ProfileScreen(),
     ScreenNames.getMainCategoriesScreen: (context) => GetMainCategoriesScreen(),
     ScreenNames.getSubCategoriesScreen: (context) => GetSubCategoriesScreen(),

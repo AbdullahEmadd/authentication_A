@@ -28,7 +28,8 @@ class CategoriesController {
     required String name,
     required String companyId,
     required String logo,
-    required String parentCategoryId,
+    required bool isOptional,
+    required String categoryId,
   }) async {
     var result = await AppService.callService(
         actionType: ActionType.post,
@@ -37,7 +38,8 @@ class CategoriesController {
           "Name": name,
           "CompanyId": companyId,
           "Logo": logo,
-          "ParentCategoryId": parentCategoryId,
+          "ParentCategoryId": isOptional ? null : categoryId,
+          "RelatedCategoryId": isOptional ? categoryId : null
         });
     return result != null ? true : false;
   }
@@ -49,11 +51,11 @@ class CategoriesController {
             "Catogery/GetMainCatogreyByCompanyId?id=${globalData.companyId}",
         body: null
     );
-    if (result == null) {
-      return [];
-    }
-    return (List<MainCategoriesModel>.from(
-        result.map((x) => MainCategoriesModel.fromJson(x))));
+
+    return result != null
+        ? (List<MainCategoriesModel>.from(
+            result.map((x) => MainCategoriesModel.fromJson(x))))
+        : <MainCategoriesModel>[];
   }
 
   static Future<List<SubCategoriesModel>> getSubCategories(
@@ -78,10 +80,11 @@ class CategoriesController {
         actionType: ActionType.get,
         apiName: "Catogery/GetSubCatogreyForMAinCatogerId?id=$parentCategoryId",
         body: null);
-    if (result == null) {
-      return [];
-    }
-    return (List<SubCategoriesModel>.from(result.map((x) => SubCategoriesModel.fromJson(x))));
+
+    return result != null
+        ? (List<SubCategoriesModel>.from(
+            result.map((x) => SubCategoriesModel.fromJson(x))))
+        : <SubCategoriesModel>[];
   }
 
    static Future<List<GetSubCategoryAdditionsByCompanyIdModel>> getSubCategoryAdditionsByCompanyId (
@@ -90,10 +93,10 @@ class CategoriesController {
         actionType: ActionType.get,
         apiName: "Catogery/GetSubCatogreyAdditionsByCompanyId?companyId=${globalData.companyId}",
         body: null);
-    if (result == null) {
-      return [];
-    }
-    return (List<GetSubCategoryAdditionsByCompanyIdModel>.from(result.map((x) =>
-        GetSubCategoryAdditionsByCompanyIdModel.fromJson(x))));
+
+    return result != null
+        ? (List<GetSubCategoryAdditionsByCompanyIdModel>.from(result
+            .map((x) => GetSubCategoryAdditionsByCompanyIdModel.fromJson(x))))
+        : [];
   }
 }

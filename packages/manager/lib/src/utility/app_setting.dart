@@ -9,11 +9,13 @@ class AppSetting {
 
   ///LIVE
   static const String serviceURL = 'http://kitchenapi.excprotection.com/';
+  // static const String serviceURL = 'https://excp.sa:8005/';
 
   static String globalLang = 'en';
   String? playerId;
 
   String googleMapKeyAndroid = ""; // Family Key
   String googleMapKeyIOS = "";
+  static bool isArabic = true;
   static const String oneSignalKey = "";
 }

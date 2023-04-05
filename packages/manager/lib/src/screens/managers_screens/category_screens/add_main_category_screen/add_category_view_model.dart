@@ -40,19 +40,7 @@ class AddCategoryViewModel {
     loading.hide;
   }
 
-  addSubCategory({required String parentCategoryId, String? relatedCategoryId}) async {
-    loading.show;
-    bool? result =
-    await CategoriesController.addSubCategory(
-        name: subCategoryName.text,
-        companyId: globalData.companyId ?? '',
-        logo: base64,
-        parentCategoryId: parentCategoryId);
-    if (result) {
-      Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
-    }
-    loading.hide;
-  }
+
 
   selectImage() async {
     File? file = await uploadImage();

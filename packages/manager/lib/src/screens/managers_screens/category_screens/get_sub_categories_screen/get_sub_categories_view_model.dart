@@ -15,10 +15,4 @@ class GetSubCategoriesViewModel {
     getSubCategoriesModel.update(data: await CategoriesController.getSubCategories());
     loading.hide;
   }
-
-  getSubCategoryAdditionsByCompanyId () async {
-    loading.show;
-    getSubCategoryAdditionsByCompanyIdModel.update(data: await CategoriesController.getSubCategoryAdditionsByCompanyId());
-    loading.hide;
-  }
 }

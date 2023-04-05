@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/models/categories_model/sub_categories_model.dart';
 import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/add_sub_category_screen/add_sub_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetSubCategoriesForMainCategoryScreen extends StatefulWidget {
+  const GetSubCategoriesForMainCategoryScreen({super.key});
 
   @override
   State<GetSubCategoriesForMainCategoryScreen> createState() => _GetSubCategoriesForMainCategoryScreenState();
@@ -20,17 +21,11 @@ class GetSubCategoriesForMainCategoryScreen extends StatefulWidget {
 
 class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategoriesForMainCategoryScreen> {
   GetSubCategoriesForMainCategoryViewModel getSubCategoriesForMainCategoryViewModel = GetSubCategoriesForMainCategoryViewModel();
-  List<dynamic>? x;
-  String parentId = '';
-  bool? isOptional;
-
   @override
   void initState() {
-    x = Get.arguments;
-    parentId = x![0];
-    isOptional = x![1];
-    getSubCategoriesForMainCategoryViewModel.getSubCategoriesForMainCategory(
-        parentCategoryId: parentId);
+
+    getSubCategoriesForMainCategoryViewModel.test();
+    getSubCategoriesForMainCategoryViewModel.initData();
     super.initState();
   }
   @override
@@ -165,7 +160,12 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
               ),
               onPressed: () {
                 goToScreen(screenNames: ScreenNames.addSubCategoryScreen,
-                arguments: isOptional);
+                    arguments: AddSubCategoryScreen(
+                      isOptional: getSubCategoriesForMainCategoryViewModel.isOptional ?? false,
+                      getSubCategoriesForMainCategoryViewModel:
+                          getSubCategoriesForMainCategoryViewModel,
+                      subCategoryId: getSubCategoriesForMainCategoryViewModel.parentId,
+                    ));
               }),
         ),
         Loader(loading: getSubCategoriesForMainCategoryViewModel.loading)
