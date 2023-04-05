@@ -25,7 +25,7 @@ class _VerifyCodeScreenState extends State<VerifyCodeScreen> {
 
   @override
   void initState() {
-    x=Get.arguments;
+    x = Get.arguments;
     super.initState();
   }
   @override

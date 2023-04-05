@@ -31,6 +31,7 @@ class LoginViewModel{
         CacheHelper.saveData(key: 'companyId', value: loginModel.data!.user!.companyId);
         runApp(StartManagerCycle(
           companyId: loginModel.data!.user!.companyId,
+          name: loginModel.data!.user!.name,
         ));
       } else {
         goToScreen(screenNames: ScreenNames.verifyCodeScreen, arguments: [userName,password]);

@@ -25,7 +25,8 @@ verifyCode({required String userName, required String password, required String 
   if (verifyCodeModel != null) {
     if (verifyCodeModel.state == true) {
       Get.snackbar('Success', verifyCodeModel.message![0].value.toString());
-      runApp(StartManagerCycle());
+      runApp(StartManagerCycle(
+      ));
       CacheHelper.saveData(key: 'UserData', value: jsonEncode((verifyCodeModel)));
       CacheHelper.saveData(key: 'companyId', value: verifyCodeModel.data!.user!.companyId);
     }
