@@ -11,15 +11,18 @@ class StartManagerCycle extends StatelessWidget {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
   final GlobalKey<ScaffoldMessengerState> scaffoldKey = GlobalKey<ScaffoldMessengerState>();
   final String? companyId;
+  final String? name;
 
   StartManagerCycle({
    super.key,
-  this.companyId,
+    this.companyId,
+    this.name,
 });
 
   @override
   Widget build(BuildContext context) {
     globalData.companyId = companyId;
+    globalData.name = name;
     return ScreenUtilInit(
         designSize: const Size(360,690),
         minTextAdapt: true,

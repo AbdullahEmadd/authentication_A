@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/close_icon/close_icon.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
@@ -11,7 +12,6 @@ import '../../../utility/app_colors.dart';
 
 class ManagerDrawerScreen extends StatefulWidget {
   const ManagerDrawerScreen({Key? key}) : super(key: key);
-
   @override
   State<ManagerDrawerScreen> createState() => _ManagerDrawerScreenState();
 }
@@ -59,7 +59,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: 'Abdullah Emad',
+                                text: globalData.name ?? 'Abdullah',
                                 fontSize: 18.sp,
                                 color: AppColors.black,
                                 fontWeight: FontWeight.bold,

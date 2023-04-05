@@ -9,24 +9,20 @@ import 'package:flutter/material.dart';
 import 'package:manager/manager.dart';
 
 class LoginViewModel{
-
   TextEditingController userName = TextEditingController();
   TextEditingController password = TextEditingController();
   Loading loading = Loading();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   GenericCubit<bool> obscure = GenericCubit(data: true);
-
   void toggle(){
     obscure.update(data: !obscure.state.data!);
   }
-
   userLogin({required String userName, required String password}) async {
     loading.show;
     LoginModel? loginModel = await LoginController.login(
       userName: userName,
       password: password,
     );
-
     if (loginModel != null) {
       if (loginModel.data!.user!.emailConfirmed == true) {
         // Get.snackbar('Success', loginModel.message![0].value.toString());
@@ -37,7 +33,7 @@ class LoginViewModel{
           companyId: loginModel.data!.user!.companyId,
         ));
       } else {
-        goToScreen(screenNames: ScreenNames.verifyCodeScreen,arguments: [userName,password]);
+        goToScreen(screenNames: ScreenNames.verifyCodeScreen, arguments: [userName,password]);
       }
     }
     loading.hide;

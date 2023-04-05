@@ -22,6 +22,7 @@ void main() async{
       LoginModel x  = LoginModel.fromJson(jsonDecode(userData));
       runApp(StartManagerCycle(
         companyId: x.data!.user!.companyId!,
+        name: x.data!.user!.name!,
       ));
       return;
     }

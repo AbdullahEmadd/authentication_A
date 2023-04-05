@@ -9,4 +9,5 @@ class GlobalData{
  GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
  GetMainUnitsViewModel getMainUnitsViewModel = GetMainUnitsViewModel();
  String? companyId;
+ String? name;
 }
