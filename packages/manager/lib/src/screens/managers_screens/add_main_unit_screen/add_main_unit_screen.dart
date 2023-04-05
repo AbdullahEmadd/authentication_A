@@ -4,7 +4,7 @@ import 'package:manager/src/components/custom_button/custom_button.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
-import 'package:manager/src/helpers/Validation.dart';
+import 'package:manager/src/helpers/validation.dart';
 import 'package:manager/src/screens/managers_screens/add_main_unit_screen/add_main_unit_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
@@ -53,7 +53,7 @@ class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
                     child: CustomTextField(
                       controller: addMainUnitViewModel.mainUnitName,
                       hint: AppNames.addMainUnit,
-                      textFieldVaidType: TextFieldvalidatorType.RegisterText),
+                      textFieldValidatorType: TextFieldValidatorType.displayText),
                   ),
                   SizedBox(height: 30.h),
                   CustomButton(

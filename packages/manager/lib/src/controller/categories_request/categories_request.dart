@@ -28,8 +28,9 @@ class CategoriesController {
     required String name,
     required String companyId,
     required String logo,
-    required bool isOptional,
-    required String categoryId,
+    required bool isOptional ,
+    required String parentCategoryId,
+    required String? relatedCategoryId,
   }) async {
     var result = await AppService.callService(
         actionType: ActionType.post,
@@ -38,8 +39,9 @@ class CategoriesController {
           "Name": name,
           "CompanyId": companyId,
           "Logo": logo,
-          "ParentCategoryId": isOptional ? null : categoryId,
-          "RelatedCategoryId": isOptional ? categoryId : null
+          "isOptional": isOptional,
+          "ParentCategoryId": parentCategoryId,
+          "RelatedCategoryId": relatedCategoryId
         });
     return result != null ? true : false;
   }

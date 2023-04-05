@@ -25,11 +25,7 @@ class GetSubCategoriesForMainCategoryViewModel{
   }
 
   initData() async {
-    if(isOptional!){
-      await getSubCategoryAdditionsByCompanyId();
-    }else {
       await getSubCategoriesForMainCategory(parentCategoryId: parentId);
-    }
   }
 
   getSubCategoriesForMainCategory({required String parentCategoryId}) async{
@@ -38,25 +34,6 @@ class GetSubCategoriesForMainCategoryViewModel{
         parentCategoryId: parentCategoryId
     );
     getSubCategoriesForMainCategoryModel.update(data:listSubCategories);
-    loading.hide;
-  }
-
-  getSubCategoryAdditionsByCompanyId () async {
-    loading.show;
-    listAdditionsSubCategory = await CategoriesController.getSubCategoryAdditionsByCompanyId();
-
-    for (GetSubCategoryAdditionsByCompanyIdModel element in listAdditionsSubCategory) {
-      listSubCategories.add(SubCategoriesModel(id: element.id,
-          name: element.name,
-          companyId: element.companyId,
-          isOptional: element.isOptional,
-          logo: element.logo,
-          parentCategoryId: element.parentCategoryId,
-          relatedCategoryId: element.relatedCategoryId));
-    }
-
-    getSubCategoriesForMainCategoryModel.update(data: listSubCategories);
-
     loading.hide;
   }
 }

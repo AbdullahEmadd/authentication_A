@@ -30,7 +30,7 @@ class AppNames {
  static const registerUsing = 'تسجيل كادمن جديد بواسطة البريد الالكتروني و كلمة السر';
  static const companyEmail = 'من فضلك بريدك الالكتروني الخاص بلشركة';
  static const next = 'التالي';
- static const required = 'Must not be empty';
+ static const required = 'هذا الحقل مطلوب';
  static const digitNumber = 'Please enter 11-digit phone number';
  static const invalidPhone = 'Please enter valid phone number';
  static const invalidEmail = 'Please enter valid email address';

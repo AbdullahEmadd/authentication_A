@@ -28,16 +28,14 @@ class AddSubCategoryViewModel {
   List<MainCategoriesModel> listMainCategory = [];
   List<GetSubCategoryAdditionsByCompanyIdModel> listAdditionsSubCategory = [];
   SelectItemsCubit getMainCategoryCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
+  SelectItemsCubit getAdditionsCategoryCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
   GetSubCategoriesForMainCategoryViewModel getSubCategoriesForMainCategoryViewModel = GetSubCategoriesForMainCategoryViewModel();
 
 
   initData()async{
     addSubCategoryScreen = Get.arguments;
-    if(addSubCategoryScreen.isOptional!){
-      getSubCategoryAdditionsByCompanyId();
-    }else{
-      await getMainCategories();
-    }
+    await getMainCategories();
+    await getSubCategoryAdditionsByCompanyId();
   }
 
   getMainCategories() async {
@@ -56,28 +54,24 @@ class AddSubCategoryViewModel {
   getSubCategoryAdditionsByCompanyId () async {
     loading.show;
     listAdditionsSubCategory = await CategoriesController.getSubCategoryAdditionsByCompanyId();
-    for (GetSubCategoryAdditionsByCompanyIdModel element in listAdditionsSubCategory) {
-      if(element.id == addSubCategoryScreen.getSubCategoriesForMainCategoryViewModel!.parentId){
-        getMainCategoryCubit.selectItems(Item(key: element.id , value: element.name));
-        loading.hide;
-        return;
-      }
-    }
     loading.hide;
   }
 
-  getCategoryDialog(String displayName) {
-    List<Item> items =[];
-    if(addSubCategoryScreen.isOptional!){
-      items = listAdditionsSubCategory.map((e) => Item(key: e.id, value: e.name)).toList();
-    }else{
-     items = listMainCategory.map((e) => Item(key: e.id, value: e.name)).toList();
-    }
-    getMainCategoryCubit.loadData(items);
-
+  getMainCategoryDialog(String displayName) {
+    getMainCategoryCubit.loadData(listMainCategory.map((e) => Item(key: e.id, value: e.name)).toList());
     CustomAlertSelectItems.customSelectItems(
       displayName: displayName,
       selectItemsCubit: getMainCategoryCubit,
+      afterSelectItem: (Item item) {
+      },
+    );
+  }
+
+  getAdditionsCategoryDialog(String displayName) {
+    getAdditionsCategoryCubit.loadData(listAdditionsSubCategory.map((e) => Item(key: e.id, value: e.name)).toList());
+    CustomAlertSelectItems.customSelectItems(
+      displayName: displayName,
+      selectItemsCubit: getAdditionsCategoryCubit,
       afterSelectItem: (Item item) {
       },
     );
@@ -96,12 +90,14 @@ class AddSubCategoryViewModel {
           companyId: globalData.companyId ?? '',
           logo: base64,
           isOptional: addSubCategoryScreen.isOptional!,
-          categoryId: getMainCategoryCubit.state.selectedItems!.key.toString());
+          parentCategoryId: getMainCategoryCubit.state.selectedItems!.key.toString(),
+          relatedCategoryId: getAdditionsCategoryCubit.state.selectedItems !=null
+              ? getAdditionsCategoryCubit.state.selectedItems!.key.toString()
+              : null
+      );
       if (result) {
         await addSubCategoryScreen.getSubCategoriesForMainCategoryViewModel!.initData();
-        Get.snackbar('Success', addSubCategoryScreen.isOptional!
-            ? "تم اضافه الاضافات بنجاح"
-            : "تم اضافه التصنيف بنجاح");
+        Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
         goBack();
       }
       loading.hide;

@@ -9,7 +9,7 @@ import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
-import 'package:manager/src/helpers/Validation.dart';
+import 'package:manager/src/helpers/validation.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -108,17 +108,29 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                   ),
                   SizedBox(height: 10.h,),
                   SelectItemList(
-                    name: addSubCategoryViewModel.addSubCategoryScreen.isOptional!
-                        ? AppNames.chooseAdditions
-                        : AppNames.mainCategoryName,
+                    name: AppNames.chooseCategoryName,
                     selectItemsCubitTemp: addSubCategoryViewModel.getMainCategoryCubit,
-                    onTap: addSubCategoryViewModel.getCategoryDialog,
+                    onTap: addSubCategoryViewModel.getMainCategoryDialog,
                   ),
+
+                  !addSubCategoryViewModel.addSubCategoryScreen.isOptional!?
+                  Column(
+                    children: [
+                      SizedBox(height: 10.h,),
+                      SelectItemList(
+                        name:  AppNames.chooseAdditions,
+                        selectItemsCubitTemp: addSubCategoryViewModel.getAdditionsCategoryCubit,
+                        onTap: addSubCategoryViewModel.getAdditionsCategoryDialog,
+                        enable: !addSubCategoryViewModel.addSubCategoryScreen.isOptional!,
+                      ),
+                    ],
+                  ):Container(),
+
                   Form(
                     key: addSubCategoryViewModel.addSubCategoryKey,
                     child: CustomTextField(
                       hint: AppNames.subCategoryName,
-                      textFieldVaidType: TextFieldvalidatorType.RegisterText,
+                      textFieldValidatorType: TextFieldValidatorType.displayText,
                       controller: addSubCategoryViewModel.subCategoryName,
                     ),
                   ),

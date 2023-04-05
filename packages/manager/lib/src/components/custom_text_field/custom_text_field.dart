@@ -2,10 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:manager/src/helpers/Validation.dart';
+import 'package:manager/src/helpers/validation.dart';
+import 'package:manager/src/utility/app_fonts.dart';
 import '../../utility/app_colors.dart';
+
 class CustomTextField extends StatelessWidget {
-  final TextFieldvalidatorType? textFieldVaidType;
+  final TextFieldValidatorType? textFieldValidatorType;
   final TextEditingController? controller;
   final TextEditingController? confirmPasswordController;
   final String? firstPasswordToConfirm;
@@ -27,12 +29,13 @@ class CustomTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final int? maxLines;
   final int? minLines;
+  bool isDisable = false;
 
-  const CustomTextField(
+   CustomTextField(
         {super.key,
         this.controller,
         this.confirmPasswordController,
-        required this.textFieldVaidType,
+        required this.textFieldValidatorType,
         this.hint = "",
         this.width,
         this.prefixIconWidget,
@@ -43,6 +46,7 @@ class CustomTextField extends StatelessWidget {
         this.icon,
         this.iconWidget,
         this.enabled = true,
+        this.isDisable = false,
         this.labelColor,
         this.textType,
         this.onPressed,
@@ -60,72 +64,83 @@ class CustomTextField extends StatelessWidget {
       child: InkWell(
         onTap: onPressed,
         child:
-        Container(
-          height: height ?? 40.h,
-          decoration: BoxDecoration(
-            color: AppColors.gray,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: TextFormField(
-            autovalidateMode: AutovalidateMode.onUserInteraction,
-            validator: (v) => Validation(
-                type: textFieldVaidType!,
-                firstPasswordForConfirm: textFieldVaidType ==
-                    TextFieldvalidatorType.ConfirmPassword
-                    ? confirmPasswordController!.value.text
-                    : "",
-                value: v!),
-            onTap: onPressed,
-            minLines: minLines??1,
-            maxLines: maxLines??1,
-            enabled: enabled,
-            keyboardType: textType ?? TextInputType.text,
-            controller: controller,
-            focusNode: focusNode,
-            onChanged: onChange,
-            obscureText: obscure,
-            decoration: InputDecoration(
-                labelText:hint??'' ,
-                hintText: hint ?? "",
-                hintStyle:hintStyle?? const TextStyle(fontSize: 12, color: Colors.grey,),
-                // labelText: label,
-                // labelStyle: const TextStyle(fontSize: 14, color: Colors.grey),
-                contentPadding: const EdgeInsets.only(top: 8,right: 8,left: 8),
-                enabledBorder:  OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(color: Colors.transparent),
-                ),
-                focusedErrorBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: AppColors.mainColor),
-                ),
-                disabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide:  BorderSide(color: Colors.transparent),
-                ),
-                focusedBorder:  OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide:  BorderSide(color: AppColors.mainColor),
-                ),
-                prefixIcon: prefixIconWidget,
-                suffixIcon: iconWidget == null
-                    ? (icon == null
-                    ? null
-                    : InkWell(
-                    onTap: iconPressed ?? () {},
-                    child: Icon(
-                      icon,
-                      size: 18,
-                      color: AppColors.mainColor,
-                    )))
-                    : Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    iconWidget!,
-                  ],
-                )),
-          ),
+        TextFormField(
+          autovalidateMode: AutovalidateMode.onUserInteraction,
+          validator: (v) => validation(
+              type: textFieldValidatorType!,
+              firstPasswordForConfirm: textFieldValidatorType ==
+                  TextFieldValidatorType.confirmPassword
+                  ? confirmPasswordController!.value.text
+                  : "",
+              value: v!),
+          onTap: onPressed,
+          minLines: minLines??1,
+          maxLines: maxLines??1,
+          enabled: enabled,
+          keyboardType: textType ?? TextInputType.text,
+          controller: controller,
+          focusNode: focusNode,
+          onChanged: onChange,
+          obscureText: obscure,
+          decoration: InputDecoration(
+              hintText: hint ?? "",
+              hintStyle: hintStyle ??
+                  TextStyle(
+                      fontSize: 14.sp,
+                      color: Colors.grey,
+                      fontFamily: AppFonts.fontMedium),
+              labelStyle: TextStyle(
+                  fontSize: 12.sp,
+                  color: Colors.grey,
+                  fontFamily: AppFonts.fontMedium),
+              contentPadding: EdgeInsets.only(top: 8.h,right: 8.w,left: 8.w),
+              errorStyle: TextStyle(
+                  height: 1.4,
+                  fontFamily: AppFonts.fontMedium,
+                  fontSize: 12.sp,
+                  color: Colors.red),
+              fillColor: isDisable
+                  ? AppColors.black.withOpacity(.1)
+                  : AppColors.fillColor.withOpacity(.4),
+              filled: true,
+              enabledBorder:  OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.sp),
+                borderSide:  BorderSide.none,
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.sp),
+                borderSide: BorderSide.none,
+              ),
+              disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.sp),
+                borderSide:  BorderSide.none,
+              ),
+              focusedBorder:  OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.sp),
+                borderSide:  BorderSide.none,
+              ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10.sp),
+                borderSide: BorderSide.none,
+              ),
+              prefixIcon: prefixIconWidget,
+              suffixIcon: iconWidget == null
+                  ? (icon == null
+                  ? null
+                  : InkWell(
+                  onTap: iconPressed ?? () {},
+                  child: Icon(
+                    icon,
+                    size: 18.sp,
+                    color: AppColors.mainColor,
+                  )))
+                  : Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  iconWidget!,
+                ],
+              )),
         ),
 
       ),

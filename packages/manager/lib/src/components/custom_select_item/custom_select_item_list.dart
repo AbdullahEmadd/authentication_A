@@ -76,7 +76,7 @@ class SelectItemList extends StatelessWidget {
                                       fontFamily: AppFonts.fontMedium,
                                       color: enable
                                           ? AppColors.black.withOpacity(.4)
-                                          : AppColors.gray,
+                                          : AppColors.black.withOpacity(.4),
                                       fontSize: 14.sp),
                                   textAlign: AppSetting.isArabic
                                       ? TextAlign.right
