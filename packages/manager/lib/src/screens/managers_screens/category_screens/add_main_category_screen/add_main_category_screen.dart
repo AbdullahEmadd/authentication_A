@@ -1,8 +1,8 @@
-// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
 import 'package:manager/src/components/custom_checkbox/custom_checkbox.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
@@ -10,24 +10,24 @@ import 'package:manager/src/components/custom_text_field/custom_text_field.dart'
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/Validation.dart';
-import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_category_view_model.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_fonts.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddCategoryScreen extends StatefulWidget {
+  const AddCategoryScreen({super.key});
+
   @override
   State<AddCategoryScreen> createState() => _AddCategoryScreenState();
 }
 
 class _AddCategoryScreenState extends State<AddCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
-  GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
 
   @override
   void initState() {
-    getMainCategoriesViewModel.getMainCategories();
+    addCategoryViewModel.initData();
     super.initState();
   }
 
@@ -36,24 +36,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: CustomText(
-                text: AppNames.addMainCategory,
-                fontSize: 16.sp,
-                color: AppColors.black,
-                fontWeight: FontWeight.bold),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: Icon(Icons.notifications_outlined),
-                  iconSize: 35,
-                ),
-              ),
-            ],
-          ),
+          appBar: CustomAppBar(textAppBar: AppNames.addMainCategory,),
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -78,7 +61,7 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                                   shape: BoxShape.rectangle,
                                   borderRadius: BorderRadius.circular(15),
                                   color: AppColors.gray2),
-                              child: Icon(Icons.add_a_photo),
+                              child: const Icon(Icons.add_a_photo),
                             ),
                           )
                               : InkWell(
@@ -105,15 +88,16 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                             height: 15.h,
                           ),
                           CustomText(
-                              text: 'Please insert image',
-                              fontSize: 16.sp),
+                              text: 'برجاء اضافه الصورة',
+                              fontSize: 14.sp ,
+                              fontFamily: AppFonts.fontMedium,
+                              color: Colors.red,
+                          ),
                         ],
                       );
                     },
                   ),
-                  SizedBox(
-                    height: 30.h,
-                  ),
+                  SizedBox(height: 10.h,),
                   Form(
                     key: addCategoryViewModel.addMainCategoryKey,
                     child: CustomTextField(
@@ -140,12 +124,12 @@ class _AddCategoryScreenState extends State<AddCategoryScreen> {
                     text: AppNames.addMainCategory,
                     function: () {
                       if (addCategoryViewModel.addMainCategoryKey.currentState!
-                          .validate() &&
+                              .validate() &&
                           addCategoryViewModel.selectedImagePath.state.data !=
                               null) {
                         addCategoryViewModel.addMainCategory(
-                            isOptional: addCategoryViewModel.isOptional.state.data!
-                        );
+                            isOptional:
+                                addCategoryViewModel.isOptional.state.data!);
                       } else {
                         if (addCategoryViewModel.selectedImagePath.state.data ==
                             null) {

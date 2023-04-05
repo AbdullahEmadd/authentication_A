@@ -4,34 +4,30 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
-import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_category_view_model.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_view_model.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
 import 'package:manager/src/utility/app_names.dart';
 
+import '../../../../components/custom_app_bar/custom_app_bar.dart';
+
 class GetMainCategoriesScreen extends StatefulWidget {
+  const GetMainCategoriesScreen({super.key});
+
   @override
   State<GetMainCategoriesScreen> createState() =>
       _GetMainCategoriesScreenState();
 }
 
 class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
-  GetMainCategoriesViewModel getMainCategoriesViewModel =
-      GetMainCategoriesViewModel();
-  GetSubCategoriesForMainCategoryViewModel
-      getSubCategoriesForMainCategoryViewModel =
-      GetSubCategoriesForMainCategoryViewModel();
-  AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
+  GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
+
 
   @override
   void initState() {
-    getMainCategoriesViewModel.getMainCategories();
-    globalData.getMainCategoriesViewModel = getMainCategoriesViewModel;
+    getMainCategoriesViewModel.initData();
     super.initState();
   }
 
@@ -40,24 +36,7 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: CustomText(
-                text: AppNames.mainCategories,
-                fontSize: 16.sp,
-                color: AppColors.black,
-                fontWeight: FontWeight.bold),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined),
-                  iconSize: 35,
-                ),
-              ),
-            ],
-          ),
+          appBar: CustomAppBar(textAppBar: AppNames.mainCategories),
           body: BlocBuilder<GenericCubit<List<MainCategoriesModel>>,
               GenericState<List<MainCategoriesModel>>>(
             bloc: getMainCategoriesViewModel.getMainCategoriesModel,
@@ -121,16 +100,6 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                                         color: AppColors.black,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      CustomText(
-                                        text: '5 قطع',
-                                        textAlign: TextAlign.end,
-                                        fontSize: 11.sp,
-                                        color: AppColors.mainColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -169,7 +138,7 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                 ),
               ),
               onPressed: () {
-                goToScreen(screenNames: ScreenNames.addCategoryScreen);
+                goToScreen(screenNames: ScreenNames.addCategoryScreen , arguments: getMainCategoriesViewModel);
               }),
         ),
         Loader(loading: getMainCategoriesViewModel.loading),

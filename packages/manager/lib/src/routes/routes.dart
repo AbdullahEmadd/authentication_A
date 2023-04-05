@@ -5,7 +5,6 @@ import 'package:manager/src/screens/managers_screens/category_screens/add_main_c
 import 'package:manager/src/screens/managers_screens/category_screens/add_sub_category_screen/add_sub_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_screen.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_screen.dart';
 import 'package:manager/src/screens/managers_screens/products_screens/get_products_screen/get_products_screen.dart';
 import 'package:manager/src/screens/profile_screen/profile_screen.dart';
@@ -13,15 +12,14 @@ part 'app_navigator.dart';
 
 appRoutes(context) {
   var routes = {
-    ScreenNames.addCategoryScreen: (context) => AddCategoryScreen(),
+    ScreenNames.addCategoryScreen: (context) => const AddCategoryScreen(),
     ScreenNames.addSubCategoryScreen: (context) =>  const AddSubCategoryScreen(),
-    ScreenNames.profileScreen: (context) => ProfileScreen(),
-    ScreenNames.getMainCategoriesScreen: (context) => GetMainCategoriesScreen(),
-    ScreenNames.getSubCategoriesScreen: (context) => GetSubCategoriesScreen(),
-    ScreenNames.getMainUnitsScreen: (context) => GetMainUnitsScreen(),
-    ScreenNames.addMainUnitScreen: (context) => AddMainUnitScreen(),
-    ScreenNames.getSubCategoriesForMainCategoryScreen: (context) => GetSubCategoriesForMainCategoryScreen(),
-    ScreenNames.getProductsScreen: (context) => GetProductsScreen(),
+    ScreenNames.profileScreen: (context) => const ProfileScreen(),
+    ScreenNames.getMainCategoriesScreen: (context) => const GetMainCategoriesScreen(),
+    ScreenNames.getMainUnitsScreen: (context) => const GetMainUnitsScreen(),
+    ScreenNames.addMainUnitScreen: (context) => const AddMainUnitScreen(),
+    ScreenNames.getSubCategoriesForMainCategoryScreen: (context) => const GetSubCategoriesForMainCategoryScreen(),
+    ScreenNames.getProductsScreen: (context) => const GetProductsScreen(),
     };
     return routes;
 }
@@ -30,7 +28,6 @@ appRoutes(context) {
     static String addSubCategoryScreen = "addSubCategoryScreen";
     static String profileScreen = "profileScreen";
     static String getMainCategoriesScreen = "getMainCategoriesScreen";
-    static String getSubCategoriesScreen = "getSubCategoriesScreen";
     static String getMainUnitsScreen = "getMainUnitsScreen";
     static String addMainUnitScreen = "addMainUnitScreen";
     static String getSubCategoriesForMainCategoryScreen = "getSubCategoriesForMainCategoryScreen";

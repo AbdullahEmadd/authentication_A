@@ -10,6 +10,8 @@ import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddMainUnitScreen extends StatefulWidget {
+  const AddMainUnitScreen({super.key});
+
 
   @override
   State<AddMainUnitScreen> createState() => _AddMainUnitScreenState();

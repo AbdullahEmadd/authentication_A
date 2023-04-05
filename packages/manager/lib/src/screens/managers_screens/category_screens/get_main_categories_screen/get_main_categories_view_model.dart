@@ -1,26 +1,26 @@
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:manager/src/controller/categories_request/categories_request.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
-import 'package:manager/src/models/categories_model/drop_down_model.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
+import 'package:manager/src/screens/managers_screens/manager_home_screen/home_view_model.dart';
 
 class GetMainCategoriesViewModel {
+
+  List<MainCategoriesModel> mainCategory = [];
+  late HomeViewModel homeViewModel;
   Loading loading = Loading();
-  GenericCubit<List<MainCategoriesModel>> getMainCategoriesModel =
-      GenericCubit<List<MainCategoriesModel>>(data: []);
-  GenericCubit<List<DropDownModel>> mainCategoriesNames =
-      GenericCubit<List<DropDownModel>>(data: []);
-  GlobalKey<FormState> dropDownKey = GlobalKey<FormState>();
+  GenericCubit<List<MainCategoriesModel>> getMainCategoriesModel = GenericCubit<List<MainCategoriesModel>>(data: []);
+
+  initData() async {
+    homeViewModel = Get.arguments;
+    await getMainCategories();
+  }
 
   getMainCategories() async {
     loading.show;
-    getMainCategoriesModel.update(
-        data: await CategoriesController.getMainCategories());
-    mainCategoriesNames.update(
-        data: getMainCategoriesModel.state.data!
-            .map((e) => DropDownModel(name: e.name, id: e.id))
-            .toList());
+    mainCategory = await CategoriesController.getMainCategories();
+    getMainCategoriesModel.update(data: mainCategory);
     loading.hide;
   }
 }

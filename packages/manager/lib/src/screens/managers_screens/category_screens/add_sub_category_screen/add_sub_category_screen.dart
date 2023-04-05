@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
@@ -13,6 +14,7 @@ import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 import '../../../../components/custom_select_item/custom_select_item_list.dart';
+import '../../../../utility/app_fonts.dart';
 import '../get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_view_model.dart';
 import 'add_sub_category_view_model.dart';
 
@@ -45,24 +47,7 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: CustomText(
-                text: AppNames.addSubCategory,
-                fontSize: 16.sp,
-                color: AppColors.black,
-                fontWeight: FontWeight.bold),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined),
-                  iconSize: 35,
-                ),
-              ),
-            ],
-          ),
+          appBar: CustomAppBar(textAppBar: AppNames.addSubCategory,),
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -112,13 +97,16 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                                   height: 15.h,
                                 ),
                                 CustomText(
-                                    text: 'برجاء اضافه الصورة',
-                                    fontSize: 16.sp),
+                                  text: 'برجاء اضافه الصورة',
+                                  fontSize: 14.sp ,
+                                  fontFamily: AppFonts.fontMedium,
+                                  color: Colors.red,
+                                ),
                               ],
                             );
                     },
                   ),
-                  SizedBox(height: 30.h,),
+                  SizedBox(height: 10.h,),
                   SelectItemList(
                     name: addSubCategoryViewModel.addSubCategoryScreen.isOptional!
                         ? AppNames.chooseAdditions

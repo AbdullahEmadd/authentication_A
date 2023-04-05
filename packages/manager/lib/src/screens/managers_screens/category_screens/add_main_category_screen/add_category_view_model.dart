@@ -9,19 +9,25 @@ import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
 
+import '../../manager_home_screen/home_view_model.dart';
+import '../get_main_categories_screen/get_main_categories_view_model.dart';
+
 class AddCategoryViewModel {
+  String base64 ='';
   GlobalKey<FormState> addMainCategoryKey = GlobalKey<FormState>();
-  GlobalKey<FormState> addSubCategoryKey = GlobalKey<FormState>();
   TextEditingController mainCategoryName = TextEditingController();
-  TextEditingController subCategoryName = TextEditingController();
   Loading loading = Loading();
   GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
-  String base64 ='';
   GenericCubit<bool> isOptional = GenericCubit(data: false);
 
+  late HomeViewModel homeViewModel ;
+  late GetMainCategoriesViewModel getMainCategoriesViewModel ;
+  late dynamic object;
 
-
+  initData(){
+     object = Get.arguments ;
+  }
 
   addMainCategory({required bool isOptional}) async {
     loading.show;
@@ -33,14 +39,19 @@ class AddCategoryViewModel {
             isOptional: isOptional
         );
     if (result) {
-        Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
-        globalData.getMainCategoriesViewModel.getMainCategories();
-        goBack();
+      if (object is HomeViewModel) {
+        homeViewModel = object;
+        await homeViewModel.getMainCategories();
+      } else {
+        getMainCategoriesViewModel = object;
+        await getMainCategoriesViewModel.getMainCategories();
+        getMainCategoriesViewModel.homeViewModel.getMainCategoriesCubit.update(data: getMainCategoriesViewModel.mainCategory);
+      }
+      Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
+      goBack();
     }
     loading.hide;
   }
-
-
 
   selectImage() async {
     File? file = await uploadImage();

@@ -10,6 +10,8 @@ import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetProductsScreen extends StatefulWidget {
+  const GetProductsScreen({super.key});
+
 
   @override
   State<GetProductsScreen> createState() => _GetProductsScreenState();

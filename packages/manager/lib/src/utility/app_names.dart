@@ -59,5 +59,6 @@ class AppNames {
  static const all = 'الكل';
  static const products = 'المنتجات';
  static const chooseAdditions = 'اختر الاضافات';
+ static const notFoundMainCategory = 'عفوا لا يوجد تصنيفات رئيسيه \n برجاء اضافه بعض التصنيفات';
 
 }

@@ -6,7 +6,6 @@ import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_m
 GlobalData globalData = GlobalData();
 
 class GlobalData{
- GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
  GetMainUnitsViewModel getMainUnitsViewModel = GetMainUnitsViewModel();
  String? companyId;
  String? name;
