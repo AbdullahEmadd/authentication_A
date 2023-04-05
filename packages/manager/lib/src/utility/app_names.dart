@@ -58,5 +58,6 @@ class AppNames {
  static const isOptional = 'هل التصنيف اضافات';
  static const all = 'الكل';
  static const products = 'المنتجات';
+ static const chooseAdditions = 'اختر الاضافات';
 
 }

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
@@ -10,8 +11,10 @@ import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/Validation.dart';
 import 'package:manager/src/models/categories_model/drop_down_model.dart';
+import 'package:manager/src/models/categories_model/get_sub_category_additions_by_company_id_model.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_category_view_model.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_view_model.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -22,12 +25,19 @@ class AddSubCategoryScreen extends StatefulWidget {
 
 class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
   AddCategoryViewModel addCategoryViewModel = AddCategoryViewModel();
-  GetMainCategoriesViewModel getMainCategoriesViewModel = GetMainCategoriesViewModel();
+  GetMainCategoriesViewModel getMainCategoriesViewModel =
+      GetMainCategoriesViewModel();
+  GetSubCategoriesViewModel getSubCategoriesViewModel =
+      GetSubCategoriesViewModel();
   Object? value;
   var myValue;
+  bool isOptional = false;
+
   @override
   void initState() {
+    isOptional = Get.arguments?? false;
     getMainCategoriesViewModel.getMainCategories();
+    getSubCategoriesViewModel.getSubCategoryAdditionsByCompanyId();
     super.initState();
   }
 
@@ -115,56 +125,129 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                     height: 30.h,
                   ),
                   Container(
-                    height: 40.h,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: AppColors.gray,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: BlocBuilder<GenericCubit<List<DropDownModel>>, GenericState<List<DropDownModel>>>(
-                      bloc: getMainCategoriesViewModel.mainCategoriesNames,
-                      builder: (context, state) {
-                        return state is GenericUpdate? Form(
-                          autovalidateMode: AutovalidateMode.onUserInteraction,
-                          key: getMainCategoriesViewModel.dropDownKey,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButtonFormField(
-                              validator: (value) => value == null ? 'field required' : null,
-                              items: state.data!
-                                  .map((item) => DropdownMenuItem<DropDownModel>(
-                                        value: item,
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              item.name!,
+                      height: 40.h,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: AppColors.gray,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: !isOptional
+                          ? BlocBuilder<GenericCubit<List<DropDownModel>>,
+                              GenericState<List<DropDownModel>>>(
+                              bloc: getMainCategoriesViewModel
+                                  .mainCategoriesNames,
+                              builder: (context, state) {
+                                return state is GenericUpdate
+                                    ? Form(
+                                        autovalidateMode:
+                                            AutovalidateMode.onUserInteraction,
+                                        key: getMainCategoriesViewModel
+                                            .dropDownKey,
+                                        child: DropdownButtonHideUnderline(
+                                          child: DropdownButtonFormField(
+                                            validator: (value) => value == null
+                                                ? 'field required'
+                                                : null,
+                                            items: state.data!
+                                                .map((item) => DropdownMenuItem<
+                                                        DropDownModel>(
+                                                      value: item,
+                                                      child: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                            item.name!,
+                                                          ),
+                                                          // Text(item.id!,
+                                                          // style: TextStyle(
+                                                          //   fontSize: 10.sp
+                                                          // ),)
+                                                        ],
+                                                      ),
+                                                    ))
+                                                .toList(),
+                                            onChanged: (value) {
+                                              setState(() => this.value =
+                                                  (value as DropDownModel));
+                                              myValue =
+                                                  (value as DropDownModel);
+                                            },
+                                            value: value,
+                                            isExpanded: true,
+                                            hint: Padding(
+                                              padding:
+                                                  EdgeInsets.only(right: 10.w),
+                                              child: CustomText(
+                                                text:
+                                                    AppNames.chooseCategoryName,
+                                                fontSize: 12.sp,
+                                              ),
                                             ),
-                                            // Text(item.id!,
-                                            // style: TextStyle(
-                                            //   fontSize: 10.sp
-                                            // ),)
-                                          ],
+                                          ),
                                         ),
-                                      ))
-                                  .toList(),
-                              onChanged: (value){
-                                setState(() => this.value = (value as DropDownModel));
-                                myValue = (value as DropDownModel);
+                                      )
+                                    : Container();
                               },
-                              value: value,
-                              isExpanded: true,
-                              hint: Padding(
-                                padding: EdgeInsets.only(right: 10.w),
-                                child: CustomText(
-                                  text: AppNames.chooseCategoryName,
-                                  fontSize: 12.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ): Container();
-                      },
-                    ),
-                  ),
+                            )
+                          : BlocBuilder<
+                              GenericCubit<
+                                  List<
+                                      GetSubCategoryAdditionsByCompanyIdModel>>,
+                              GenericState<
+                                  List<
+                                      GetSubCategoryAdditionsByCompanyIdModel>>>(
+                              bloc: getSubCategoriesViewModel
+                                  .getSubCategoryAdditionsByCompanyIdModel,
+                              builder: (context, state) {
+                                return Form(
+                                    autovalidateMode:
+                                        AutovalidateMode.onUserInteraction,
+                                    key: getMainCategoriesViewModel.dropDownKey,
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButtonFormField(
+                                        validator: (value) => value == null
+                                            ? 'field required'
+                                            : null,
+                                        items: state.data!
+                                            .map((item) => DropdownMenuItem<
+                                                    GetSubCategoryAdditionsByCompanyIdModel>(
+                                                  value: item,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
+                                                    children: [
+                                                      Text(
+                                                        item.name!,
+                                                      ),
+                                                      // Text(item.id!,
+                                                      // style: TextStyle(
+                                                      //   fontSize: 10.sp
+                                                      // ),)
+                                                    ],
+                                                  ),
+                                                ))
+                                            .toList(),
+                                        onChanged: (value) {
+                                          setState(() => this.value = (value
+                                              as GetSubCategoryAdditionsByCompanyIdModel));
+                                          myValue = (value
+                                              as GetSubCategoryAdditionsByCompanyIdModel);
+                                        },
+                                        value: value,
+                                        isExpanded: true,
+                                        hint: Padding(
+                                          padding: EdgeInsets.only(right: 10.w),
+                                          child: CustomText(
+                                            text: AppNames.chooseAdditions,
+                                            fontSize: 12.sp,
+                                          ),
+                                        ),
+                                      ),
+                                    ));
+                              },
+                            )),
                   Form(
                     key: addCategoryViewModel.addSubCategoryKey,
                     child: CustomTextField(
@@ -180,16 +263,23 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                     width: 216.w,
                     text: AppNames.addSubCategory,
                     function: () {
-                      bool result=   getMainCategoriesViewModel.dropDownKey.currentState!.validate() ;
-                      var result2 = addCategoryViewModel.addSubCategoryKey.currentState!
-                          .validate() ;
+                      bool result = getMainCategoriesViewModel
+                          .dropDownKey.currentState!
+                          .validate();
+                      var result2 = addCategoryViewModel
+                          .addSubCategoryKey.currentState!
+                          .validate();
 
-                      if (result && result2   &&
+                      if (result &&
+                          result2 &&
                           addCategoryViewModel.selectedImagePath.state.data !=
-                              null ) {
-                        addCategoryViewModel.addSubCategory(
-                          parentCategoryId: myValue.id
-                        );
+                              null) {
+                        if (isOptional){addCategoryViewModel.addSubCategory(
+                            parentCategoryId: myValue.id);}
+                        // else {
+                        //   addCategoryViewModel.addSubCategory(
+                        //       parentCategoryId: myValue.id);
+                        // }
                         print("id: $myValue.id");
                       } else {
                         if (addCategoryViewModel.selectedImagePath.state.data ==

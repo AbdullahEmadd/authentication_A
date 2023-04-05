@@ -20,11 +20,15 @@ class GetSubCategoriesForMainCategoryScreen extends StatefulWidget {
 
 class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategoriesForMainCategoryScreen> {
   GetSubCategoriesForMainCategoryViewModel getSubCategoriesForMainCategoryViewModel = GetSubCategoriesForMainCategoryViewModel();
+  List<dynamic>? x;
   String parentId = '';
+  bool? isOptional;
 
   @override
   void initState() {
-    parentId = Get.arguments;
+    x = Get.arguments;
+    parentId = x![0];
+    isOptional = x![1];
     getSubCategoriesForMainCategoryViewModel.getSubCategoriesForMainCategory(
         parentCategoryId: parentId);
     super.initState();
@@ -160,7 +164,8 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
                 ),
               ),
               onPressed: () {
-                goToScreen(screenNames: ScreenNames.addSubCategoryScreen);
+                goToScreen(screenNames: ScreenNames.addSubCategoryScreen,
+                arguments: isOptional);
               }),
         ),
         Loader(loading: getSubCategoriesForMainCategoryViewModel.loading)

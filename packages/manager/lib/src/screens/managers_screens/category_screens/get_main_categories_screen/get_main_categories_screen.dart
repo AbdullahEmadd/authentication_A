@@ -70,10 +70,11 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                       onTap: () {
                         String parentId = getMainCategoriesViewModel
                             .getMainCategoriesModel.state.data![index].id!;
+                        bool? isOptional = getMainCategoriesViewModel.getMainCategoriesModel.state.data![index].isOptional;
                         goToScreen(
                             screenNames: ScreenNames
                                 .getSubCategoriesForMainCategoryScreen,
-                            arguments: parentId);
+                            arguments: [parentId, isOptional]);
                       },
                       child: SizedBox(
                         height: 82.h,

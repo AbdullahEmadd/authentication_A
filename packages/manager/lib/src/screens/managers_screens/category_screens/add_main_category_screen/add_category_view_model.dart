@@ -40,7 +40,7 @@ class AddCategoryViewModel {
     loading.hide;
   }
 
-  addSubCategory({required String parentCategoryId}) async {
+  addSubCategory({required String parentCategoryId, String? relatedCategoryId}) async {
     loading.show;
     bool? result =
     await CategoriesController.addSubCategory(
