@@ -59,7 +59,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: globalData.name.toString(),
+                                text: 'Abdullah',
                                 fontSize: 18.sp,
                                 color: AppColors.black,
                                 fontWeight: FontWeight.bold,
