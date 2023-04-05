@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../../components/custom_text/custom_text.dart';
 import '../../../../models/categories_model/main_categories_model.dart';
+import '../../../../routes/routes.dart';
 import '../../../../utility/app_colors.dart';
 import '../../../../utility/app_fonts.dart';
 import '../../../../utility/app_setting.dart';
@@ -15,7 +16,9 @@ class CategoryItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-
+        goToScreen(
+            screenNames: ScreenNames.getSubCategoriesForMainCategoryScreen,
+            arguments: [mainCategoriesModel.id, mainCategoriesModel.isOptional]);
       },
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,
