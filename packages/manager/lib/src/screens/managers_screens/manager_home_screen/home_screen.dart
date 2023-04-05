@@ -59,13 +59,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             },
                             child: Row(
                               children: [
-
                                 CustomText(
                                     text:  AppNames.all,
                                     color: AppColors.mainColor,
                                     fontSize: 16.sp,
                                     fontFamily: AppFonts.fontMedium),
-
                                 CustomText(
                                     text: state.data!.length > 6
                                         ? "(${state.data!.length.toString()})"
@@ -81,8 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       state.data!.isNotEmpty
                           ? Expanded(
                         child: GridView.builder(
-                            itemCount: state.data!.length >=6 ? 6 : state.data!.length,
-                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                                  itemCount: state.data!.length >= 6
+                                      ? 6
+                                      : state.data!.length,
+                                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
                               crossAxisSpacing: 6.0,
                               mainAxisSpacing: 6.0,
