@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../components/custom_text/custom_text.dart';
 import '../../../../models/categories_model/main_categories_model.dart';
 import '../../../../routes/routes.dart';

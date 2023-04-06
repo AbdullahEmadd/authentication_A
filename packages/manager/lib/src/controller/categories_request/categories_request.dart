@@ -53,7 +53,6 @@ class CategoriesController {
             "Catogery/GetMainCatogreyByCompanyId?id=${globalData.companyId}",
         body: null
     );
-
     return result != null
         ? (List<MainCategoriesModel>.from(
             result.map((x) => MainCategoriesModel.fromJson(x))))

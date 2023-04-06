@@ -10,8 +10,7 @@ class GetMainUnitsViewModel {
 
   getMainUnits()async{
     loading.show;
-    getMainUnitsModel.update(data: await UnitsController.getMainUnits(
-        companyId: globalData.companyId!));
+    getMainUnitsModel.update(data: await UnitsController.getMainUnits());
     loading.hide;
   }
 }
