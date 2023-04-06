@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:manager/manager.dart';
 
+import '../../utility/app_setting.dart';
+
 class VerifyCodeViewModel{
 
 TextEditingController codeController = TextEditingController();
@@ -26,6 +28,8 @@ verifyCode({required String userName, required String password, required String 
     if (verifyCodeModel.state == true) {
       Get.snackbar('Success', verifyCodeModel.message![0].value.toString());
       runApp(StartManagerCycle(
+        serviceURL: AppSetting.serviceURL,
+        companyId: verifyCodeModel.data!.user!.companyId ,
       ));
       CacheHelper.saveData(key: 'UserData', value: jsonEncode((verifyCodeModel)));
       CacheHelper.saveData(key: 'companyId', value: verifyCodeModel.data!.user!.companyId);

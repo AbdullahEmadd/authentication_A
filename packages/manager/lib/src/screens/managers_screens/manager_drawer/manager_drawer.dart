@@ -8,6 +8,7 @@ import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
+import '../../../../manager.dart';
 import '../../../utility/app_colors.dart';
 
 class ManagerDrawerScreen extends StatefulWidget {
@@ -228,8 +229,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                       SizedBox(height: 25.h),
                       GestureDetector(
                         onTap: () {
-                          // CacheHelper.removeData(key: 'UserData');
-                          // goToWithRemoveRoute(screenNames: ScreenNames.loginScreen);
+                          LoadManagerPackage.logout!();
                         },
                         child: Row(
                           children: [

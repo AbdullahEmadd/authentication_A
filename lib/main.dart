@@ -4,6 +4,7 @@ import 'package:first_task/models/authentication/login_model.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:first_task/screens/home_screens/homepage.dart';
 import 'package:first_task/screens/login_screens/login_screen.dart';
+import 'package:first_task/utility/app_setting.dart';
 import 'package:first_task/utility/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ void main() async{
       runApp(StartManagerCycle(
         companyId: x.data!.user!.companyId!,
         name: x.data!.user!.name!,
+        serviceURL: AppSetting.serviceURL,
       ));
       return;
     }

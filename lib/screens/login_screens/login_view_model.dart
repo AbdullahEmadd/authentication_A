@@ -8,6 +8,8 @@ import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:manager/manager.dart';
 
+import '../../utility/app_setting.dart';
+
 class LoginViewModel{
   TextEditingController userName = TextEditingController();
   TextEditingController password = TextEditingController();
@@ -32,6 +34,7 @@ class LoginViewModel{
         runApp(StartManagerCycle(
           companyId: loginModel.data!.user!.companyId,
           name: loginModel.data!.user!.name,
+          serviceURL: AppSetting.serviceURL,
         ));
       } else {
         goToScreen(screenNames: ScreenNames.verifyCodeScreen, arguments: [userName,password]);
