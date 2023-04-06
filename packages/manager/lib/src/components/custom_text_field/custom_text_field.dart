@@ -29,9 +29,9 @@ class CustomTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final int? maxLines;
   final int? minLines;
-  bool isDisable = false;
+  final bool? isDisable;
 
-   CustomTextField(
+   const CustomTextField(
         {super.key,
         this.controller,
         this.confirmPasswordController,
@@ -99,7 +99,7 @@ class CustomTextField extends StatelessWidget {
                   fontFamily: AppFonts.fontMedium,
                   fontSize: 12.sp,
                   color: Colors.red),
-              fillColor: isDisable
+              fillColor: isDisable!
                   ? AppColors.black.withOpacity(.1)
                   : AppColors.fillColor.withOpacity(.4),
               filled: true,
