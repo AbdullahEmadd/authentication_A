@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_button/custom_button.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
@@ -51,83 +52,85 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
             ],
           ),
           body:
-          BlocBuilder<GenericCubit<List<MainUnitsModel>>,
-              GenericState<List<MainUnitsModel>>>(
-            bloc: getMainUnitsViewModel.getMainUnitsModel,
-            builder: (context, state) {
-              return ListView.builder(
-                  itemCount: getMainUnitsViewModel
-                      .getMainUnitsModel.state.data!.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {},
-                      child: SizedBox(
-                        height: 82.h,
-                        child: Card(
-                          child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width / 3 -
-                                      20.w,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    children: [
-                                      CustomText(
-                                        text: getMainUnitsViewModel
-                                            .getMainUnitsModel
-                                            .state
-                                            .data![index]
-                                            .name!,
-                                        maxLines: 2,
-                                        fontSize: 11.sp,
-                                        color: AppColors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      SizedBox(
-                                        height: 10.h,
-                                      ),
-                                      CustomText(
-                                        text: '5 قطع',
-                                        textAlign: TextAlign.end,
-                                        fontSize: 11.sp,
-                                        color: AppColors.mainColor,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                        child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.edit,
+              BlocBuilder<GenericCubit<List<MainUnitsModel>>,
+                  GenericState<List<MainUnitsModel>>>(
+                bloc: getMainUnitsViewModel.getMainUnitsModel,
+                builder: (context, state) {
+                  return
+                      ListView.builder(
+                          itemCount: getMainUnitsViewModel
+                              .getMainUnitsModel.state.data!.length,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {},
+                              child: SizedBox(
+                                height: 82.h,
+                                child: Card(
+                                  child: Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        SizedBox(
+                                          width:
+                                          MediaQuery.of(context).size.width / 3 -
+                                              20.w,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                            children: [
+                                              CustomText(
+                                                text: getMainUnitsViewModel
+                                                    .getMainUnitsModel
+                                                    .state
+                                                    .data![index]
+                                                    .name!,
+                                                maxLines: 2,
+                                                fontSize: 11.sp,
+                                                color: AppColors.black,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                              SizedBox(
+                                                height: 10.h,
+                                              ),
+                                              CustomText(
+                                                text: '5 قطع',
+                                                textAlign: TextAlign.end,
+                                                fontSize: 11.sp,
+                                                color: AppColors.mainColor,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ],
                                           ),
-                                        )),
-                                    Expanded(
-                                        child: IconButton(
-                                          onPressed: () {},
-                                          icon: const Icon(
-                                            Icons.delete,
-                                          ),
-                                        )),
-                                  ],
+                                        ),
+                                        Column(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            Expanded(
+                                                child: IconButton(
+                                                  onPressed: () {},
+                                                  icon: const Icon(
+                                                    Icons.edit,
+                                                  ),
+                                                )),
+                                            Expanded(
+                                                child: IconButton(
+                                                  onPressed: () {},
+                                                  icon: const Icon(
+                                                    Icons.delete,
+                                                  ),
+                                                )),
+                                          ],
+                                        ),
+                                      ]),
                                 ),
-                              ]),
-                        ),
-                      ),
-                    );
-                  });
-            },
-          ),
+                              ),
+                            );
+                          });
+                },
+              ),
+
           floatingActionButton: FloatingActionButton(
               backgroundColor: AppColors.mainColor,
               child: const Center(

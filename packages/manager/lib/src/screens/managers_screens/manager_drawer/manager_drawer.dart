@@ -1,10 +1,8 @@
 // ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/close_icon/close_icon.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
-import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';

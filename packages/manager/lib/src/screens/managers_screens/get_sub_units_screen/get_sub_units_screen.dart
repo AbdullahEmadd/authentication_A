@@ -4,7 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/sub_units_model/sub_units_model.dart';
+import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
@@ -23,6 +25,7 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
   void initState() {
     // TODO: implement initState
     getSubUnitsViewModel.getSubUnits();
+    globalData.getSubUnitsViewModel = getSubUnitsViewModel;
     super.initState();
   }
   @override
@@ -33,7 +36,7 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
           appBar: AppBar(
             centerTitle: true,
             title: CustomText(
-                text: AppNames.mainUnits,
+                text: AppNames.subUnits,
                 fontSize: 16.sp,
                 color: AppColors.black,
                 fontWeight: FontWeight.bold),
@@ -126,6 +129,17 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                   });
             },
           ),
+          floatingActionButton: FloatingActionButton(
+              backgroundColor: AppColors.mainColor,
+              child: const Center(
+                child: Icon(
+                  Icons.add,
+                  color: Colors.white,
+                ),
+              ),
+              onPressed: () {
+                goToScreen(screenNames: ScreenNames.addSubUnitScreen);
+              }),
         ),
         Loader(loading: getSubUnitsViewModel.loading),
       ],

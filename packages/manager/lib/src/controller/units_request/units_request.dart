@@ -35,4 +35,16 @@ class UnitsController {
         body: {"Name": name, "CompanyId": companyId});
     return result != null ? true : false;
   }
+
+  static Future<bool> addSubUnits(
+      {required String name, required String companyId}) async {
+    var result = await AppService.callService(
+        actionType: ActionType.post,
+        apiName: "Unit/AddUnit",
+        body: {
+          "Name": name,
+          "CompanyId": companyId});
+    return result != null ? true : false;
+  }
+
 }
