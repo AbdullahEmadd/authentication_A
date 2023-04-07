@@ -10,12 +10,12 @@ import 'package:manager/src/components/custom_text_field/custom_text_field.dart'
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/validation.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 import '../../../../components/custom_select_item/custom_select_item_list.dart';
 import '../../../../utility/app_fonts.dart';
-import '../get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_view_model.dart';
 import 'add_sub_category_view_model.dart';
 
 class AddSubCategoryScreen extends StatefulWidget {

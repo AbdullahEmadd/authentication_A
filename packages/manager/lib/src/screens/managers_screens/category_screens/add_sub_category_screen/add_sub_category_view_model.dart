@@ -10,7 +10,7 @@ import 'package:manager/src/cubits/select_items_cubit/selectitems_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_view_model.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_view_model.dart';
 import '../../../../helpers/custom_select_item_validator.dart';
 import '../../../../models/categories_model/get_sub_category_additions_by_company_id_model.dart';
 import '../../../../models/categories_model/main_categories_model.dart';

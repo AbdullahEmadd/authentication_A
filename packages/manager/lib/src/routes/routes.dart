@@ -5,7 +5,7 @@ import 'package:manager/src/screens/managers_screens/add_sub_unit_screen/add_sub
 import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_main_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/add_sub_category_screen/add_sub_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_screen.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_for_main_category_screen/get_sub_categories_for_main_category_screen.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories.dart';
 import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_sub_units_screen/get_sub_units_screen.dart';
 import 'package:manager/src/screens/managers_screens/products_screens/get_products_screen/get_products_screen.dart';
