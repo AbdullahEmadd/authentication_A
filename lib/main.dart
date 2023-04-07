@@ -13,6 +13,7 @@ import 'package:manager/manager.dart';
 
 void main() async{
   //k
+  //k
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   String? userData = CacheHelper.getData(key: 'UserData');
