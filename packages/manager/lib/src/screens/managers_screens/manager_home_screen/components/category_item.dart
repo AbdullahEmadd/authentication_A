@@ -16,7 +16,7 @@ class CategoryItem extends StatelessWidget {
     return GestureDetector(
       onTap: (){
         goToScreen(
-            screenNames: ScreenNames.getSubCategoriesForMainCategoryScreen,
+            screenNames: ScreenNames.getSubCategoriesScreen,
             arguments: [mainCategoriesModel.id, mainCategoriesModel.isOptional]);
       },
       child: Stack(

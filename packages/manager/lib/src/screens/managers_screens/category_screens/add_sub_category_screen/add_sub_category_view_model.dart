@@ -29,7 +29,7 @@ class AddSubCategoryViewModel {
   List<GetSubCategoryAdditionsByCompanyIdModel> listAdditionsSubCategory = [];
   SelectItemsCubit getMainCategoryCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
   SelectItemsCubit getAdditionsCategoryCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
-  GetSubCategoriesForMainCategoryViewModel getSubCategoriesForMainCategoryViewModel = GetSubCategoriesForMainCategoryViewModel();
+  GetSubCategoriesViewModel getSubCategoriesViewModel = GetSubCategoriesViewModel();
 
 
   initData()async{
@@ -42,7 +42,7 @@ class AddSubCategoryViewModel {
     loading.show;
     listMainCategory = await CategoriesController.getMainCategories();
     for (MainCategoriesModel element in listMainCategory) {
-      if(element.id == addSubCategoryScreen.getSubCategoriesForMainCategoryViewModel!.parentId){
+      if(element.id == addSubCategoryScreen.getSubCategoriesViewModel!.parentId){
         getMainCategoryCubit.selectItems(Item(key: element.id , value: element.name));
         loading.hide;
         return;
@@ -96,7 +96,7 @@ class AddSubCategoryViewModel {
               : null
       );
       if (result) {
-        await addSubCategoryScreen.getSubCategoriesForMainCategoryViewModel!.initData();
+        await addSubCategoryScreen.getSubCategoriesViewModel!.initData();
         Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
         goBack();
       }

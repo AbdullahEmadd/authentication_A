@@ -6,7 +6,7 @@ import 'package:manager/src/models/categories_model/sub_categories_model.dart';
 
 import '../../../../models/categories_model/get_sub_category_additions_by_company_id_model.dart';
 
-class GetSubCategoriesForMainCategoryViewModel{
+class GetSubCategoriesViewModel{
 
   List<dynamic>? items;
   String parentId = '';

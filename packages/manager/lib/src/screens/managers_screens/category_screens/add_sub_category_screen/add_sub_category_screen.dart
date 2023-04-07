@@ -21,13 +21,13 @@ import 'add_sub_category_view_model.dart';
 class AddSubCategoryScreen extends StatefulWidget {
   final bool? isOptional ;
   final String? subCategoryId ;
-  final GetSubCategoriesForMainCategoryViewModel? getSubCategoriesForMainCategoryViewModel ;
+  final GetSubCategoriesViewModel? getSubCategoriesViewModel ;
 
   const AddSubCategoryScreen(
       {super.key,
       this.isOptional,
       this.subCategoryId,
-      this.getSubCategoriesForMainCategoryViewModel});
+      this.getSubCategoriesViewModel});
 
   @override
   State<AddSubCategoryScreen> createState() => _AddSubCategoryScreenState();

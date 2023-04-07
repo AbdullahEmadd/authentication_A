@@ -5,7 +5,7 @@ import 'package:manager/src/screens/managers_screens/add_sub_unit_screen/add_sub
 import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_main_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/add_sub_category_screen/add_sub_category_screen.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_screen.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories.dart';
+import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_screen.dart';
 import 'package:manager/src/screens/managers_screens/get_sub_units_screen/get_sub_units_screen.dart';
 import 'package:manager/src/screens/managers_screens/products_screens/get_products_screen/get_products_screen.dart';
@@ -20,7 +20,7 @@ appRoutes(context) {
     ScreenNames.getMainCategoriesScreen: (context) => const GetMainCategoriesScreen(),
     ScreenNames.getMainUnitsScreen: (context) => const GetMainUnitsScreen(),
     ScreenNames.addMainUnitScreen: (context) => const AddMainUnitScreen(),
-    ScreenNames.getSubCategoriesForMainCategoryScreen: (context) => const GetSubCategoriesForMainCategoryScreen(),
+    ScreenNames.getSubCategoriesScreen: (context) => const GetSubCategoriesScreen(),
     ScreenNames.getProductsScreen: (context) => const GetProductsScreen(),
     ScreenNames.getSubUnitsScreen: (context) => const GetSubUnitsScreen(),
     ScreenNames.addSubUnitScreen: (context) => const AddSubUnitScreen(),
@@ -34,7 +34,7 @@ appRoutes(context) {
     static String getMainCategoriesScreen = "getMainCategoriesScreen";
     static String getMainUnitsScreen = "getMainUnitsScreen";
     static String addMainUnitScreen = "addMainUnitScreen";
-    static String getSubCategoriesForMainCategoryScreen = "getSubCategoriesForMainCategoryScreen";
+    static String getSubCategoriesScreen = "getSubCategoriesScreen";
     static String getProductsScreen = "getProductsScreen";
     static String getSubUnitsScreen = "getSubUnitsScreen";
     static String addSubUnitScreen = "addSubUnitScreen";

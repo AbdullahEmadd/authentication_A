@@ -52,7 +52,7 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                         bool? isOptional = getMainCategoriesViewModel.getMainCategoriesModel.state.data![index].isOptional;
                         goToScreen(
                             screenNames: ScreenNames
-                                .getSubCategoriesForMainCategoryScreen,
+                                .getSubCategoriesScreen,
                             arguments: [parentId, isOptional]);
                       },
                       child: SizedBox(

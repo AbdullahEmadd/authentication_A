@@ -13,20 +13,20 @@ import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
 import 'package:manager/src/utility/app_names.dart';
 
-class GetSubCategoriesForMainCategoryScreen extends StatefulWidget {
-  const GetSubCategoriesForMainCategoryScreen({super.key});
+class GetSubCategoriesScreen extends StatefulWidget {
+  const GetSubCategoriesScreen({super.key});
 
   @override
-  State<GetSubCategoriesForMainCategoryScreen> createState() => _GetSubCategoriesForMainCategoryScreenState();
+  State<GetSubCategoriesScreen> createState() => _GetSubCategoriesScreenState();
 }
 
-class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategoriesForMainCategoryScreen> {
-  GetSubCategoriesForMainCategoryViewModel getSubCategoriesForMainCategoryViewModel = GetSubCategoriesForMainCategoryViewModel();
+class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
+  GetSubCategoriesViewModel getSubCategoriesViewModel = GetSubCategoriesViewModel();
   @override
   void initState() {
 
-    getSubCategoriesForMainCategoryViewModel.initialize();
-    getSubCategoriesForMainCategoryViewModel.initData();
+    getSubCategoriesViewModel.initialize();
+    getSubCategoriesViewModel.initData();
     super.initState();
   }
   @override
@@ -37,10 +37,10 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
           appBar: CustomAppBar(textAppBar: AppNames.subCategories,),
           body: BlocBuilder<GenericCubit<List<SubCategoriesModel>>,
               GenericState<List<SubCategoriesModel>>>(
-            bloc: getSubCategoriesForMainCategoryViewModel.getSubCategoriesForMainCategoryModel,
+            bloc: getSubCategoriesViewModel.getSubCategoriesForMainCategoryModel,
             builder: (context, state) {
               return ListView.builder(
-                  itemCount: getSubCategoriesForMainCategoryViewModel
+                  itemCount: getSubCategoriesViewModel
                       .getSubCategoriesForMainCategoryModel.state.data!.length,
                   itemBuilder: (context, index) {
                     return InkWell(
@@ -62,7 +62,7 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
                                         fit: BoxFit.fill,
                                         image: NetworkImage(
                                             AppConsts.imageDomain +
-                                                getSubCategoriesForMainCategoryViewModel
+                                                getSubCategoriesViewModel
                                                     .getSubCategoriesForMainCategoryModel
                                                     .state
                                                     .data![index]
@@ -85,7 +85,7 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
                                     MainAxisAlignment.center,
                                     children: [
                                       CustomText(
-                                        text: getSubCategoriesForMainCategoryViewModel
+                                        text: getSubCategoriesViewModel
                                             .getSubCategoriesForMainCategoryModel
                                             .state
                                             .data![index]
@@ -145,14 +145,14 @@ class _GetSubCategoriesForMainCategoryScreenState extends State<GetSubCategories
               onPressed: () {
                 goToScreen(screenNames: ScreenNames.addSubCategoryScreen,
                     arguments: AddSubCategoryScreen(
-                      isOptional: getSubCategoriesForMainCategoryViewModel.isOptional ?? false,
-                      getSubCategoriesForMainCategoryViewModel:
-                          getSubCategoriesForMainCategoryViewModel,
-                      subCategoryId: getSubCategoriesForMainCategoryViewModel.parentId,
+                      isOptional: getSubCategoriesViewModel.isOptional ?? false,
+                      getSubCategoriesViewModel:
+                      getSubCategoriesViewModel,
+                      subCategoryId: getSubCategoriesViewModel.parentId,
                     ));
               }),
         ),
-        Loader(loading: getSubCategoriesForMainCategoryViewModel.loading)
+        Loader(loading: getSubCategoriesViewModel.loading)
       ],
     );
   }
