@@ -12,6 +12,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/manager.dart';
 
 void main() async{
+  //k
   WidgetsFlutterBinding.ensureInitialized();
   await CacheHelper.init();
   String? userData = CacheHelper.getData(key: 'UserData');
