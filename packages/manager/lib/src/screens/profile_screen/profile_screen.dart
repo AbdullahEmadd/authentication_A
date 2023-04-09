@@ -21,8 +21,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        textAppBar: AppNames.editProfile,
-        isPageHome: false),
+        textAppBar: AppNames.editProfile,),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

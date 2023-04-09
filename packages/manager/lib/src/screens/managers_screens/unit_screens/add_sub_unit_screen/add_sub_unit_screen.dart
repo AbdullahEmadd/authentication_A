@@ -30,7 +30,6 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
         Scaffold(
           appBar: CustomAppBar(
             textAppBar: AppNames.addSubUnit,
-            isPageHome: false,
           ),
           body: SingleChildScrollView(
               child: Padding(
@@ -75,13 +74,7 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
                     CustomButton(
                       text: AppNames.addSubUnit,
                       function: (){
-                        bool result1 = addSubUnitViewModel.addSubUnitKey.currentState!.validate();
-                        bool result2 = addSubUnitViewModel.symbolKey.currentState!.validate();
-                        bool result3 = addSubUnitViewModel.quantityPerUnitKey.currentState!.validate();
-                        bool result4 = addSubUnitViewModel.quantityPerUnitGroupKey.currentState!.validate();
-                        if(addSubUnitViewModel.addSubUnitKey.currentState!.validate()) {
                           addSubUnitViewModel.addSubUnit();
-                        }
                       },
                     ),
                   ],

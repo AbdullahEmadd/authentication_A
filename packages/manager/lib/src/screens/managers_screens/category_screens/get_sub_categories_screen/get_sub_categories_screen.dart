@@ -11,6 +11,7 @@ import 'package:manager/src/screens/managers_screens/category_screens/add_sub_ca
 import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
+import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetSubCategoriesScreen extends StatefulWidget {
@@ -43,7 +44,8 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
                   itemCount: getSubCategoriesViewModel
                       .getSubCategoriesForMainCategoryModel.state.data!.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
+                    return state.data!.isNotEmpty?
+                    InkWell(
                       onTap: () {
                       },
                       child: SizedBox(
@@ -130,6 +132,13 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
                               ]),
                         ),
                       ),
+                    ): Column(
+                      children: [
+                        Image.asset(AppImages.isEmpty),
+                        CustomText(
+                            text: 'عفوا.. لا يوجد بيانات حاليا',
+                            fontSize: 12.sp),
+                      ],
                     );
                   });
             },

@@ -25,7 +25,6 @@ class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
         Scaffold(
           appBar: CustomAppBar(
             textAppBar: AppNames.addMainUnit,
-            isPageHome: false,
           ),
           body: SingleChildScrollView(
             child: Padding(

@@ -10,6 +10,7 @@ import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/get_main_units_screen/get_main_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetMainUnitsScreen extends StatefulWidget {
@@ -35,7 +36,6 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
         Scaffold(
           appBar: CustomAppBar(
             textAppBar: AppNames.mainUnits,
-            isPageHome: false,
           ),
           body:
               BlocBuilder<GenericCubit<List<MainUnitsModel>>,
@@ -47,7 +47,7 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                           itemCount: getMainUnitsViewModel
                               .getMainUnitsModel.state.data!.length,
                           itemBuilder: (context, index) {
-                            return InkWell(
+                            return state.data!.isNotEmpty ? InkWell(
                               onTap: () {
                                 String unitId = getMainUnitsViewModel
                                     .getMainUnitsModel.state.data![index].id!;
@@ -88,6 +88,13 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                                       ]),
                                 ),
                               ),
+                            ): Column(
+                              children: [
+                                Image.asset(AppImages.isEmpty),
+                                CustomText(
+                                    text: 'عفوا.. لا يوجد بيانات حاليا',
+                                    fontSize: 12.sp),
+                              ],
                             );
                           });
                 },

@@ -33,7 +33,6 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
         Scaffold(
           appBar: CustomAppBar(
             textAppBar: AppNames.products,
-            isPageHome: false,
           ),
           body: BlocBuilder<GenericCubit<List<ProductsModel>>,
           GenericState<List<ProductsModel>>>(

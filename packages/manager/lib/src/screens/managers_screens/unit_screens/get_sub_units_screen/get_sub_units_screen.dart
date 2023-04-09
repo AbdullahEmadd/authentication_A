@@ -10,6 +10,7 @@ import 'package:manager/src/models/sub_units_model/sub_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetSubUnitsScreen extends StatefulWidget {
@@ -36,7 +37,6 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
         Scaffold(
           appBar: CustomAppBar(
             textAppBar: AppNames.subUnits,
-            isPageHome: false,
           ),
           body:
           BlocBuilder<GenericCubit<List<SubUnitsModel>>,
@@ -47,7 +47,7 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                   itemCount: getSubUnitsViewModel
                       .getSubUnitsModel.state.data!.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
+                    return state.data!.isNotEmpty? InkWell(
                       onTap: () {},
                       child: SizedBox(
                         height: 82.h,
@@ -83,6 +83,13 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                               ]),
                         ),
                       ),
+                    ): Column(
+                      children: [
+                        Image.asset(AppImages.isEmpty),
+                        CustomText(
+                            text: 'عفوا.. لا يوجد بيانات حاليا',
+                            fontSize: 12.sp),
+                      ],
                     );
                   });
             },

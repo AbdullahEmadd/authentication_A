@@ -9,6 +9,7 @@ import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/category_screens/get_main_categories_screen/get_main_categories_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_consts.dart';
+import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 import '../../../../components/custom_app_bar/custom_app_bar.dart';
@@ -45,7 +46,8 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                   itemCount: getMainCategoriesViewModel
                       .getMainCategoriesModel.state.data!.length,
                   itemBuilder: (context, index) {
-                    return InkWell(
+                    return state.data!.isNotEmpty ?
+                     InkWell(
                       onTap: () {
                         String parentId = getMainCategoriesViewModel
                             .getMainCategoriesModel.state.data![index].id!;
@@ -125,6 +127,14 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                               ]),
                         ),
                       ),
+                    ): 
+                    Column(
+                      children: [
+                        Image.asset(AppImages.isEmpty),
+                        CustomText(
+                            text: 'عفوا.. لا يوجد بيانات حاليا',
+                            fontSize: 12.sp),
+                      ],
                     );
                   });
             },
