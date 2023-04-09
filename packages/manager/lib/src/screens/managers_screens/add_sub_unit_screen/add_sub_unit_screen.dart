@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
-import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
 import 'package:manager/src/screens/managers_screens/add_sub_unit_screen/add_sub_unit_view_model.dart';
-import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddSubUnitScreen extends StatefulWidget {
@@ -23,23 +22,9 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: CustomText(
-                text: AppNames.addSubUnit,
-                fontSize: 16.sp,
-                color: AppColors.black,
-                fontWeight: FontWeight.bold),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined),
-                  iconSize: 35,
-                ),
-              ),
-            ],
+          appBar: CustomAppBar(
+            textAppBar: AppNames.addSubUnit,
+            isPageHome: false,
           ),
           body: SingleChildScrollView(
               child: Padding(
