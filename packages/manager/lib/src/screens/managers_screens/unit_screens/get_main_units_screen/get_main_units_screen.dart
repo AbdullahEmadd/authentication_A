@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
+import 'package:manager/src/components/custom_floating_action/custom_floating_action.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
@@ -100,14 +101,7 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                 },
               ),
 
-          floatingActionButton: FloatingActionButton(
-              backgroundColor: AppColors.mainColor,
-              child: const Center(
-                child: Icon(
-                  Icons.add,
-                  color: Colors.white,
-                ),
-              ),
+          floatingActionButton: CustomFloatingAction(
               onPressed: () {
                 goToScreen(screenNames: ScreenNames.addMainUnitScreen);
               }),
