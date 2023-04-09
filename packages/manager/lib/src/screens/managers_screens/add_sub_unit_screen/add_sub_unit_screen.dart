@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
+import 'package:manager/src/components/custom_select_item/custom_select_item_list.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
@@ -18,6 +19,11 @@ class AddSubUnitScreen extends StatefulWidget {
 class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
   AddSubUnitViewModel addSubUnitViewModel = AddSubUnitViewModel();
   @override
+  void initState() {
+    addSubUnitViewModel.initData();
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
@@ -32,6 +38,11 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
                 child: Column(
                   children: [
                     SizedBox(height: 130.h),
+                    SelectItemList(
+                        name: AppNames.chooseUnitName,
+                        onTap: addSubUnitViewModel.getMainUnitDialog,
+                        selectItemsCubitTemp: addSubUnitViewModel.getMainUnitCubit),
+                    SizedBox(height: 10.h),
                     Form(
                       key: addSubUnitViewModel.addSubUnitKey,
                       child: CustomTextField(

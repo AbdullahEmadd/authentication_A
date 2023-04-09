@@ -51,6 +51,7 @@ class AppNames {
  static const addSubCategory = 'إضافة تصنيف فرعي';
  static const mainCategoryName = 'اسم التنصيف الرئيسي';
  static const chooseCategoryName = 'اختر التنصيف الرئيسي';
+ static const chooseUnitName = 'اختر الوحدة الرئيسية';
  static const subCategoryName = 'اسم التنصيف الفرعي';
  static const mainCategories = 'التصنيفات الرئيسية';
  static const mainUnits = 'الوحدات الرئيسية';

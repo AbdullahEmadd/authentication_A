@@ -24,8 +24,8 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    getSubUnitsViewModel.getSubUnits();
+    getSubUnitsViewModel.initialize();
+    getSubUnitsViewModel.initData();
     globalData.getSubUnitsViewModel = getSubUnitsViewModel;
     super.initState();
   }

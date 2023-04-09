@@ -16,10 +16,12 @@ class UnitsController {
         result.map((x) => MainUnitsModel.fromJson(x))));
   }
 
-  static Future<List<SubUnitsModel>> getSubUnits() async {
+  static Future<List<SubUnitsModel>> getSubUnits(
+  {required String unitGroupId}
+      ) async {
     var result = await AppService.callService(
         actionType: ActionType.get,
-        apiName: "Unit/GetUnitByCompanyId?id=${globalData.companyId}",
+        apiName: "Unit/GetUnitByCompanyIdAndGroupUnitId?CompanyId=${globalData.companyId}&GroupUnitId=$unitGroupId",
         body: null);
     return result != null
         ? (List<SubUnitsModel>.from(

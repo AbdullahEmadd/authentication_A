@@ -48,7 +48,12 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                               .getMainUnitsModel.state.data!.length,
                           itemBuilder: (context, index) {
                             return InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                String unitId = getMainUnitsViewModel
+                                    .getMainUnitsModel.state.data![index].id!;
+                                goToScreen(screenNames: ScreenNames.getSubUnitsScreen,
+                                arguments: unitId);
+                              },
                               child: SizedBox(
                                 height: 82.h,
                                 child: Card(

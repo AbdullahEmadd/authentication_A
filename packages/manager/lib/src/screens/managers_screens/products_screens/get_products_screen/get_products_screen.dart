@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
@@ -30,23 +31,9 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
     return Stack(
       children: [
         Scaffold(
-          appBar: AppBar(
-            centerTitle: true,
-            title: CustomText(
-                text: AppNames.products,
-                fontSize: 16.sp,
-                color: AppColors.black,
-                fontWeight: FontWeight.bold),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.notifications_outlined),
-                  iconSize: 35,
-                ),
-              ),
-            ],
+          appBar: CustomAppBar(
+            textAppBar: AppNames.products,
+            isPageHome: false,
           ),
           body: BlocBuilder<GenericCubit<List<ProductsModel>>,
           GenericState<List<ProductsModel>>>(

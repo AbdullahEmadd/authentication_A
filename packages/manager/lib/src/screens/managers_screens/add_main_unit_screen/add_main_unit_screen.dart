@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
-import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/add_main_unit_screen/add_main_unit_view_model.dart';
-import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddMainUnitScreen extends StatefulWidget {
@@ -52,10 +50,6 @@ class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
                       }
                       },
                   ),
-                  SizedBox(height: 30.h),
-                  CustomButton(
-                      text: AppNames.subUnits,
-                      function: (){goToScreen(screenNames: ScreenNames.getSubUnitsScreen);})
                 ],
               ),
             )

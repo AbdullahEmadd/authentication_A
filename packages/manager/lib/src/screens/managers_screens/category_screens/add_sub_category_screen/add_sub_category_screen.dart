@@ -125,7 +125,6 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                       ),
                     ],
                   ):Container(),
-
                   Form(
                     key: addSubCategoryViewModel.addSubCategoryKey,
                     child: CustomTextField(
