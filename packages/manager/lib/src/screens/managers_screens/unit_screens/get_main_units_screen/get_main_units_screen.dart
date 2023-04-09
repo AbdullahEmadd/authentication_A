@@ -8,7 +8,7 @@ import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/get_main_units_screen/get_main_units_view_model.dart';
+import 'package:manager/src/screens/managers_screens/unit_screens/get_main_units_screen/get_main_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -82,37 +82,8 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                                                 color: AppColors.black,
                                                 fontWeight: FontWeight.bold,
                                               ),
-                                              SizedBox(
-                                                height: 10.h,
-                                              ),
-                                              CustomText(
-                                                text: '5 قطع',
-                                                textAlign: TextAlign.end,
-                                                fontSize: 11.sp,
-                                                color: AppColors.mainColor,
-                                                fontWeight: FontWeight.bold,
-                                              ),
                                             ],
                                           ),
-                                        ),
-                                        Column(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                                child: IconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                    Icons.edit,
-                                                  ),
-                                                )),
-                                            Expanded(
-                                                child: IconButton(
-                                                  onPressed: () {},
-                                                  icon: const Icon(
-                                                    Icons.delete,
-                                                  ),
-                                                )),
-                                          ],
                                         ),
                                       ]),
                                 ),

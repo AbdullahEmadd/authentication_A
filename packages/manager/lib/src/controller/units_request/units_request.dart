@@ -39,7 +39,9 @@ class UnitsController {
   }
 
   static Future<bool> addSubUnits(
-      {required String name, required String companyId, required String unitGroupId, required String symbol}) async {
+      {required String name, required String companyId, required String unitGroupId, required String symbol,
+        required String quantityPerUnit,
+        required String quantityPerUnitGroup}) async {
     var result = await AppService.callService(
         actionType: ActionType.post,
         apiName: "Unit/AddUnit",
@@ -48,6 +50,8 @@ class UnitsController {
           "CompanyId": companyId,
           "UnitGroupId": unitGroupId,
           "Symbol": symbol,
+          "QuantityPerUnit": quantityPerUnit,
+          "QuantityPerUnitGroup": quantityPerUnitGroup,
         });
     return result != null ? true : false;
   }

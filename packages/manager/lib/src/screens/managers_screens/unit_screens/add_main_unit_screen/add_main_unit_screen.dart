@@ -5,8 +5,7 @@ import 'package:manager/src/components/custom_button/custom_button.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
-import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/add_main_unit_screen/add_main_unit_view_model.dart';
+import 'package:manager/src/screens/managers_screens/unit_screens/add_main_unit_screen/add_main_unit_view_model.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddMainUnitScreen extends StatefulWidget {

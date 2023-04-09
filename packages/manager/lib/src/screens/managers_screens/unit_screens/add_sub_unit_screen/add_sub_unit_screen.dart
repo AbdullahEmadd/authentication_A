@@ -6,7 +6,7 @@ import 'package:manager/src/components/custom_select_item/custom_select_item_lis
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
-import 'package:manager/src/screens/managers_screens/add_sub_unit_screen/add_sub_unit_view_model.dart';
+import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_view_model.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddSubUnitScreen extends StatefulWidget {
@@ -50,10 +50,35 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
                           hint: AppNames.addSubUnitName,
                           textFieldValidatorType: TextFieldValidatorType.displayText),
                     ),
+                    Form(
+                      key: addSubUnitViewModel.symbolKey,
+                      child: CustomTextField(
+                          controller: addSubUnitViewModel.symbol,
+                          hint: 'symbol',
+                          textFieldValidatorType: TextFieldValidatorType.displayText),
+                    ),
+                    Form(
+                      key: addSubUnitViewModel.quantityPerUnitKey,
+                      child: CustomTextField(
+                          controller: addSubUnitViewModel.quantityPerUnit,
+                          hint: 'Quantity per unit',
+                          textFieldValidatorType: TextFieldValidatorType.displayText),
+                    ),
+                    Form(
+                      key: addSubUnitViewModel.quantityPerUnitGroupKey,
+                      child: CustomTextField(
+                          controller: addSubUnitViewModel.quantityPerUnitGroup,
+                          hint: 'Quantity per unit Group',
+                          textFieldValidatorType: TextFieldValidatorType.displayText),
+                    ),
                     SizedBox(height: 30.h),
                     CustomButton(
                       text: AppNames.addSubUnit,
                       function: (){
+                        bool result1 = addSubUnitViewModel.addSubUnitKey.currentState!.validate();
+                        bool result2 = addSubUnitViewModel.symbolKey.currentState!.validate();
+                        bool result3 = addSubUnitViewModel.quantityPerUnitKey.currentState!.validate();
+                        bool result4 = addSubUnitViewModel.quantityPerUnitGroupKey.currentState!.validate();
                         if(addSubUnitViewModel.addSubUnitKey.currentState!.validate()) {
                           addSubUnitViewModel.addSubUnit();
                         }
