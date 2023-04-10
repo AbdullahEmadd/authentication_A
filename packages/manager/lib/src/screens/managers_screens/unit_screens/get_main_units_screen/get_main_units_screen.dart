@@ -103,7 +103,7 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
 
           floatingActionButton: CustomFloatingAction(
               onPressed: () {
-                goToScreen(screenNames: ScreenNames.addMainUnitScreen);
+                goToScreen(screenNames: ScreenNames.addMainUnitScreen, arguments: getMainUnitsViewModel);
               }),
         ),
         Loader(loading: getMainUnitsViewModel.loading),

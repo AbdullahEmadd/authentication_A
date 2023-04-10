@@ -9,6 +9,7 @@ import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/sub_units_model/sub_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_images.dart';
@@ -97,7 +98,9 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
           ),
           floatingActionButton: CustomFloatingAction(
               onPressed: () {
-                goToScreen(screenNames: ScreenNames.addSubUnitScreen);
+                goToScreen(screenNames: ScreenNames.addSubUnitScreen, arguments: AddSubUnitScreen(
+                  getSubUnitsViewModel: getSubUnitsViewModel,
+                ));
               }),
         ),
         Loader(loading: getSubUnitsViewModel.loading),

@@ -7,10 +7,14 @@ import 'package:manager/src/components/custom_text_field/custom_text_field.dart'
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_view_model.dart';
+import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddSubUnitScreen extends StatefulWidget {
-  const AddSubUnitScreen({super.key});
+  final GetSubUnitsViewModel? getSubUnitsViewModel;
+
+  const AddSubUnitScreen({super.key,
+  this.getSubUnitsViewModel});
 
   @override
   State<AddSubUnitScreen> createState() => _AddSubUnitScreenState();

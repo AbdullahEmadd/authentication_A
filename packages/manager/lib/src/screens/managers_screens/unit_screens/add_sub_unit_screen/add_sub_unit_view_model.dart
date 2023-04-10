@@ -9,9 +9,11 @@ import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/items.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 
 class AddSubUnitViewModel {
+  late AddSubUnitScreen addSubUnitScreen;
   GetSubUnitsViewModel getSubUnitsViewModel = GetSubUnitsViewModel();
   Loading loading = Loading();
   TextEditingController subUnitName = TextEditingController();
@@ -22,20 +24,23 @@ class AddSubUnitViewModel {
   GlobalKey<FormState> symbolKey = GlobalKey<FormState>();
   GlobalKey<FormState> quantityPerUnitKey = GlobalKey<FormState>();
   GlobalKey<FormState> quantityPerUnitGroupKey = GlobalKey<FormState>();
-  SelectItemsCubit getMainUnitCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
+  SelectItemsCubit getMainUnitCubit =
+      SelectItemsCubit(errorText: "هذا الحقل مطلوب");
   List<MainUnitsModel> listMainUnit = [];
 
   initData() async {
+    addSubUnitScreen = Get.arguments;
     await getMainUnit();
   }
 
-  addSubUnit()async{
+  addSubUnit() async {
     bool result1 = addSubUnitKey.currentState!.validate();
     bool result2 = symbolKey.currentState!.validate();
     bool result3 = quantityPerUnitKey.currentState!.validate();
     bool result4 = quantityPerUnitGroupKey.currentState!.validate();
-    bool getMainUnitValidation = SelectItemValidator.validationFunction(selectItemsCubitList: [getMainUnitCubit]);
-    if (result1 & result2 & result3 & result4 & getMainUnitValidation){
+    bool getMainUnitValidation = SelectItemValidator.validationFunction(
+        selectItemsCubitList: [getMainUnitCubit]);
+    if (result1 & result2 & result3 & result4 & getMainUnitValidation) {
       loading.show;
       bool? result = await UnitsController.addSubUnits(
           name: subUnitName.text,
@@ -43,37 +48,39 @@ class AddSubUnitViewModel {
           unitGroupId: getMainUnitCubit.state.selectedItems!.key.toString(),
           symbol: symbol.text,
           quantityPerUnit: quantityPerUnit.text,
-          quantityPerUnitGroup: quantityPerUnitGroup.text
-
-      );
+          quantityPerUnitGroup: quantityPerUnitGroup.text);
       if (result) {
         Get.snackbar('Success', "تم اضافه الوحدة بنجاح");
-        globalData.getSubUnitsViewModel.getSubUnits(
-            unitGroupId: getSubUnitsViewModel.unitId
-        );
+        await addSubUnitScreen.getSubUnitsViewModel!.initData();
+        // globalData.getSubUnitsViewModel
+        //     .getSubUnits(unitGroupId: getSubUnitsViewModel.unitId);
         goBack();
       }
       loading.hide;
     }
-
   }
+
   getMainUnit() async {
     loading.show;
     listMainUnit = await UnitsController.getMainUnits();
     for (MainUnitsModel element in listMainUnit) {
-      getMainUnitCubit.selectItems(Item(key: element.id, value: element.name));
-      loading.hide;
-      return;
+      if (element.id == addSubUnitScreen.getSubUnitsViewModel!.unitId) {
+        getMainUnitCubit
+            .selectItems(Item(key: element.id, value: element.name));
+        loading.hide;
+        return;
+      }
     }
     loading.hide;
   }
+
   getMainUnitDialog(String displayName) {
-    getMainUnitCubit.loadData(listMainUnit.map((e) => Item(key: e.id, value: e.name)).toList());
+    getMainUnitCubit.loadData(
+        listMainUnit.map((e) => Item(key: e.id, value: e.name)).toList());
     CustomAlertSelectItems.customSelectItems(
       displayName: displayName,
       selectItemsCubit: getMainUnitCubit,
-      afterSelectItem: (Item item) {
-      },
+      afterSelectItem: (Item item) {},
     );
   }
 }
