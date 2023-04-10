@@ -97,17 +97,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       )
                           : SizedBox(
-                            height: 0.25.sh,
-                            child: Center(
-                              child: InkWell(
-                                onTap: (){
-                                  goToScreen(screenNames: ScreenNames.addCategoryScreen , arguments: homeViewModel);
-                                },
-                                  child: CustomEmptyData(
-                                      height: 100.h,
-                                      message: AppNames.notFoundMainCategory),
-                                ),
-                            ),
+                            child: InkWell(
+                              onTap: (){
+                                goToScreen(screenNames: ScreenNames.addCategoryScreen , arguments: homeViewModel);
+                              },
+                                child: const CustomEmptyData(
+                                    message: AppNames.notFoundMainCategory),
+                              ),
                           ),
                     ],
                   );
