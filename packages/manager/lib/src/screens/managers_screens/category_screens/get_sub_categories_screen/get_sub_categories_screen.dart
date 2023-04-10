@@ -41,11 +41,11 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
               GenericState<List<SubCategoriesModel>>>(
             bloc: getSubCategoriesViewModel.getSubCategoriesForMainCategoryModel,
             builder: (context, state) {
-              return ListView.builder(
+              return state.data!.isNotEmpty? ListView.builder(
                   itemCount: getSubCategoriesViewModel
                       .getSubCategoriesForMainCategoryModel.state.data!.length,
                   itemBuilder: (context, index) {
-                    return state.data!.isNotEmpty?
+                    return
                     InkWell(
                       onTap: () {
                       },
@@ -133,15 +133,20 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
                               ]),
                         ),
                       ),
-                    ): Column(
-                      children: [
-                        Image.asset(AppImages.isEmpty),
-                        CustomText(
-                            text: 'عفوا.. لا يوجد بيانات حاليا',
-                            fontSize: 12.sp),
-                      ],
                     );
-                  });
+                  }):
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.isEmpty, package: 'manager'),
+                    SizedBox(height: 10.h),
+                    CustomText(
+                        text: 'عفوا.. لا يوجد بيانات حاليا',
+                        fontSize: 15.sp),
+                  ],
+                ),
+              );
             },
           ),
           floatingActionButton: CustomFloatingAction(

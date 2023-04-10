@@ -26,11 +26,11 @@ class SignUpViewModel {
 
 
 
-  managerSignUp() async {
+  managerSignUp({required String userName, required String password}) async {
     loading.show;
     SignUpModel? signUpModel = await SignUpController.signUp(
-      userName: userNameController.text,
-      password: passwordController.text,
+      userName: userName,
+      password: password,
       name: nameController.text,
       email: emailController.text,
       passwordConfirmation: passwordConfirmationController.text,
@@ -39,7 +39,7 @@ class SignUpViewModel {
     );
     if (signUpModel != null) {
       Get.snackbar('Success', signUpModel.message![0].value.toString());
-      goToScreen(screenNames: ScreenNames.verifyCodeScreen);
+      goToScreen(screenNames: ScreenNames.verifyCodeScreen, arguments: [userName, password]);
     }
     loading.hide;
   }

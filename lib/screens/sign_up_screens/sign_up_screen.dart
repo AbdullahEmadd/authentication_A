@@ -172,7 +172,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         if (signUpViewModel.signUpKey.currentState
                                 ?.validate() ==
                             true) {
-                          signUpViewModel.managerSignUp();
+                          signUpViewModel.managerSignUp(
+                            userName: signUpViewModel.userNameController.text,
+                            password: signUpViewModel.passwordController.text,
+                          );
                         }
                       },
                     )

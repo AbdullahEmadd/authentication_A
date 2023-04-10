@@ -13,8 +13,7 @@ import 'package:manager/src/utility/app_names.dart';
 class AddSubUnitScreen extends StatefulWidget {
   final GetSubUnitsViewModel? getSubUnitsViewModel;
 
-  const AddSubUnitScreen({super.key,
-  this.getSubUnitsViewModel});
+  const AddSubUnitScreen({super.key, this.getSubUnitsViewModel});
 
   @override
   State<AddSubUnitScreen> createState() => _AddSubUnitScreenState();
@@ -22,11 +21,13 @@ class AddSubUnitScreen extends StatefulWidget {
 
 class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
   AddSubUnitViewModel addSubUnitViewModel = AddSubUnitViewModel();
+
   @override
   void initState() {
     addSubUnitViewModel.initData();
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -37,54 +38,49 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
           ),
           body: SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
-                child: Column(
-                  children: [
-                    SizedBox(height: 130.h),
-                    SelectItemList(
-                        name: AppNames.chooseUnitName,
-                        onTap: addSubUnitViewModel.getMainUnitDialog,
-                        selectItemsCubitTemp: addSubUnitViewModel.getMainUnitCubit),
-                    SizedBox(height: 10.h),
-                    Form(
-                      key: addSubUnitViewModel.addSubUnitKey,
-                      child: CustomTextField(
+            padding: EdgeInsets.symmetric(horizontal: 20.w),
+            child: Column(
+              children: [
+                SizedBox(height: 130.h),
+                SelectItemList(
+                    name: AppNames.chooseUnitName,
+                    onTap: addSubUnitViewModel.getMainUnitDialog,
+                    selectItemsCubitTemp: addSubUnitViewModel.getMainUnitCubit),
+                SizedBox(height: 10.h),
+                Form(
+                    key: addSubUnitViewModel.addSubUnitKey,
+                    child: Column(children: [
+                      CustomTextField(
                           controller: addSubUnitViewModel.subUnitName,
                           hint: AppNames.addSubUnitName,
-                          textFieldValidatorType: TextFieldValidatorType.displayText),
-                    ),
-                    Form(
-                      key: addSubUnitViewModel.symbolKey,
-                      child: CustomTextField(
+                          textFieldValidatorType:
+                              TextFieldValidatorType.displayText),
+                      CustomTextField(
                           controller: addSubUnitViewModel.symbol,
                           hint: 'symbol',
-                          textFieldValidatorType: TextFieldValidatorType.displayText),
-                    ),
-                    Form(
-                      key: addSubUnitViewModel.quantityPerUnitKey,
-                      child: CustomTextField(
+                          textFieldValidatorType:
+                              TextFieldValidatorType.displayText),
+                      CustomTextField(
                           controller: addSubUnitViewModel.quantityPerUnit,
                           hint: 'Quantity per unit',
-                          textFieldValidatorType: TextFieldValidatorType.displayText),
-                    ),
-                    Form(
-                      key: addSubUnitViewModel.quantityPerUnitGroupKey,
-                      child: CustomTextField(
+                          textFieldValidatorType:
+                              TextFieldValidatorType.displayText),
+                      CustomTextField(
                           controller: addSubUnitViewModel.quantityPerUnitGroup,
                           hint: 'Quantity per unit Group',
-                          textFieldValidatorType: TextFieldValidatorType.displayText),
-                    ),
-                    SizedBox(height: 30.h),
-                    CustomButton(
-                      text: AppNames.addSubUnit,
-                      function: (){
-                          addSubUnitViewModel.addSubUnit();
-                      },
-                    ),
-                  ],
+                          textFieldValidatorType:
+                              TextFieldValidatorType.displayText),
+                    ])),
+                SizedBox(height: 30.h),
+                CustomButton(
+                  text: AppNames.addSubUnit,
+                  function: () {
+                    addSubUnitViewModel.addSubUnit();
+                  },
                 ),
-              )
-          ),
+              ],
+            ),
+          )),
         ),
         Loader(loading: addSubUnitViewModel.loading)
       ],

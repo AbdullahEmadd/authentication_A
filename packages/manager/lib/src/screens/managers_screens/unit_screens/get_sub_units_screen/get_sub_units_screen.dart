@@ -85,13 +85,17 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                               ]),
                         ),
                       ),
-                    ): Column(
-                      children: [
-                        Image.asset(AppImages.isEmpty),
-                        CustomText(
-                            text: 'عفوا.. لا يوجد بيانات حاليا',
-                            fontSize: 12.sp),
-                      ],
+                    ): Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(AppImages.isEmpty, package: 'manager'),
+                          SizedBox(height: 10.h),
+                          CustomText(
+                              text: 'عفوا.. لا يوجد بيانات حاليا',
+                              fontSize: 15.sp),
+                        ],
+                      ),
                     );
                   });
             },

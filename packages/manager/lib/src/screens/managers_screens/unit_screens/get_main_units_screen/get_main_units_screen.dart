@@ -17,19 +17,20 @@ import 'package:manager/src/utility/app_names.dart';
 class GetMainUnitsScreen extends StatefulWidget {
   const GetMainUnitsScreen({super.key});
 
-
   @override
   State<GetMainUnitsScreen> createState() => _GetMainUnitsScreenState();
 }
 
 class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
   GetMainUnitsViewModel getMainUnitsViewModel = GetMainUnitsViewModel();
+
   @override
   void initState() {
     getMainUnitsViewModel.getMainUnits();
     globalData.getMainUnitsViewModel = getMainUnitsViewModel;
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -38,73 +39,78 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
           appBar: CustomAppBar(
             textAppBar: AppNames.mainUnits,
           ),
-          body:
-              BlocBuilder<GenericCubit<List<MainUnitsModel>>,
-                  GenericState<List<MainUnitsModel>>>(
-                bloc: getMainUnitsViewModel.getMainUnitsModel,
-                builder: (context, state) {
-                  return
-                      ListView.builder(
-                          itemCount: getMainUnitsViewModel
-                              .getMainUnitsModel.state.data!.length,
-                          itemBuilder: (context, index) {
-                            return state.data!.isNotEmpty ? InkWell(
-                              onTap: () {
-                                String unitId = getMainUnitsViewModel
-                                    .getMainUnitsModel.state.data![index].id!;
-                                goToScreen(screenNames: ScreenNames.getSubUnitsScreen,
+          body: BlocBuilder<GenericCubit<List<MainUnitsModel>>,
+              GenericState<List<MainUnitsModel>>>(
+            bloc: getMainUnitsViewModel.getMainUnitsModel,
+            builder: (context, state) {
+              return state.data!.isNotEmpty
+                  ? ListView.builder(
+                      itemCount: getMainUnitsViewModel
+                          .getMainUnitsModel.state.data!.length,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            String unitId = getMainUnitsViewModel
+                                .getMainUnitsModel.state.data![index].id!;
+                            goToScreen(
+                                screenNames: ScreenNames.getSubUnitsScreen,
                                 arguments: unitId);
-                              },
-                              child: SizedBox(
-                                height: 82.h,
-                                child: Card(
-                                  child: Row(
-                                      mainAxisAlignment:
+                          },
+                          child: SizedBox(
+                            height: 82.h,
+                            child: Card(
+                              child: Row(
+                                  mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        SizedBox(
-                                          width:
-                                          MediaQuery.of(context).size.width / 3 -
-                                              20.w,
-                                          child: Column(
-                                            crossAxisAlignment:
+                                  children: [
+                                    SizedBox(
+                                      width: MediaQuery.of(context).size.width /
+                                              3 -
+                                          20.w,
+                                      child: Column(
+                                        crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                            mainAxisAlignment:
+                                        mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                            children: [
-                                              CustomText(
-                                                text: getMainUnitsViewModel
-                                                    .getMainUnitsModel
-                                                    .state
-                                                    .data![index]
-                                                    .name!,
-                                                maxLines: 2,
-                                                fontSize: 11.sp,
-                                                color: AppColors.black,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ],
+                                        children: [
+                                          CustomText(
+                                            text: getMainUnitsViewModel
+                                                .getMainUnitsModel
+                                                .state
+                                                .data![index]
+                                                .name!,
+                                            maxLines: 2,
+                                            fontSize: 11.sp,
+                                            color: AppColors.black,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                        ),
-                                      ]),
-                                ),
-                              ),
-                            ): Column(
-                              children: [
-                                Image.asset(AppImages.isEmpty),
-                                CustomText(
-                                    text: 'عفوا.. لا يوجد بيانات حاليا',
-                                    fontSize: 12.sp),
-                              ],
-                            );
-                          });
-                },
-              ),
-
-          floatingActionButton: CustomFloatingAction(
-              onPressed: () {
-                goToScreen(screenNames: ScreenNames.addMainUnitScreen, arguments: getMainUnitsViewModel);
-              }),
+                                        ],
+                                      ),
+                                    ),
+                                  ]),
+                            ),
+                          ),
+                        );
+                      })
+                  : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(AppImages.isEmpty, package: 'manager'),
+                    SizedBox(height: 10.h),
+                    CustomText(
+                        text: 'عفوا.. لا يوجد بيانات حاليا',
+                        fontSize: 15.sp),
+                  ],
+                ),
+              );
+            },
+          ),
+          floatingActionButton: CustomFloatingAction(onPressed: () {
+            goToScreen(
+                screenNames: ScreenNames.addMainUnitScreen,
+                arguments: getMainUnitsViewModel);
+          }),
         ),
         Loader(loading: getMainUnitsViewModel.loading),
       ],

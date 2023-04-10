@@ -21,9 +21,6 @@ class AddSubUnitViewModel {
   TextEditingController quantityPerUnit = TextEditingController();
   TextEditingController quantityPerUnitGroup = TextEditingController();
   GlobalKey<FormState> addSubUnitKey = GlobalKey<FormState>();
-  GlobalKey<FormState> symbolKey = GlobalKey<FormState>();
-  GlobalKey<FormState> quantityPerUnitKey = GlobalKey<FormState>();
-  GlobalKey<FormState> quantityPerUnitGroupKey = GlobalKey<FormState>();
   SelectItemsCubit getMainUnitCubit =
       SelectItemsCubit(errorText: "هذا الحقل مطلوب");
   List<MainUnitsModel> listMainUnit = [];
@@ -35,12 +32,9 @@ class AddSubUnitViewModel {
 
   addSubUnit() async {
     bool result1 = addSubUnitKey.currentState!.validate();
-    bool result2 = symbolKey.currentState!.validate();
-    bool result3 = quantityPerUnitKey.currentState!.validate();
-    bool result4 = quantityPerUnitGroupKey.currentState!.validate();
     bool getMainUnitValidation = SelectItemValidator.validationFunction(
         selectItemsCubitList: [getMainUnitCubit]);
-    if (result1 & result2 & result3 & result4 & getMainUnitValidation) {
+    if (result1 & getMainUnitValidation) {
       loading.show;
       bool? result = await UnitsController.addSubUnits(
           name: subUnitName.text,
@@ -52,8 +46,6 @@ class AddSubUnitViewModel {
       if (result) {
         Get.snackbar('Success', "تم اضافه الوحدة بنجاح");
         await addSubUnitScreen.getSubUnitsViewModel!.initData();
-        // globalData.getSubUnitsViewModel
-        //     .getSubUnits(unitGroupId: getSubUnitsViewModel.unitId);
         goBack();
       }
       loading.hide;
