@@ -10,8 +10,8 @@ import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/items.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 
 class AddSubUnitViewModel {
   late AddSubUnitScreen addSubUnitScreen;

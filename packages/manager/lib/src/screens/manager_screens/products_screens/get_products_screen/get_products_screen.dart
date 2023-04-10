@@ -6,7 +6,7 @@ import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/models/products_model/products_model.dart';
-import 'package:manager/src/screens/managers_screens/products_screens/get_products_screen/get_products_view_model.dart';
+import 'package:manager/src/screens/manager_screens/products_screens/get_products_screen/get_products_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -71,25 +71,6 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
                                   ),
                                 ],
                               ),
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.edit,
-                                      ),
-                                    )),
-                                Expanded(
-                                    child: IconButton(
-                                      onPressed: () {},
-                                      icon: const Icon(
-                                        Icons.delete,
-                                      ),
-                                    )),
-                              ],
                             ),
                           ]),
                     ),

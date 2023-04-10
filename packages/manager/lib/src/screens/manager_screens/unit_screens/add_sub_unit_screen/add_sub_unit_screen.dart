@@ -6,8 +6,8 @@ import 'package:manager/src/components/custom_select_item/custom_select_item_lis
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/helpers/validation.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_view_model.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/add_sub_unit_screen/add_sub_unit_view_model.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class AddSubUnitScreen extends StatefulWidget {

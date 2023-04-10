@@ -3,7 +3,7 @@ import 'package:manager/src/controller/categories_request/categories_request.dar
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
-import 'package:manager/src/screens/managers_screens/manager_home_screen/home_view_model.dart';
+import 'package:manager/src/screens/manager_screens/manager_home_screen/home_view_model.dart';
 
 class GetMainCategoriesViewModel {
 

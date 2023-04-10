@@ -129,6 +129,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                       SizedBox(height: 25.h),
                       GestureDetector(
                         onTap: () {
+                          goToScreen(screenNames: ScreenNames.getProductsScreen);
                         },
                         child: Row(
                           children: [
@@ -139,26 +140,7 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                             ),
                             SizedBox(width: 10.w),
                             CustomText(
-                              text: AppNames.orders,
-                              fontSize: 20.sp,
-                              color: AppColors.black,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25.h),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.menu_book,
-                              color: AppColors.mainColor,
-                              size: 30,
-                            ),
-                            SizedBox(width: 10.w),
-                            CustomText(
-                              text: AppNames.menu,
+                              text: AppNames.products,
                               fontSize: 20.sp,
                               color: AppColors.black,
                             ),
@@ -180,44 +162,6 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                             SizedBox(width: 10.w),
                             CustomText(
                               text: AppNames.units,
-                              fontSize: 20.sp,
-                              color: AppColors.black,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25.h),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.store,
-                              color: AppColors.mainColor,
-                              size: 30,
-                            ),
-                            SizedBox(width: 10.w),
-                            CustomText(
-                              text: AppNames.companyStore,
-                              fontSize: 20.sp,
-                              color: AppColors.black,
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(height: 25.h),
-                      GestureDetector(
-                        onTap: () {},
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.store,
-                              color: AppColors.mainColor,
-                              size: 30,
-                            ),
-                            SizedBox(width: 10.w),
-                            CustomText(
-                              text: AppNames.employeeStore,
                               fontSize: 20.sp,
                               color: AppColors.black,
                             ),

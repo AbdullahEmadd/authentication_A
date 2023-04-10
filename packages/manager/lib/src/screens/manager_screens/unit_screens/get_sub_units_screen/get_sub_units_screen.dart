@@ -9,8 +9,8 @@ import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/models/sub_units_model/sub_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -56,12 +56,32 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                         child: Card(
                           child: Container(
                             padding: EdgeInsets.symmetric(horizontal: 20.w , vertical: 20.h),
-                            child: CustomText(
-                              text: state.data![index].name.toString(),
-                              maxLines: 2,
-                              fontSize: 11.sp,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                CustomText(
+                                  text: 'name : ${state.data![index].name.toString()}',
+                                  maxLines: 2,
+                                  fontSize: 14.sp,
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                CustomText(
+                                    text: 'symbol : ${state.data![index].symbol.toString()}',
+                                    fontSize: 14.sp,
+                                   fontWeight: FontWeight.bold,
+                                ),
+                                CustomText(
+                                    text: 'Quantity per unit : ${state.data![index].quantityPerUnit.toString()}',
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                ),
+                                CustomText(
+                                    text: 'Quantity per unit group : ${state.data![index].quantityPerUnitGroup.toString()}',
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.bold,
+                                ),
+                              ],
                             ),
                           ),
                         ),

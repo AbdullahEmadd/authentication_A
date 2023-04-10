@@ -5,7 +5,7 @@ import 'package:manager/src/components/custom_empty_data/custom_empty_data.dart'
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/manager_drawer/manager_drawer.dart';
+import 'package:manager/src/screens/manager_screens/manager_drawer/manager_drawer.dart';
 import 'package:manager/src/utility/app_names.dart';
 import '../../../components/custom_app_bar/custom_app_bar.dart';
 import '../../../cubits/generic_cubit/generic_cubit.dart';

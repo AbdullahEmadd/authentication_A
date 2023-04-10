@@ -11,7 +11,7 @@ import 'package:manager/src/helpers/get_message_snackbar.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/get_sub_categories_screen/get_sub_categories_view_model.dart';
+import 'package:manager/src/screens/manager_screens/category_screens/get_sub_categories_screen/get_sub_categories_view_model.dart';
 import '../../../../helpers/custom_select_item_validator.dart';
 import '../../../../models/categories_model/get_sub_category_additions_by_company_id_model.dart';
 import '../../../../models/categories_model/main_categories_model.dart';

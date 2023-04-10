@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/utility/app_setting.dart';
-import 'src/screens/managers_screens/manager_home_screen/home_screen.dart';
+import 'src/screens/manager_screens/manager_home_screen/home_screen.dart';
 import 'src/utility/app_theme.dart';
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

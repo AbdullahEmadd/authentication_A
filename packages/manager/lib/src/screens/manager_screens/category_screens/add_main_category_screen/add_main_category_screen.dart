@@ -10,7 +10,7 @@ import 'package:manager/src/components/custom_text_field/custom_text_field.dart'
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/validation.dart';
-import 'package:manager/src/screens/managers_screens/category_screens/add_main_category_screen/add_category_view_model.dart';
+import 'package:manager/src/screens/manager_screens/category_screens/add_main_category_screen/add_category_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_fonts.dart';
 import 'package:manager/src/utility/app_names.dart';

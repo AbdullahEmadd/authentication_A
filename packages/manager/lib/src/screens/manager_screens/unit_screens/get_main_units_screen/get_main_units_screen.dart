@@ -9,7 +9,7 @@ import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
-import 'package:manager/src/screens/managers_screens/unit_screens/get_main_units_screen/get_main_units_view_model.dart';
+import 'package:manager/src/screens/manager_screens/unit_screens/get_main_units_screen/get_main_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -62,7 +62,7 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                                 child: CustomText(
                                   text: state.data![index].name.toString(),
                                   maxLines: 2,
-                                  fontSize: 11.sp,
+                                  fontSize: 14.sp,
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
