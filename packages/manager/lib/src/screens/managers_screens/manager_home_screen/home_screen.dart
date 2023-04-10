@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:manager/src/components/custom_empty_data/custom_empty_data.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/routes/routes.dart';
@@ -102,13 +103,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                 onTap: (){
                                   goToScreen(screenNames: ScreenNames.addCategoryScreen , arguments: homeViewModel);
                                 },
-                                child: CustomText(
-                                    text: AppNames.notFoundMainCategory,
-                                    color: AppColors.black.withOpacity(.5),
-                                    fontSize: 14.sp,
-                                    textAlign: TextAlign.center,
-                                    fontFamily: AppFonts.fontMedium),
-                              ),
+                                  child: CustomEmptyData(
+                                      height: 100.h,
+                                      message: AppNames.notFoundMainCategory),
+                                ),
                             ),
                           ),
                     ],
