@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:first_task/cubits/generic_cubit/generic_cubit.dart';
+import 'package:first_task/helpers/cache_helper.dart';
 import 'package:first_task/routes/routes.dart';
 import 'package:flutter/material.dart';
 import '../../models/authentication/sign_up_model.dart';
@@ -38,6 +41,8 @@ class SignUpViewModel {
       role: 'Manager',
     );
     if (signUpModel != null) {
+      CacheHelper.saveData(key: 'UserData', value: jsonEncode((signUpModel)));
+      CacheHelper.saveData(key: 'companyId', value: signUpModel.data!.user!.companyId);
       Get.snackbar('Success', signUpModel.message![0].value.toString());
       goToScreen(screenNames: ScreenNames.verifyCodeScreen, arguments: [userName, password]);
     }
