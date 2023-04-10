@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:manager/src/controller/categories_request/categories_request.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
+import 'package:manager/src/helpers/get_message_snackbar.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
@@ -47,7 +48,7 @@ class AddCategoryViewModel {
         await getMainCategoriesViewModel.getMainCategories();
         getMainCategoriesViewModel.homeViewModel.getMainCategoriesCubit.update(data: getMainCategoriesViewModel.mainCategory);
       }
-      Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
+      getMessageSnackBar(messageText: "تم اضافه التصنيف بنجاح");
       goBack();
     }
     loading.hide;

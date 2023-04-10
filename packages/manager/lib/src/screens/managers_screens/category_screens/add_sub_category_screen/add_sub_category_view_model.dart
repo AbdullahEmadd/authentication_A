@@ -7,6 +7,7 @@ import 'package:manager/src/controller/categories_request/categories_request.dar
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/cubits/loading_cubit/loading_cubit.dart';
 import 'package:manager/src/cubits/select_items_cubit/selectitems_cubit.dart';
+import 'package:manager/src/helpers/get_message_snackbar.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
@@ -25,6 +26,7 @@ class AddSubCategoryViewModel {
   TextEditingController subCategoryName = TextEditingController();
   GenericCubit<File?> selectedImagePath = GenericCubit();
   GenericCubit<bool> isImage = GenericCubit(data: false);
+  GenericCubit<bool> showAdditionsCategory = GenericCubit(data: false);
   List<MainCategoriesModel> listMainCategory = [];
   List<GetSubCategoryAdditionsByCompanyIdModel> listAdditionsSubCategory = [];
   SelectItemsCubit getMainCategoryCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
@@ -34,6 +36,7 @@ class AddSubCategoryViewModel {
 
   initData()async{
     addSubCategoryScreen = Get.arguments;
+    showAdditionsCategory.update(data: addSubCategoryScreen.isOptional ?? false);
     await getMainCategories();
     await getSubCategoryAdditionsByCompanyId();
   }
@@ -58,17 +61,18 @@ class AddSubCategoryViewModel {
   }
 
   getMainCategoryDialog(String displayName) {
-    getMainCategoryCubit.loadData(listMainCategory.map((e) => Item(key: e.id, value: e.name)).toList());
+    getMainCategoryCubit.loadData(listMainCategory.map((e) => Item(key: e.id, value: e.name , isOptional: e.isOptional)).toList());
     CustomAlertSelectItems.customSelectItems(
       displayName: displayName,
       selectItemsCubit: getMainCategoryCubit,
       afterSelectItem: (Item item) {
+        showAdditionsCategory.update(data: item.isOptional ?? false);
       },
     );
   }
 
   getAdditionsCategoryDialog(String displayName) {
-    getAdditionsCategoryCubit.loadData(listAdditionsSubCategory.map((e) => Item(key: e.id, value: e.name)).toList());
+    getAdditionsCategoryCubit.loadData(listAdditionsSubCategory.map((e) => Item(key: e.id, value: e.name , isOptional: e.isOptional)).toList());
     CustomAlertSelectItems.customSelectItems(
       displayName: displayName,
       selectItemsCubit: getAdditionsCategoryCubit,
@@ -89,7 +93,7 @@ class AddSubCategoryViewModel {
           name: subCategoryName.text,
           companyId: globalData.companyId ?? '',
           logo: base64,
-          isOptional: addSubCategoryScreen.isOptional!,
+          isOptional: showAdditionsCategory.state.data ?? false,
           parentCategoryId: getMainCategoryCubit.state.selectedItems!.key.toString(),
           relatedCategoryId: getAdditionsCategoryCubit.state.selectedItems !=null
               ? getAdditionsCategoryCubit.state.selectedItems!.key.toString()
@@ -97,7 +101,7 @@ class AddSubCategoryViewModel {
       );
       if (result) {
         await addSubCategoryScreen.getSubCategoriesViewModel!.initData();
-        Get.snackbar('Success', "تم اضافه التصنيف بنجاح");
+        getMessageSnackBar(messageText: "تم اضافه التصنيف بنجاح");
         goBack();
       }
       loading.hide;

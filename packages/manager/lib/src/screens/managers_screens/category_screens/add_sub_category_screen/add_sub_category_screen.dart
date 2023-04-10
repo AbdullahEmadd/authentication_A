@@ -112,19 +112,28 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                     selectItemsCubitTemp: addSubCategoryViewModel.getMainCategoryCubit,
                     onTap: addSubCategoryViewModel.getMainCategoryDialog,
                   ),
-
-                  !addSubCategoryViewModel.addSubCategoryScreen.isOptional!?
-                  Column(
-                    children: [
-                      SizedBox(height: 10.h,),
-                      SelectItemList(
-                        name:  AppNames.chooseAdditions,
-                        selectItemsCubitTemp: addSubCategoryViewModel.getAdditionsCategoryCubit,
-                        onTap: addSubCategoryViewModel.getAdditionsCategoryDialog,
-                        enable: !addSubCategoryViewModel.addSubCategoryScreen.isOptional!,
-                      ),
-                    ],
-                  ):Container(),
+                  BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                    bloc: addSubCategoryViewModel.showAdditionsCategory,
+                    builder: (context, state) {
+                      return state.data! ? Container()
+                          : Column(
+                        children: [
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          SelectItemList(
+                            name: AppNames.chooseAdditions,
+                            selectItemsCubitTemp: addSubCategoryViewModel
+                                .getAdditionsCategoryCubit,
+                            onTap: addSubCategoryViewModel
+                                .getAdditionsCategoryDialog,
+                            enable: !addSubCategoryViewModel
+                                .addSubCategoryScreen.isOptional!,
+                          ),
+                        ],
+                      );
+                    },
+                  ),
                   Form(
                     key: addSubCategoryViewModel.addSubCategoryKey,
                     child: CustomTextField(
@@ -133,7 +142,7 @@ class _AddSubCategoryScreenState extends State<AddSubCategoryScreen> {
                       controller: addSubCategoryViewModel.subCategoryName,
                     ),
                   ),
-                  SizedBox(height: 30.h,),
+                  SizedBox(height: 10.h,),
                   CustomButton(
                     width: 216.w,
                     text: AppNames.addSubCategory,

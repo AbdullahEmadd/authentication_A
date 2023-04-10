@@ -7,7 +7,6 @@ import 'package:manager/src/components/custom_floating_action/custom_floating_ac
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
-import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/sub_units_model/sub_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
@@ -29,7 +28,6 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
   void initState() {
     getSubUnitsViewModel.initialize();
     getSubUnitsViewModel.initData();
-    globalData.getSubUnitsViewModel = getSubUnitsViewModel;
     super.initState();
   }
   @override
@@ -46,48 +44,30 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
             bloc: getSubUnitsViewModel.getSubUnitsModel,
             builder: (context, state) {
               if (state is GenericUpdate) {
-                return ListView.builder(
-                  itemCount: getSubUnitsViewModel
-                      .getSubUnitsModel.state.data!.length,
+                return
+                  state.data!.isNotEmpty
+                      ? ListView.builder(
+                  itemCount: state.data!.length,
                   itemBuilder: (context, index) {
-                    return state.data!.isNotEmpty? InkWell(
+                    return  InkWell(
                       onTap: () {},
-                      child: SizedBox(
-                        height: 82.h,
+                      child:  Container(
+                        margin: EdgeInsets.symmetric(horizontal: 10.w),
                         child: Card(
-                          child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.spaceBetween,
-                              children: [
-                                SizedBox(
-                                  width:
-                                  MediaQuery.of(context).size.width / 3 -
-                                      20.w,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                    CrossAxisAlignment.start,
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    children: [
-                                      CustomText(
-                                        text: getSubUnitsViewModel
-                                            .getSubUnitsModel
-                                            .state
-                                            .data![index]
-                                            .name!,
-                                        maxLines: 2,
-                                        fontSize: 11.sp,
-                                        color: AppColors.black,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ]),
+                          child: Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w , vertical: 20.h),
+                            child: CustomText(
+                              text: state.data![index].name.toString(),
+                              maxLines: 2,
+                              fontSize: 11.sp,
+                              color: AppColors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       ),
-                    ): const CustomEmptyData();
-                  });
+                    );
+                  }):const CustomEmptyData();
               } else {
                 return Container();
               }

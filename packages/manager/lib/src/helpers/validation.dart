@@ -61,9 +61,6 @@ validation(
     if (value.isEmpty) {
       return 'هذا الحقل مطلوب';
     }
-    if (value.length != 11) {
-      return 'Must be equal 10';
-    }
   } else if (type == TextFieldValidatorType.displayText) {
     if (value.isEmpty) {
       return 'هذا الحقل مطلوب';

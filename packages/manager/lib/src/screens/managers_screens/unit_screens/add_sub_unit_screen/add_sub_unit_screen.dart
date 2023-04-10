@@ -41,7 +41,7 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               children: [
-                SizedBox(height: 130.h),
+                SizedBox(height: 20.h),
                 SelectItemList(
                     name: AppNames.chooseUnitName,
                     onTap: addSubUnitViewModel.getMainUnitDialog,
@@ -57,21 +57,23 @@ class _AddSubUnitScreenState extends State<AddSubUnitScreen> {
                               TextFieldValidatorType.displayText),
                       CustomTextField(
                           controller: addSubUnitViewModel.symbol,
-                          hint: 'symbol',
+                          hint: 'الرمز',
                           textFieldValidatorType:
                               TextFieldValidatorType.displayText),
                       CustomTextField(
                           controller: addSubUnitViewModel.quantityPerUnit,
-                          hint: 'Quantity per unit',
+                          textType: TextInputType.number,
+                          hint: 'الكمية لكل وحدة',
                           textFieldValidatorType:
-                              TextFieldValidatorType.displayText),
+                              TextFieldValidatorType.number),
                       CustomTextField(
                           controller: addSubUnitViewModel.quantityPerUnitGroup,
-                          hint: 'Quantity per unit Group',
+                          hint: 'الكمية لكل مجموعة وحدة',
+                          textType: TextInputType.number,
                           textFieldValidatorType:
-                              TextFieldValidatorType.displayText),
+                              TextFieldValidatorType.number),
                     ])),
-                SizedBox(height: 30.h),
+                SizedBox(height: 10.h),
                 CustomButton(
                   text: AppNames.addSubUnit,
                   function: () {

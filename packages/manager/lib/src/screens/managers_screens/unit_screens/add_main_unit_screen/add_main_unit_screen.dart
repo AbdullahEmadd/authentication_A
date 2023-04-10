@@ -11,13 +11,18 @@ import 'package:manager/src/utility/app_names.dart';
 class AddMainUnitScreen extends StatefulWidget {
   const AddMainUnitScreen({super.key});
 
-
   @override
   State<AddMainUnitScreen> createState() => _AddMainUnitScreenState();
 }
 
 class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
   AddMainUnitViewModel addMainUnitViewModel = AddMainUnitViewModel();
+
+  @override
+  void initState() {
+    addMainUnitViewModel.initData();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -31,7 +36,7 @@ class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  SizedBox(height: 130.h),
+                  SizedBox(height: 50.h),
                   Form(
                     key: addMainUnitViewModel.addMainUnitKey,
                     child: CustomTextField(
@@ -39,7 +44,7 @@ class _AddMainUnitScreenState extends State<AddMainUnitScreen> {
                       hint: AppNames.addMainUnit,
                       textFieldValidatorType: TextFieldValidatorType.displayText),
                   ),
-                  SizedBox(height: 30.h),
+                  SizedBox(height: 10.h),
                   CustomButton(
                     text: AppNames.addMainUnit,
                     function: (){

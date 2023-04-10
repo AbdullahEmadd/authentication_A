@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 import 'dart:developer' as dev;
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:manager/src/utility/app_setting.dart';
+
+import '../helpers/get_message_snackbar.dart';
 
 class AppService {
   static Future callService({
@@ -38,13 +39,12 @@ class AppService {
         } else {
           if (response.statusCode == 200 &&
               jsonDecode(response.body)["State"]) {
-            // print(response.body);
-            // print(jsonDecode(response.body)["Data"]);
-            // print(jsonDecode(response.body)["Data"].runtimeType);
             return  jsonDecode(response.body)["Data"];
-            // return response.body;
           } else {
-            Get.snackbar('عفوا', jsonDecode(response.body)["Message"][0]["Value"].toString());
+            getMessageSnackBar(
+                snackBarType: SnackBarType.error,
+                messageText: jsonDecode(response.body)["Message"][0]["Value"]
+                    .toString());
             return null;
           }
         }
