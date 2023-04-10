@@ -43,7 +43,8 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
               GenericState<List<MainCategoriesModel>>>(
             bloc: getMainCategoriesViewModel.getMainCategoriesModel,
             builder: (context, state) {
-              return state.data!.isNotEmpty ?ListView.builder(
+              if (state is GenericUpdate) {
+                return state.data!.isNotEmpty ?ListView.builder(
                   itemCount: getMainCategoriesViewModel
                       .getMainCategoriesModel.state.data!.length,
                   itemBuilder: (context, index) {
@@ -130,6 +131,9 @@ class _GetMainCategoriesScreenState extends State<GetMainCategoriesScreen> {
                     );
                   }):
               const CustomEmptyData();
+              } else {
+                return Container();
+              }
             },
           ),
           floatingActionButton: CustomFloatingAction(

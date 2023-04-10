@@ -13,7 +13,6 @@ import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
 import 'package:manager/src/screens/managers_screens/unit_screens/get_sub_units_screen/get_sub_units_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
-import 'package:manager/src/utility/app_images.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetSubUnitsScreen extends StatefulWidget {
@@ -46,7 +45,8 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
               GenericState<List<SubUnitsModel>>>(
             bloc: getSubUnitsViewModel.getSubUnitsModel,
             builder: (context, state) {
-              return ListView.builder(
+              if (state is GenericUpdate) {
+                return ListView.builder(
                   itemCount: getSubUnitsViewModel
                       .getSubUnitsModel.state.data!.length,
                   itemBuilder: (context, index) {
@@ -88,6 +88,9 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                       ),
                     ): const CustomEmptyData();
                   });
+              } else {
+                return Container();
+              }
             },
           ),
           floatingActionButton: CustomFloatingAction(

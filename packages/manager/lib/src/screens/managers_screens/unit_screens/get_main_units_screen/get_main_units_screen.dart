@@ -44,7 +44,8 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
               GenericState<List<MainUnitsModel>>>(
             bloc: getMainUnitsViewModel.getMainUnitsModel,
             builder: (context, state) {
-              return state.data!.isNotEmpty
+              if (state is GenericUpdate) {
+                return state.data!.isNotEmpty
                   ? ListView.builder(
                       itemCount: getMainUnitsViewModel
                           .getMainUnitsModel.state.data!.length,
@@ -94,6 +95,7 @@ class _GetMainUnitsScreenState extends State<GetMainUnitsScreen> {
                         );
                       })
                   : const CustomEmptyData();
+              } else {return Container();}
             },
           ),
           floatingActionButton: CustomFloatingAction(onPressed: () {

@@ -42,7 +42,8 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
               GenericState<List<SubCategoriesModel>>>(
             bloc: getSubCategoriesViewModel.getSubCategoriesForMainCategoryModel,
             builder: (context, state) {
-              return state.data!.isNotEmpty? ListView.builder(
+              if (state is GenericUpdate) {
+                return state.data!.isNotEmpty? ListView.builder(
                   itemCount: getSubCategoriesViewModel
                       .getSubCategoriesForMainCategoryModel.state.data!.length,
                   itemBuilder: (context, index) {
@@ -137,6 +138,9 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
                     );
                   }):
               const CustomEmptyData();
+              } else {
+                return Container();
+              }
             },
           ),
           floatingActionButton: CustomFloatingAction(
