@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
+import 'package:manager/src/components/custom_empty_data/custom_empty_data.dart';
 import 'package:manager/src/components/custom_floating_action/custom_floating_action.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
@@ -135,18 +136,7 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
                       ),
                     );
                   }):
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(AppImages.isEmpty, package: 'manager'),
-                    SizedBox(height: 10.h),
-                    CustomText(
-                        text: 'عفوا.. لا يوجد بيانات حاليا',
-                        fontSize: 15.sp),
-                  ],
-                ),
-              );
+              const CustomEmptyData();
             },
           ),
           floatingActionButton: CustomFloatingAction(

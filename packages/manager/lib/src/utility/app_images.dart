@@ -14,5 +14,5 @@ class AppImages {
   static const String drinks = '${imgPath}drinks.png';
   static const String mostOrdered2 = '${imgPath}mostOrdered2.png';
   static const String isEmpty = '${imgPath}empty.png';
-  // static const String isEmpty2 = '${imgPath}Hidden-cuate.svg';
+  static const String isEmpty2 = '${imgPath}Hidden-cuate.svg';
 }
