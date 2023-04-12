@@ -9,7 +9,6 @@ import 'package:manager/src/helpers/get_message_snackbar.dart';
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/routes/routes.dart';
-
 import '../../manager_home_screen/home_view_model.dart';
 import '../get_main_categories_screen/get_main_categories_view_model.dart';
 

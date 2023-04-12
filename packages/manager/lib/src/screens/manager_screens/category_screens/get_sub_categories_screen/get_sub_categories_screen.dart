@@ -26,7 +26,6 @@ class _GetSubCategoriesScreenState extends State<GetSubCategoriesScreen> {
   GetSubCategoriesViewModel getSubCategoriesViewModel = GetSubCategoriesViewModel();
   @override
   void initState() {
-
     getSubCategoriesViewModel.initialize();
     getSubCategoriesViewModel.initData();
     super.initState();

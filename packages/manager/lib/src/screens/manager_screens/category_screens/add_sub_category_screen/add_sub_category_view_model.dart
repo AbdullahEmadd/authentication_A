@@ -18,6 +18,7 @@ import '../../../../models/categories_model/main_categories_model.dart';
 import '../../../../models/items.dart';
 import 'add_sub_category_screen.dart';
 
+AddSubCategoryViewModel addSubCategoryViewModel = AddSubCategoryViewModel();
 class AddSubCategoryViewModel {
   String base64 ='';
   Loading loading = Loading();
@@ -82,10 +83,8 @@ class AddSubCategoryViewModel {
   }
 
   addSubCategory() async {
-
     bool result = addSubCategoryKey.currentState!.validate();
     bool getMainCategoryValidation = SelectItemValidator.validationFunction(selectItemsCubitList: [getMainCategoryCubit]);
-
     if (result && getMainCategoryValidation && selectedImagePath.state.data != null) {
       loading.show;
       bool? result =
