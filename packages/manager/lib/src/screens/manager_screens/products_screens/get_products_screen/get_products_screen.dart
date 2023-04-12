@@ -6,15 +6,16 @@ import 'package:manager/src/components/custom_floating_action/custom_floating_ac
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
+import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/products_model/products_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/manager_screens/products_screens/get_products_screen/get_products_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
+import 'package:manager/src/utility/app_consts.dart';
 import 'package:manager/src/utility/app_names.dart';
 
 class GetProductsScreen extends StatefulWidget {
   const GetProductsScreen({super.key});
-
 
   @override
   State<GetProductsScreen> createState() => _GetProductsScreenState();
@@ -25,6 +26,7 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
 
   @override
   void initState() {
+    globalData.getProductsViewModel = getProductsViewModel;
     getProductsViewModel.getProducts();
     super.initState();
   }
@@ -43,38 +45,48 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
               return ListView.builder(
                 itemCount: getProductsViewModel.getProductsModel.state.data!.length,
                 itemBuilder: (context, index) {
-                  return SizedBox(
-                    height: 82.h,
-                    child: Card(
-                      child: Row(
+                  return Container(
+                    margin: EdgeInsets.symmetric(horizontal: 10.w),
+                    child: SizedBox(
+                      height: 82.h,
+                      child: Card(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width / 3 -
-                                  20.w,
-                              child: Column(
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  CustomText(
-                                    text: getProductsViewModel
-                                        .getProductsModel
-                                        .state
-                                        .data![index]
-                                        .name!,
-                                    maxLines: 2,
-                                    fontSize: 11.sp,
-                                    color: AppColors.black,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                ],
+                            Container(
+                              height: 82,
+                              width: MediaQuery.of(context).size.width / 3,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: NetworkImage(AppConsts.imageDomain+ getProductsViewModel
+                                      .getProductsModel
+                                      .state
+                                      .data![index].prodImages![0].url!),),
+                                borderRadius: const BorderRadius.only(
+                                  bottomRight: Radius.circular(5),
+                                  topRight: Radius.circular(5),
+                                ),
+                                color: AppColors.gray,
                               ),
                             ),
-                          ]),
+                            CustomText(
+                              text: getProductsViewModel
+                                  .getProductsModel
+                                  .state
+                                  .data![index]
+                                  .name!,
+                              maxLines: 2,
+                              fontSize: 14.sp,
+                              color: AppColors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   );
                 },

@@ -13,11 +13,14 @@ import 'package:manager/src/helpers/image_picker.dart';
 import 'package:manager/src/models/categories_model/main_categories_model.dart';
 import 'package:manager/src/models/categories_model/sub_categories_model.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
-import 'package:manager/src/screens/manager_screens/category_screens/add_sub_category_screen/add_sub_category_view_model.dart';
+import 'package:manager/src/models/sub_units_model/sub_units_model.dart';
+import 'package:manager/src/routes/routes.dart';
+import 'package:manager/src/screens/manager_screens/products_screens/get_products_screen/get_products_view_model.dart';
 import '../../../../cubits/loading_cubit/loading_cubit.dart';
-import '../../../../models/items.dart';
+import '../../../../models/items_model/items.dart';
 
 class AddProductViewModel {
+  GetProductsViewModel getProductsViewModel = GetProductsViewModel();
   String base64 = '';
   Loading loading = Loading();
   SelectItemsCubit getMainCategoryCubit = SelectItemsCubit(
@@ -34,6 +37,7 @@ class AddProductViewModel {
   List<MainUnitsModel> listMainUnits = [];
   GenericCubit<List<MainUnitsModel>> getMainUnitsModel = GenericCubit<List<MainUnitsModel>>(data: []);
   SelectItemsCubit getSubCategoryCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
+  GenericCubit<bool> isOptional = GenericCubit(data: false);
 
   initialize()  {
     getMainCategories();
@@ -44,16 +48,18 @@ class AddProductViewModel {
     loading.show;
     bool? result = await ProductsController.addProduct(
         name: productName.text,
-        categoryId: addSubCategoryViewModel.getMainCategoryCubit.state
+        description: productDescription.text,
+        categoryId: getMainCategoryCubit.state
             .selectedItems!.key.toString(),
-        subCategoryId: '',
+        subCategoryId: getSubCategoryCubit.state.selectedItems!.key.toString(),
         companyId: globalData.companyId!,
-        isOptional: true
+        isOptional: isOptional.state.data!,
+        image: base64
     );
     if (result) {
-      // await addSubCategoryScreen.getSubCategoriesViewModel!.initData();
+      globalData.getProductsViewModel.getProducts();
       getMessageSnackBar(messageText: "تم اضافه التصنيف بنجاح");
-      // goBack();
+      goBack();
     }
     loading.hide;
   }
@@ -81,7 +87,6 @@ class AddProductViewModel {
     listSubCategories =  await CategoriesController.getSubCategoriesForMainCategory(
         parentCategoryId: parentCategoryId
     );
-    getSubCategoriesForMainCategoryModel.update(data:listSubCategories);
     loading.hide;
   }
 
@@ -89,19 +94,16 @@ class AddProductViewModel {
     getSubCategoryCubit.loadData(listSubCategories.map((e) => Item(key: e.id, value: e.name, isOptional: e.isOptional)).toList());
     CustomAlertSelectItems.customSelectItems(
       displayName: displayName,
-      selectItemsCubit: getMainCategoryCubit,
+      selectItemsCubit: getSubCategoryCubit,
       afterSelectItem: (Item item) {
       },
     );
   }
 
-
-  getMainUnits()async{
+  getMainUnits() async{
     loading.show;
     List<MainUnitsModel>? unitsList = await UnitsController.getMainUnits();
-    if(unitsList != null){
-      getMainUnitsModel.update(data: unitsList);
-    }
+    getMainUnitsModel.update(data: unitsList);
     loading.hide;
   }
 
@@ -112,6 +114,27 @@ class AddProductViewModel {
     CustomAlertSelectItems.customSelectItems(
       displayName: displayName,
       selectItemsCubit: getMainUnitsCubit,
+      afterSelectItem: (Item item) {
+        getSubUnits(unitGroupId: getMainUnitsCubit.state.selectedItems!.key!);
+      },
+    );
+  }
+  GenericCubit<List<SubUnitsModel>> getSubUnitsModel = GenericCubit<List<SubUnitsModel>>(data: []);
+  SelectItemsCubit getSubUnitsCubit = SelectItemsCubit(errorText: "هذا الحقل مطلوب");
+
+  getSubUnits({required String unitGroupId}) async {
+    loading.show;
+    getSubUnitsModel.update(data: await UnitsController.getSubUnits(
+        unitGroupId: unitGroupId
+    ));
+    loading.hide;
+  }
+
+  getSubUnitsDialog (String displayName) {
+    getSubUnitsCubit.loadData(getSubUnitsModel.state.data!.map((e) => Item(key: e.id, value: e.name)).toList());
+    CustomAlertSelectItems.customSelectItems(
+      displayName: displayName,
+      selectItemsCubit: getSubUnitsCubit,
       afterSelectItem: (Item item) {},
     );
   }

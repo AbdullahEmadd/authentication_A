@@ -1,21 +1,27 @@
 import 'package:manager/src/helpers/global_helper.dart';
+import 'package:manager/src/models/prod_images_model/prod_images_model.dart';
 import 'package:manager/src/models/products_model/products_model.dart';
 import 'package:manager/src/services/app_services.dart';
 
 class ProductsController {
   static Future<bool> addProduct(
-  {required String name, required String categoryId, required String subCategoryId, required String companyId,
-  required bool isOptional}
+  { required String name, required String description, required String categoryId,
+    required String subCategoryId, required String companyId,
+    required bool isOptional, required String image}
       ) async {
+    List<Map<String, Object>> list = [{"isMain": true, "Url": image}];
     var result = await AppService.callService(
         actionType: ActionType.post,
         apiName: "Product/AddProduct",
         body: {
           "Name": name,
+          "Description": description,
           "CategoryId": categoryId,
           "SubCategoryId": subCategoryId,
           "CompanyId": globalData.companyId,
           "IsOptional": isOptional,
+          "ProdImages": list.map((e) => ProdImagesModel(isMain: true, url: image)).toList(),
+          "virtualUnitIdFromApp": '646c4bec-6d95-4543-8e9e-1005601d98f5'
         });
     return result != null ? true : false;
   }

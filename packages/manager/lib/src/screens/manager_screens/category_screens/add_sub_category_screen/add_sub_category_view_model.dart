@@ -15,7 +15,7 @@ import 'package:manager/src/screens/manager_screens/category_screens/get_sub_cat
 import '../../../../helpers/custom_select_item_validator.dart';
 import '../../../../models/categories_model/get_sub_category_additions_by_company_id_model.dart';
 import '../../../../models/categories_model/main_categories_model.dart';
-import '../../../../models/items.dart';
+import '../../../../models/items_model/items.dart';
 import 'add_sub_category_screen.dart';
 
 AddSubCategoryViewModel addSubCategoryViewModel = AddSubCategoryViewModel();
@@ -94,7 +94,7 @@ class AddSubCategoryViewModel {
           logo: base64,
           isOptional: showAdditionsCategory.state.data ?? false,
           parentCategoryId: getMainCategoryCubit.state.selectedItems!.key.toString(),
-          relatedCategoryId: getAdditionsCategoryCubit.state.selectedItems !=null
+          relatedCategoryId: getAdditionsCategoryCubit.state.selectedItems != null
               ? getAdditionsCategoryCubit.state.selectedItems!.key.toString()
               : null
       );

@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/components/custom_app_bar/custom_app_bar.dart';
 import 'package:manager/src/components/custom_button/custom_button.dart';
+import 'package:manager/src/components/custom_checkbox/custom_checkbox.dart';
 import 'package:manager/src/components/custom_select_item/custom_select_item_list.dart';
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/components/loader_custom/loader_custom.dart';
 import 'package:manager/src/cubits/generic_cubit/generic_cubit.dart';
 import 'package:manager/src/helpers/validation.dart';
-import 'package:manager/src/screens/manager_screens/category_screens/add_sub_category_screen/add_sub_category_view_model.dart';
 import 'package:manager/src/screens/manager_screens/products_screens/add_product_screen/add_product_view_model.dart';
 import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_fonts.dart';
@@ -38,12 +38,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
           appBar: CustomAppBar(textAppBar: AppNames.addProduct,),
           body: SingleChildScrollView(
             child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.all(20.sp),
               child: Column(
                 children: [
-                  SizedBox(
-                    height: 30.h,
-                  ),
                   BlocBuilder<GenericCubit<File?>, GenericState<File?>>(
                       bloc: addProductViewModel.selectedImagePath,
                       builder: (context, state) {
@@ -137,6 +134,27 @@ class _AddProductScreenState extends State<AddProductScreen> {
                     name: AppNames.chooseMainUnitName,
                     selectItemsCubitTemp: addProductViewModel.getMainUnitsCubit,
                     onTap: addProductViewModel.getMainUnitsDialog,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  SelectItemList(
+                    name: AppNames.chooseSubUnitName,
+                    selectItemsCubitTemp: addProductViewModel.getSubUnitsCubit,
+                    onTap: addProductViewModel.getSubUnitsDialog,
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
+                  BlocBuilder<GenericCubit<bool>, GenericState<bool>>(
+                    bloc: addProductViewModel.isOptional,
+                    builder: (context, state) {
+                      return CustomCheckbox(
+                          value: state.data,
+                          onChanged: (val) => addProductViewModel.isOptional.update(
+                              data: !state.data!),
+                          text: AppNames.isProductOptional);
+                    },
                   ),
                   SizedBox(
                     height: 10.h,

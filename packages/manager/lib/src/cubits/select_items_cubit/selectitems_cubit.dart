@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../models/items.dart';
+import '../../models/items_model/items.dart';
 
 part 'selectitems_state.dart';
 

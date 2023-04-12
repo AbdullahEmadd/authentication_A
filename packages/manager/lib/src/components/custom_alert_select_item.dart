@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:manager/src/routes/routes.dart';
 
 import '../cubits/select_items_cubit/selectitems_cubit.dart';
-import '../models/items.dart';
+import '../models/items_model/items.dart';
 import '../utility/app_colors.dart';
 import '../utility/app_fonts.dart';
 import 'custom_text/custom_text.dart';

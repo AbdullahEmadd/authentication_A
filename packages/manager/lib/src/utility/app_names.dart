@@ -54,12 +54,14 @@ class AppNames {
  static const chooseCategoryName = 'اختر التنصيف الرئيسي';
  static const chooseSubCategoryName = 'اختر التنصيف الفرعي';
  static const chooseMainUnitName = 'اختر الوحدة الرئيسية';
+ static const chooseSubUnitName = 'اختر الوحدة الفرعية';
  static const chooseUnitName = 'اختر الوحدة الرئيسية';
  static const subCategoryName = 'اسم التنصيف الفرعي';
  static const mainCategories = 'التصنيفات الرئيسية';
  static const mainUnits = 'الوحدات الرئيسية';
  static const subCategories = 'التصنيفات الفرعية';
  static const isOptional = 'هل التصنيف اضافات';
+ static const isProductOptional = 'هل المنتج اختياري';
  static const productName = 'اسم المنتج';
  static const productPrice = 'سعر المنتج';
  static const productDescription = 'وصف المنتج';

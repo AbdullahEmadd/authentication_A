@@ -7,7 +7,7 @@ import 'package:manager/src/cubits/select_items_cubit/selectitems_cubit.dart';
 import 'package:manager/src/helpers/custom_select_item_validator.dart';
 import 'package:manager/src/helpers/get_message_snackbar.dart';
 import 'package:manager/src/helpers/global_helper.dart';
-import 'package:manager/src/models/items.dart';
+import 'package:manager/src/models/items_model/items.dart';
 import 'package:manager/src/models/main_units_model/main_units_model.dart';
 import 'package:manager/src/routes/routes.dart';
 import 'package:manager/src/screens/manager_screens/unit_screens/add_sub_unit_screen/add_sub_unit_screen.dart';
