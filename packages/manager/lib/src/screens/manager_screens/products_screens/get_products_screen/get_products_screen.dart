@@ -53,33 +53,57 @@ class _GetProductsScreenState extends State<GetProductsScreen> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            getProductsViewModel.getProductsModel.state.data![index].prodImages!.isNotEmpty?
                             Container(
                               height: 82,
                               width: MediaQuery.of(context).size.width / 3,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.fill,
-                                  image: NetworkImage(AppConsts.imageDomain+ getProductsViewModel
+                                  image: NetworkImage(
+                                      AppConsts.imageDomain+ getProductsViewModel
                                       .getProductsModel
                                       .state
-                                      .data![index].prodImages![0].url!),),
+                                      .data![index].prodImages![0].url!
+                                  ),),
                                 borderRadius: const BorderRadius.only(
                                   bottomRight: Radius.circular(5),
                                   topRight: Radius.circular(5),
                                 ),
                                 color: AppColors.gray,
                               ),
-                            ),
-                            CustomText(
-                              text: getProductsViewModel
-                                  .getProductsModel
-                                  .state
-                                  .data![index]
-                                  .name!,
-                              maxLines: 2,
-                              fontSize: 14.sp,
-                              color: AppColors.black,
-                              fontWeight: FontWeight.bold,
+                            ): Container(width: MediaQuery.of(context).size.width / 3,),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                CustomText(
+                                  text: 'Name: ${getProductsViewModel
+                                      .getProductsModel
+                                      .state
+                                      .data![index]
+                                      .name!}',
+                                  maxLines: 2,
+                                  fontSize: 14.sp,
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                getProductsViewModel
+                                    .getProductsModel
+                                    .state
+                                    .data![index]
+                                    .description != null ?
+                                CustomText(
+                                  text: 'Description: ${getProductsViewModel
+                                      .getProductsModel
+                                      .state
+                                      .data![index]
+                                      .description!}',
+                                  maxLines: 2,
+                                  fontSize: 14.sp,
+                                  color: AppColors.black,
+                                  fontWeight: FontWeight.bold,
+                                ): Container(),
+                              ],
                             ),
                             SizedBox(
                               height: 10.h,
