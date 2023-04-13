@@ -9,11 +9,13 @@ import '../custom_text/custom_text.dart';
 class CustomAppBar extends PreferredSize {
   final String textAppBar;
   final bool isPageHome ;
+  final PreferredSizeWidget? tabBar;
 
   CustomAppBar({
     super.key,
     required this.textAppBar,
-     this.isPageHome = false ,
+    this.isPageHome = false ,
+    this.tabBar,
   }) : super(
           child: Container(),
           preferredSize: Size.fromHeight(60.h),
@@ -34,11 +36,14 @@ class CustomAppBar extends PreferredSize {
               }
             },
             icon: Icon(isPageHome ? Icons.menu : Icons.arrow_back_outlined)),
-        title: CustomText(
-            text: textAppBar.toString(),
-            color: AppColors.black,
-            fontSize: 16.sp,
-            fontFamily: AppFonts.fontMedium),
+        title: Center(
+          child: CustomText(
+              text: textAppBar.toString(),
+              color: AppColors.black,
+              fontSize: 16.sp,
+              fontFamily: AppFonts.fontMedium,
+              ),
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -50,6 +55,7 @@ class CustomAppBar extends PreferredSize {
             ),
           )
         ],
+          bottom: tabBar,
       ),
     );
   }

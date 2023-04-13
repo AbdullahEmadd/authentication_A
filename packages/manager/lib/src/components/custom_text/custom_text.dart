@@ -35,9 +35,9 @@ class CustomText extends StatelessWidget {
           fontSize: fontSize,
           fontFamily: fontFamily,
           color: color?? AppColors.black,
-          fontWeight: fontWeight
+          fontWeight: fontWeight,
       ),
-      maxLines: maxLines,
+          maxLines: maxLines,
     );
   }
 }

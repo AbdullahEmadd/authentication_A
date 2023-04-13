@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:manager/src/screens/manager_screens/category_screens/add_main_category_screen/add_main_category_screen.dart';
 import 'package:manager/src/screens/manager_screens/category_screens/add_sub_category_screen/add_sub_category_screen.dart';
 import 'package:manager/src/screens/manager_screens/products_screens/add_product_screen/add_product_screen.dart';
+import 'package:manager/src/screens/manager_screens/store_screens/store_screen.dart';
 import 'package:manager/src/screens/profile_screen/profile_screen.dart';
-
 import '../screens/manager_screens/category_screens/get_main_categories_screen/get_main_categories_screen.dart';
 import '../screens/manager_screens/category_screens/get_sub_categories_screen/get_sub_categories_screen.dart';
 import '../screens/manager_screens/products_screens/get_products_screen/get_products_screen.dart';
@@ -27,6 +27,7 @@ appRoutes(context) {
     ScreenNames.getSubUnitsScreen: (context) => const GetSubUnitsScreen(),
     ScreenNames.addSubUnitScreen: (context) => const AddSubUnitScreen(),
     ScreenNames.addProductScreen: (context) => const AddProductScreen(),
+    ScreenNames.storeScreen: (context) => const StoreScreen(),
     };
     return routes;
 }
@@ -42,4 +43,5 @@ appRoutes(context) {
     static String getSubUnitsScreen = "getSubUnitsScreen";
     static String addSubUnitScreen = "addSubUnitScreen";
     static String addProductScreen = "addProductScreen";
+    static String storeScreen = "storeScreen";
   }

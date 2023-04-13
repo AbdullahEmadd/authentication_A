@@ -171,6 +171,27 @@ class _ManagerDrawerScreenState extends State<ManagerDrawerScreen> {
                       SizedBox(height: 25.h),
                       GestureDetector(
                         onTap: () {
+                          goToScreen(screenNames: ScreenNames.storeScreen);
+                        },
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.store,
+                              color: AppColors.mainColor,
+                              size: 30,
+                            ),
+                            SizedBox(width: 10.w),
+                            CustomText(
+                              text: AppNames.store,
+                              fontSize: 20.sp,
+                              color: AppColors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 25.h),
+                      GestureDetector(
+                        onTap: () {
                           LoadManagerPackage.logout!();
                         },
                         child: Row(

@@ -8,11 +8,17 @@ class AppNames {
  static const orders = 'طلبات اليوم';
  static const menu = 'القائمة';
  static const units = 'الوحدات';
+ static const store = 'المخزن';
  static const companyStore = 'مخزن الشركة';
  static const employeeStore = 'مخزن العامل';
  static const job = 'الوظيفة';
  static const editProfilePhoto = 'تعديل الصورة الشخصية';
  static const company = 'الشركة التابع لها';
+ static const amount = 'طريقة ادخال الكمية';
+ static const amountForProduct = 'الكمية للمنتج';
+ static const editAmount = 'تعديل الكمية فالمخزن';
+ static const numberOfUnits = 'عدد الوحدات';
+ static const transferToEmployee = 'تحويل المنتج لمخزن العامل';
  static const home = 'الرئيسية';
  static const name = 'الاسم';
  static const userName = 'اسم المستخدم';
@@ -44,6 +50,7 @@ class AppNames {
  static const departments = 'الأقسام';
  static const employees = 'الموظفين';
  static const dontMatch  = 'Your Passwords Dont Match';
+ static const stock  = 'المخزن';
  static const mostOrdered = 'المنتجات الأكثر طلبا';
  static const main = 'التصنيفات الرئيسية';
  static const addMainCategory = 'إضافة تصنيف رئيسي';
