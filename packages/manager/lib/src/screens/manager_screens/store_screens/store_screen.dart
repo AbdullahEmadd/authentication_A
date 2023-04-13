@@ -6,6 +6,7 @@ import 'package:manager/src/components/custom_select_item/custom_select_item_lis
 import 'package:manager/src/components/custom_text/custom_text.dart';
 import 'package:manager/src/components/custom_text_field/custom_text_field.dart';
 import 'package:manager/src/helpers/validation.dart';
+import 'package:manager/src/utility/app_colors.dart';
 import 'package:manager/src/utility/app_fonts.dart';
 import 'package:manager/src/utility/app_names.dart';
 
@@ -27,7 +28,7 @@ class _StoreScreenState extends State<StoreScreen> {
               appBar: CustomAppBar(
                   textAppBar: AppNames.stock,
                   tabBar: TabBar(
-                      labelColor: const Color(0xffFF7642),
+                      labelColor: AppColors.mainColor,
                       labelStyle: TextStyle(
                         fontSize: 14.sp,
                         fontFamily: AppFonts.fontMedium,
@@ -35,42 +36,18 @@ class _StoreScreenState extends State<StoreScreen> {
                       unselectedLabelColor: const Color(0xffA3A3A3),
                       unselectedLabelStyle: TextStyle(
                           fontSize: 14.sp, fontFamily: AppFonts.fontMedium),
-                      indicatorColor: const Color(0xffFF7642),
+                      indicatorColor: AppColors.mainColor,
                       tabs: const [
                         Tab(text: AppNames.companyStore),
                         Tab(text: AppNames.employeeStore),
                       ])),
-              body: TabBarView(children: [
-                Column(children: [
-                  SizedBox(height: 12.h),
-                  // SelectItemList(
-                  //     name: AppNames.mainCategoryName,
-                  //     onTap: onTap,
-                  //     selectItemsCubitTemp: selectItemsCubitTemp),
-                  // SizedBox(height: 12.h),
-                  // SelectItemList(
-                  //       name: AppNames.subCategoryName,
-                  //       onTap: onTap,
-                  //       selectItemsCubitTemp: selectItemsCubitTemp),
-                  // SizedBox(height: 12.h),
-                  // SelectItemList(
-                  //       name: AppNames.productName, onTap: onTap, selectItemsCubitTemp: selectItemsCubitTemp),
-                  // SizedBox(height: 12.h),
-                  // SelectItemList(
-                  //       name: AppNames.amount, onTap: onTap, selectItemsCubitTemp: selectItemsCubitTemp),
-                  SizedBox(height: 12.h),
-                  CustomTextField(
-                    textFieldValidatorType: null, //To be edited
-                    hint: AppNames.amountForProduct,
-                  ),
-                  SizedBox(height: 25.h),
-                  CustomButton(
-                    text: AppNames.editAmount,
-                    function: () {},
-                  )
-                ]),
-                Column(
+              body: TabBarView(
                   children: [
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Column(
+                      children: [
+                    SizedBox(height: 12.h),
                     // SelectItemList(
                     //     name: AppNames.mainCategoryName,
                     //     onTap: onTap,
@@ -83,32 +60,61 @@ class _StoreScreenState extends State<StoreScreen> {
                     // SizedBox(height: 12.h),
                     // SelectItemList(
                     //       name: AppNames.productName, onTap: onTap, selectItemsCubitTemp: selectItemsCubitTemp),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomTextField(
-                          textFieldValidatorType: null,
-                          hint: AppNames.amount,
-                          width: 165.w,
-                        ),
-                        CustomTextField(
-                          textFieldValidatorType: null,
-                          hint: AppNames.amount,
-                          width: 165.w,
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 12.h),
+                    // SizedBox(height: 12.h),
+                    // SelectItemList(
+                    //       name: AppNames.amount, onTap: onTap, selectItemsCubitTemp: selectItemsCubitTemp),
+                    // SizedBox(height: 12.h),
                     CustomTextField(
-                      textFieldValidatorType: null,
-                      hint: AppNames.numberOfUnits
+                      textFieldValidatorType: null, //To be edited
+                      hint: AppNames.amountForProduct,
                     ),
                     SizedBox(height: 25.h),
                     CustomButton(
-                      text: AppNames.transferToEmployee,
-                      function: (){},
-                    ),
-                  ],
+                      text: AppNames.editAmount,
+                      function: () {},
+                    )
+                  ]),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: 15.w),
+                  child: Column(
+                    children: [
+                      // SelectItemList(
+                      //     name: AppNames.mainCategoryName,
+                      //     onTap: onTap,
+                      //     selectItemsCubitTemp: selectItemsCubitTemp),
+                      // SizedBox(height: 12.h),
+                      // SelectItemList(
+                      //       name: AppNames.subCategoryName,
+                      //       onTap: onTap,
+                      //       selectItemsCubitTemp: selectItemsCubitTemp),
+                      // SizedBox(height: 12.h),
+                      // SelectItemList(
+                      //       name: AppNames.productName, onTap: onTap, selectItemsCubitTemp: selectItemsCubitTemp),
+                      SizedBox(height: 12.h,),
+                      CustomTextField(
+                        textFieldValidatorType: null,
+                        hint: AppNames.amount,
+                        width: 165.w,
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomTextField(
+                        textFieldValidatorType: null,
+                        hint: AppNames.subCategoryNumber,
+                        width: 165.w,
+                      ),
+                      SizedBox(height: 12.h),
+                      CustomTextField(
+                        textFieldValidatorType: null,
+                        hint: AppNames.numberOfUnits
+                      ),
+                      SizedBox(height: 25.h),
+                      CustomButton(
+                        text: AppNames.transferToEmployee,
+                        function: (){},
+                      ),
+                    ],
+                  ),
                 ),
               ]),
             ))

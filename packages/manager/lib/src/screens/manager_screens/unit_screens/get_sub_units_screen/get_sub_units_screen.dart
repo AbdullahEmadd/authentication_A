@@ -60,26 +60,23 @@ class _GetSubUnitsScreenState extends State<GetSubUnitsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 CustomText(
-                                  text: 'name : ${state.data![index].name.toString()}',
+                                  text: state.data![index].name.toString(),
                                   maxLines: 2,
                                   fontSize: 14.sp,
                                   color: AppColors.black,
                                   fontWeight: FontWeight.bold,
                                 ),
                                 CustomText(
-                                    text: 'symbol : ${state.data![index].symbol.toString()}',
+                                    text: 'الرمز : ${state.data![index].symbol.toString()}',
                                     fontSize: 14.sp,
-                                   fontWeight: FontWeight.bold,
                                 ),
                                 CustomText(
-                                    text: 'Quantity per unit : ${state.data![index].quantityPerUnit.toString()}',
+                                    text: 'الكمية لكل وحدة : ${state.data![index].quantityPerUnit.toString()}',
                                     fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
                                 ),
                                 CustomText(
-                                    text: 'Quantity per unit group : ${state.data![index].quantityPerUnitGroup.toString()}',
+                                    text: 'الكمية لكل مجموعة وحدة : ${state.data![index].quantityPerUnitGroup.toString()}',
                                     fontSize: 14.sp,
-                                    fontWeight: FontWeight.bold,
                                 ),
                               ],
                             ),

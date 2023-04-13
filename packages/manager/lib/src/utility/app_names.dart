@@ -15,8 +15,9 @@ class AppNames {
  static const editProfilePhoto = 'تعديل الصورة الشخصية';
  static const company = 'الشركة التابع لها';
  static const amount = 'طريقة ادخال الكمية';
+ static const subCategoryNumber = 'عدد الوحدات الفرعية';
  static const amountForProduct = 'الكمية للمنتج';
- static const editAmount = 'تعديل الكمية فالمخزن';
+ static const editAmount = 'تعديل الكمية في المخزن';
  static const numberOfUnits = 'عدد الوحدات';
  static const transferToEmployee = 'تحويل المنتج لمخزن العامل';
  static const home = 'الرئيسية';

@@ -52,13 +52,14 @@ class AddProductViewModel {
         categoryId: getMainCategoryCubit.state
             .selectedItems!.key.toString(),
         subCategoryId: getSubCategoryCubit.state.selectedItems!.key.toString(),
+        mainUnitId: getMainUnitsCubit.state.selectedItems!.key.toString(),
         companyId: globalData.companyId!,
         isOptional: isOptional.state.data!,
-        image: base64
+        image: base64,
     );
     if (result) {
       globalData.getProductsViewModel.getProducts();
-      getMessageSnackBar(messageText: "تم اضافه التصنيف بنجاح");
+      getMessageSnackBar(messageText: "تم اضافه المنتج بنجاح");
       goBack();
     }
     loading.hide;

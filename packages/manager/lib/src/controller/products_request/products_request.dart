@@ -7,7 +7,8 @@ class ProductsController {
   static Future<bool> addProduct(
   { required String name, required String description, required String categoryId,
     required String subCategoryId, required String companyId,
-    required bool isOptional, required String image}
+    required bool isOptional, required String image,
+    required String mainUnitId}
       ) async {
     List<Map<String, Object>> list = [{"isMain": true, "Url": image}];
     var result = await AppService.callService(
@@ -21,7 +22,7 @@ class ProductsController {
           "CompanyId": globalData.companyId,
           "IsOptional": isOptional,
           "ProdImages": list.map((e) => ProdImagesModel(isMain: true, url: image)).toList(),
-          "virtualUnitIdFromApp": '646c4bec-6d95-4543-8e9e-1005601d98f5'
+          "virtualUnitIdFromApp": mainUnitId
         });
     return result != null ? true : false;
   }
