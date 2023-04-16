@@ -27,10 +27,10 @@ class ProductsController {
     return result != null ? true : false;
   }
 
-  static Future<List<ProductsModel>> getProductsByCategoryIdAndSubCategoryId() async {
+  static Future<List<ProductsModel>> getProductsByCategoryIdAndSubCategoryId({required categoryId, required subCategoryId}) async {
     var result = await AppService.callService(
         actionType: ActionType.get,
-        apiName: "Product/GetAllProductByCatogreyIdAndSubCategory?SubCategory=757b6994-5aac-4f51-94e7-78e2cdfff1e2&CompanyId=${globalData.companyId}&CatogreyId=17f78ef7-3cfa-416f-9fe0-38709c4267d3",
+        apiName: "Product/GetAllProductByCatogreyIdAndSubCategory?SubCategory=$subCategoryId&CompanyId=${globalData.companyId}&CatogreyId=$categoryId",
         body: null);
     if (result == null) {
       return [];

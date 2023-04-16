@@ -18,7 +18,7 @@ class CustomAppBar extends PreferredSize {
     this.tabBar,
   }) : super(
           child: Container(),
-          preferredSize: Size.fromHeight(60.h),
+          preferredSize: Size.fromHeight(90.h),
         );
 
   @override
