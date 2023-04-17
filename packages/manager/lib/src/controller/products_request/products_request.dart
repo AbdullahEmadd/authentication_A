@@ -1,6 +1,7 @@
 import 'package:manager/src/helpers/global_helper.dart';
 import 'package:manager/src/models/prod_images_model/prod_images_model.dart';
 import 'package:manager/src/models/products_model/products_model.dart';
+import 'package:manager/src/models/products_model/stock_products_model.dart';
 import 'package:manager/src/services/app_services.dart';
 
 class ProductsController {
@@ -27,16 +28,16 @@ class ProductsController {
     return result != null ? true : false;
   }
 
-  static Future<List<ProductsModel>> getProductsByCategoryIdAndSubCategoryId({required categoryId, required subCategoryId}) async {
+  static Future<List<StockProductsModel>> getProductsByCategoryIdAndSubCategoryId({required categoryId, required subCategoryId}) async {
     var result = await AppService.callService(
         actionType: ActionType.get,
-        apiName: "Product/GetAllProductByCatogreyIdAndSubCategory?SubCategory=$subCategoryId&CompanyId=${globalData.companyId}&CatogreyId=$categoryId",
+        apiName: "CompanyStock/GetCompanyStockProducts?CompanyId=${globalData.companyId}&MainCategoryId=$categoryId&SubCategoryId=$subCategoryId",
         body: null);
     if (result == null) {
       return [];
     }
-    return (List<ProductsModel>.from(
-        result.map((x) => ProductsModel.fromJson(x))));
+    return (List<StockProductsModel>.from(
+        result.map((x) => StockProductsModel.fromJson(x))));
   }
 
   static Future<List<ProductsModel>> getProducts() async {

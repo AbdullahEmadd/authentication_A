@@ -73,12 +73,12 @@ class _StoreScreenState extends State<StoreScreen> {
                           SizedBox(height: 7.h,),
                           CustomTextField(
                             textFieldValidatorType: null,
-                            hint: AppNames.amount,
+                            hint: AppNames.quantity,
                             width: 165.w,
                           ),
                           CustomTextField(
                         textFieldValidatorType: null, //To be edited
-                        hint: AppNames.amountForProduct,
+                        hint: AppNames.quantityForProduct,
                       ),
                       SizedBox(height: 25.h),
                       CustomButton(
@@ -112,7 +112,7 @@ class _StoreScreenState extends State<StoreScreen> {
                         SizedBox(height: 7.h,),
                         CustomTextField(
                           textFieldValidatorType: null,
-                          hint: AppNames.amount,
+                          hint: AppNames.quantity,
                           width: 165.w,
                         ),
                         SizedBox(height: 7.h),
